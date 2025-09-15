@@ -4,7 +4,7 @@ extends Control
 @onready var start_button: Button = $VBoxContainer/StartButton
 
 func _on_start_button_pressed() -> void:
-	#	get_tree().change_scene("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://character.tscn")
 	pass # place a scene to start here
 
 
