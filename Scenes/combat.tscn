@@ -2,46 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://050sdbaeprtn" path="res://Scenes/character.tscn" id="2_4ln8h"]
-[ext_resource type="PackedScene" uid="uid://bgbqx6n0y3qyr" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
-
-[sub_resource type="Animation" id="Animation_4ln8h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(588, 401)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:isdodge")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:canmove")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[ext_resource type="PackedScene" uid="uid://s4564xvohwkm" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -123,11 +84,51 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_ut0kg"]
+resource_name = "punch"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 0.615572, 0.615572, 1),
+"update": 0,
+"values": [Vector2(588, 401), Vector2(588, 315), Vector2(588, 315), Vector2(588, 401)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:ispunch")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:canmove")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubpar"]
 _data = {
-&"RESET": SubResource("Animation_4ln8h"),
 &"dodgeleft": SubResource("Animation_ubpar"),
-&"dodgeright": SubResource("Animation_fe60u")
+&"dodgeright": SubResource("Animation_fe60u"),
+&"punch": SubResource("Animation_ut0kg")
 }
 
 [node name="Combat" type="Node2D"]
@@ -142,5 +143,5 @@ libraries = {
 }
 
 [node name="Enemys" parent="." instance=ExtResource("3_4ln8h")]
-position = Vector2(594, 227)
+position = Vector2(612, 199)
 scale = Vector2(3, 3)

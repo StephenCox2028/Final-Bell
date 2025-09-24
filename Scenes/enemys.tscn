@@ -1,10 +1,35 @@
-[gd_scene load_steps=49 format=3 uid="uid://bgbqx6n0y3qyr"]
+[gd_scene load_steps=56 format=3 uid="uid://s4564xvohwkm"]
 
 [ext_resource type="Script" uid="uid://ul7j3sh1fm25" path="res://Scripts/enemys.gd" id="1_cm7k0"]
 [ext_resource type="Texture2D" uid="uid://hdyfx0svy627" path="res://Sprites/skeletin.png" id="1_vyyno"]
+[ext_resource type="Texture2D" uid="uid://bm4yv4tlb6s8a" path="res://Sprites/skeleblock correctsheet.png" id="2_8lwso"]
 [ext_resource type="Texture2D" uid="uid://dkgdbsoibls2p" path="res://Sprites/skeleton dodge right.png" id="3_seb7f"]
 [ext_resource type="Texture2D" uid="uid://ctmqwkafgrbrm" path="res://Sprites/fire man.png" id="4_4k4ca"]
 [ext_resource type="Texture2D" uid="uid://cppu016eydigj" path="res://Sprites/Fireman blue.png" id="5_8lwso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbf3c"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42sku"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcb5j"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg2qo"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8krba"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qu2a"]
+atlas = ExtResource("2_8lwso")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm7k0"]
 atlas = ExtResource("1_vyyno")
@@ -146,6 +171,29 @@ region = Rect2(176, 0, 16, 20)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sbf3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42sku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcb5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vg2qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8krba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qu2a")
+}],
+"loop": true,
+"name": &"SkeleBlock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cm7k0")
 }, {
 "duration": 1.0,
@@ -161,7 +209,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ynrkh")
 }],
 "loop": true,
-"name": &"Default",
+"name": &"SkeleDefault",
 "speed": 5.0
 }, {
 "frames": [{
@@ -181,7 +229,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_3jok4")
 }],
 "loop": true,
-"name": &"Dodge left",
+"name": &"SkeleDodgeL",
 "speed": 5.0
 }, {
 "frames": [{
@@ -263,13 +311,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_31veg")
 }],
 "loop": true,
-"name": &"TempDodge",
+"name": &"TempDodgeL",
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_8lwso"]
+resource_name = "Block"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"SkeleBlock", &"SkeleDefault"]
+}
+
 [sub_resource type="Animation" id="Animation_8j6ww"]
 resource_name = "Dodge"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -280,7 +354,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"Dodge left", &"Default"]
+"values": [&"SkeleDodgeL", &"SkeleDefault"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -336,7 +410,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_4k4ca"]
 resource_name = "Smack"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -349,53 +422,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_8lwso"]
-resource_name = "Block"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_trqtg"]
-resource_name = "Tempblock"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_cbqis"]
-resource_name = "TempSmack"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+"update": 1,
+"values": [&"SkeleDefault", &"SkeleDefault"]
 }
 
 [sub_resource type="Animation" id="Animation_i4f6o"]
@@ -426,6 +463,50 @@ tracks/1/keys = {
 "values": [&"TempDodge", &"TempDefault"]
 }
 
+[sub_resource type="Animation" id="Animation_cbqis"]
+resource_name = "TempSmack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_trqtg"]
+resource_name = "Tempblock"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"TempDefault", &"TempDefault"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4k4ca"]
 _data = {
 &"Block": SubResource("Animation_8lwso"),
@@ -443,7 +524,7 @@ script = ExtResource("1_cm7k0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_droi5")
 animation = &"Default"
-autoplay = "Default"
+autoplay = "SkeleDefault"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
