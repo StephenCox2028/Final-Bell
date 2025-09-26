@@ -7,4 +7,3 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("Smack")
 		3:
 			enemy_node.animation_player.play("Block")
-	print("1")

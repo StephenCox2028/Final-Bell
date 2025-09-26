@@ -6,7 +6,7 @@ extends Node2D
 @export var isHoldingHook = false
 @export var canmove = true # is your inability to move(if you cant move you cant dodge)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("dodgeright"):
 		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.

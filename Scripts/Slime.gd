@@ -7,4 +7,3 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("TempSmack")
 		3:
 			enemy_node.animation_player.play("Tempblock")
-	print("2")

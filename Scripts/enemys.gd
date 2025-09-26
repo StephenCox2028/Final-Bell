@@ -4,7 +4,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var skeletin = load("res://Scripts/Skeleton.gd").new()# so i can add more later easily
 var slime = load("res://Scripts/Slime.gd").new()# so i can add more later easily
-
+var safe = false # used to detect if blocking or dodging
 var enmActions = []
 
 var rng = RandomNumberGenerator.new()
@@ -12,7 +12,6 @@ var action : int
 var enemy
 func _ready():
 	enmActions = [skeletin,slime]#add more latter
-	timer.timeout.connect(_on_timer_timeout)
 	enemy = randi_range(1, 2)
 
 	match enemy:
