@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://d3rr24v2fhg8l" path="res://Scenes/character.tscn" id="2_4ln8h"]
-[ext_resource type="PackedScene" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
+[ext_resource type="PackedScene" uid="uid://b5e8diyl6l2qs" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
