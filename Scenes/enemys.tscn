@@ -1,6 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://s4564xvohwkm"]
+[gd_scene load_steps=56 format=3 uid="uid://b5e8diyl6l2qs"]
 
-[ext_resource type="Script" uid="uid://ul7j3sh1fm25" path="res://Scripts/enemys.gd" id="1_cm7k0"]
+[ext_resource type="Script" path="res://Scripts/enemys.gd" id="1_cm7k0"]
 [ext_resource type="Texture2D" uid="uid://hdyfx0svy627" path="res://Sprites/skeletin.png" id="1_vyyno"]
 [ext_resource type="Texture2D" uid="uid://bm4yv4tlb6s8a" path="res://Sprites/skeleblock correctsheet.png" id="2_8lwso"]
 [ext_resource type="Texture2D" uid="uid://dkgdbsoibls2p" path="res://Sprites/skeleton dodge right.png" id="3_seb7f"]
