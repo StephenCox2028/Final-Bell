@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=8 format=3 uid="uid://r7n78i1k8jn7"]
 
-[ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
-[ext_resource type="PackedScene" uid="uid://050sdbaeprtn" path="res://Scenes/character.tscn" id="2_4ln8h"]
+[ext_resource type="Script" path="res://Scripts/combat.gd" id="1_fe60u"]
+[ext_resource type="PackedScene" path="res://Scenes/character.tscn" id="2_4ln8h"]
+[ext_resource type="PackedScene" uid="uid://b5e8diyl6l2qs" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -140,3 +141,7 @@ position = Vector2(588, 401)
 libraries = {
 &"": SubResource("AnimationLibrary_ubpar")
 }
+
+[node name="Enemys" parent="." instance=ExtResource("3_4ln8h")]
+position = Vector2(608, 233)
+scale = Vector2(3, 3)

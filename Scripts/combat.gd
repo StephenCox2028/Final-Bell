@@ -3,7 +3,7 @@ extends Node2D
 @onready var character = $Character
 @export var isdodge = false # is your ability to get hit(if not dodgeing you can get smacked)
 @export var ispunch = false # is your boolean for punching.
-@export var isHolding = false	#is your boolean for holding down a button
+@export var isHolding = false #is your boolean for holding down a button
 @export var canmove = true # is your inability to move(if you cant move you cant dodge)
 
 var originalPos = Vector2(588.0, 401.0)		#Original position of the character.
@@ -31,7 +31,7 @@ func _input(event):
 				if isHolding == false:
 					animation.play("dodgeleft")
 					pass
-		
+
 	if Input.is_action_pressed("attackLeft"):
 		if isHolding == false:	#If Q is not being held down.
 			pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
@@ -43,13 +43,13 @@ func _input(event):
 	if Input.is_action_just_released("attackLeft"):
 		heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
 		if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
-			animation.play("punch")	#Simply punch
-		heldTime = 0	#Reset holdTime
+			animation.play("punch") #Simply punch
+		heldTime = 0		#Reset holdTime
 		isHolding = false
 		if character.position != originalPos:	#If the character position is not at it's original...
 			character.position = originalPos	#Reset the position after shaking.
 			animation.play("punch")
-		
+
 	if Input.is_action_pressed("attackRight"):
 		if isHolding == false:	#If E is not being held down.
 			pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
@@ -67,7 +67,7 @@ func _input(event):
 		if character.position != originalPos:	#If the character position is not at it's original...
 			character.position = originalPos	#Reset the position after shaking.
 			animation.play("punch")
-	
+
 func start_shake():
 	#This line changes the character position from it's original to a random Vector2 depending on the shake strength. Since the function repeatedly runs
 	#while either Q or E is held down, it looks like the character is shaking, but in reality the character is shifting positions quickly.
