@@ -135,7 +135,7 @@ _data = {
 script = ExtResource("1_fe60u")
 
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]
-position = Vector2(160, 303)
+position = Vector2(588, 401)
 scale = Vector2(3, 3)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
@@ -146,3 +146,5 @@ libraries = {
 [node name="Enemys" parent="." instance=ExtResource("3_4ln8h")]
 position = Vector2(608, 233)
 scale = Vector2(3, 3)
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]

@@ -18,11 +18,20 @@ func _ready():
 		1:
 			action = 0
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
+			Global.currentBoss = "Hit-Man Skeleton"
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
 			animated_sprite_2d.play("TempDefault")
+			Global.currentBoss = "Devil"
 			pass# same here
 
 func _on_timer_timeout() -> void:	
 	enmActions[action].call("Actions", self)
+	
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Dodge" or anim_name == "Temp Dodge":
+		Global.bosses[Global.currentBoss].dodge = false
+	if anim_name == "Block" or anim_name == "Tempblock":
+		Global.bosses[Global.currentBoss].block = false
+	print(anim_name)
