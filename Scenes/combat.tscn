@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://r7n78i1k8jn7"]
 
-[ext_resource type="Script" path="res://Scripts/combat.gd" id="1_fe60u"]
-[ext_resource type="PackedScene" path="res://Scenes/character.tscn" id="2_4ln8h"]
+[ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
+[ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
 [ext_resource type="PackedScene" uid="uid://b5e8diyl6l2qs" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
@@ -135,7 +135,8 @@ _data = {
 script = ExtResource("1_fe60u")
 
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]
-position = Vector2(588, 401)
+position = Vector2(160, 303)
+scale = Vector2(3, 3)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
