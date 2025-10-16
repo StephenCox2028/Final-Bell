@@ -24,6 +24,9 @@ Global="*res://Scripts/Global.gd"
 folder_colors={
 "res://Sprites - Zach/Demon Boss Sprites/": "red"
 }
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
 
 [input]
 

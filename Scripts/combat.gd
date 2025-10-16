@@ -21,8 +21,8 @@ var health: float = 100.0
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
-	if Input.is_action_just_pressed("dodgeright"):
-		if canmove == true: # this is if you're able to move so attacks and the like go here 
+	if Input.is_action_just_pressed("dodgeright"): 
+		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.
 				if isHolding == false:
 					animation.play("dodgeright")
