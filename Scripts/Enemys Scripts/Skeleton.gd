@@ -1,5 +1,5 @@
 func Actions(enemy_node):
-	print(enemy_node.health, enemy_node.strength, enemy_node.power)
+	print(enemy_node.health, enemy_node.stamina, enemy_node.power)
 	var action = randi_range(1, 3)
 	print 
 	match action:
@@ -9,3 +9,5 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("Smack")
 		3:
 			enemy_node.animation_player.play("Block")
+# in this code we need to change it so that after the animation playes the animation player changes the 
+# a variable in the combat scene that will disctate what damage in the switch statment it does

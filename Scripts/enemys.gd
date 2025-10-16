@@ -7,7 +7,7 @@ var slime = load("res://Scripts/Enemys Scripts/Slime.gd").new()# so i can add mo
 var safe = false # used to detect if blocking or dodging
 var enmActions = []
 @export var health = 1
-@export var strength = 1
+@export var stamina = 1
 @export var power = 1
 
 
@@ -33,7 +33,7 @@ func _ready():
 func _on_timer_timeout() -> void:	
 	enmActions[action].call("Actions", self)
 
-func change_stats(hp,str,pow):
+func change_stats(hp,sta,pow):
 	health = hp
-	strength = str
+	stamina = sta
 	power = pow

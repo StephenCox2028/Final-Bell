@@ -3,7 +3,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
 @export var health = 1
-@export var strength = 1
+@export var stamina = 1
 @export var power = 1
 	#examples for bosses
 #var skeletin = load("res://Scripts/Skeleton.gd").new()# so i can add more later easily
@@ -33,7 +33,7 @@ func _ready():
 func _on_timer_timeout() -> void:	
 	enmActions[action].call("Actions", self)
 
-func change_stats(hp,str,pow):
+func change_stats(hp,sta,pow):
 	health = hp
-	strength = str
+	stamina = sta
 	power = pow
