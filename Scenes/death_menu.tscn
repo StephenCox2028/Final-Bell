@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://bye2mcj3jli6r"]
+
+[ext_resource type="Script" uid="uid://bo2i4htelqjri" path="res://Scripts/death_menu.gd" id="1_ipdme"]
+[ext_resource type="Texture2D" uid="uid://cyvqum0itpn5y" path="res://Sprites/whee.jpg" id="2_bsx7a"]
+
+[node name="DeathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipdme")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 321.25)
+scale = Vector2(4.17391, 3.53825)
+texture = ExtResource("2_bsx7a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -133.0
+offset_right = 160.0
+grow_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="Retry" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="large amount of margins" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/large amount of margins"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/large amount of margins/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/large amount of margins/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/large amount of margins/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/large amount of margins/MarginContainer/MarginContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DIE" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/DIE" to="." method="_on_die_pressed"]

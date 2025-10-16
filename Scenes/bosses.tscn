@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://elsw72ii6qai"]
+
+[ext_resource type="Script" uid="uid://gagcufyq874w" path="res://Scripts/bosses.gd" id="1_l3loj"]
+[ext_resource type="Texture2D" uid="uid://bgdxc2gcnna7y" path="res://Sprites/pider.jpg" id="2_s2j0o"]
+
+[node name="Bosses" type="Node2D"]
+script = ExtResource("1_l3loj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_s2j0o")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
