@@ -17,6 +17,7 @@ var pressTimes = {
 	"leftAttack": -1.0,
 	"rightAttack": -1.0
 }
+var health: float = 100.0
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -95,3 +96,38 @@ func start_shake():
 
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
+
+func DamageTaken():
+	var jab = 0.005 
+	var cross = 0.01
+	var hook = 0.02
+	var block = 0.0025
+	var probablityJab = 85
+	var probablityCross = 65
+	var probablityHook = 50
+	var probablityBlock = 100
+	var fighting_Moves = [1,2,3,4] # An array showing all four possible attacks. 
+	
+	for fighting_Move in fighting_Moves: # repeats moves for multiple attacks
+		var chance = randi() % 100 +1
+		match fighting_Move:
+			1:	
+				if chance <= probablityBlock: #Checks the probablitiy if you will block. It's 100% so you will always block.
+					health -= block #Does minor damage if enemy hits you
+					print ("Health:", health)  # This prints out your current health.
+			2:#Exact same with the rest.
+				if chance <= probablityJab:
+					health -= jab
+					print ("Health:", health)
+			3:
+				if chance <= probablityCross:
+					health -= cross
+					print ("Health:", health)
+			4:
+				if chance <= probablityHook:
+					health -= hook
+					print ("Health:")
+
+	if health <= 0:
+		health = 0
+		print ("You Died")
