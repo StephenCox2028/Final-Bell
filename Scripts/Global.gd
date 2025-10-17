@@ -43,11 +43,11 @@ func getPlayerPopwer():
 #when player health reaches 0 change to a new scene - Mirza
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	else:
 		"""
 		to change scene to locker room
 		get._tree().change_scene_to_file()
 		"""
 	if(bosses[currentBoss].health <= 0):
-		print("You win!!")
+		get_tree().change_scene_to_file("res://Scenes/victory_menu.tscn")

@@ -1,6 +1,6 @@
 func Actions(enemy_node):
 	print(enemy_node.health, enemy_node.stamina, enemy_node.power)
-	var action = randi_range(1, 3)
+	var action = randi_range(2, 2)# change this back to 1, 3
 	print 
 	match action:
 		1:
