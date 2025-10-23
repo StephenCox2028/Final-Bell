@@ -20,9 +20,6 @@ func _on_quit_button_pressed() -> void:
 #func _on_next_button_pressed() -> void #Connects to the intro once next is clicked.
 	get_tree().change_sence_to_file("res://Scenes/intro.tscn")
 	pass #
-
-
-
 	
 	#func _on_next_button_pressed() -> void #connects to the locker menu when clicked.
 	get_tree().change_sence_to_file("res://Scenes/locker.tscn")

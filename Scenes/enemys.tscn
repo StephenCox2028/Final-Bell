@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b5e8diyl6l2qs"]
+[gd_scene load_steps=58 format=3 uid="uid://b5e8diyl6l2qs"]
 
 [ext_resource type="Script" uid="uid://ul7j3sh1fm25" path="res://Scripts/enemys.gd" id="1_cm7k0"]
 [ext_resource type="Texture2D" uid="uid://hdyfx0svy627" path="res://Sprites/skeletin.png" id="1_vyyno"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dkgdbsoibls2p" path="res://Sprites/skeleton dodge right.png" id="3_seb7f"]
 [ext_resource type="Texture2D" uid="uid://ctmqwkafgrbrm" path="res://Sprites/fire man.png" id="4_4k4ca"]
 [ext_resource type="Texture2D" uid="uid://cppu016eydigj" path="res://Sprites/Fireman blue.png" id="5_8lwso"]
+[ext_resource type="AudioStream" uid="uid://djft1cn0w18ci" path="res://Music/final-bell---boxing-1.mp3" id="7_cbqis"]
+[ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music/satan’s-finale.mp3" id="8_i4f6o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbf3c"]
 atlas = ExtResource("2_8lwso")
@@ -534,6 +536,14 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_4k4ca")
 }
+
+[node name="SkeletonMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cbqis")
+volume_db = -10.0
+
+[node name="DevilMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_i4f6o")
+volume_db = -10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -2,6 +2,8 @@ extends Node2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var skeletonMusic: AudioStreamPlayer = $SkeletonMusic
+@onready var devilMusic: AudioStreamPlayer = $DevilMusic
 var skeletin = load("res://Scripts/Enemys Scripts/Skeleton.gd").new()# so i can add more later easily
 var slime = load("res://Scripts/Enemys Scripts/Slime.gd").new()# so i can add more later easily
 var safe = false # used to detect if blocking or dodging
@@ -24,12 +26,16 @@ func _ready():
 			change_stats(1,2,3)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			Global.currentBoss = "Hit-Man Skeleton"
+			skeletonMusic.play()
+			skeletonMusic.autoplay = true
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
 			change_stats(4,5,6)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
+			devilMusic.play()
+			devilMusic.autoplay = true
 			pass# same here
 
 func _on_timer_timeout() -> void:	

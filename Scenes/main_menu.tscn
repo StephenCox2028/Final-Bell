@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2ufemlrwsrhh"]
+[gd_scene load_steps=3 format=3 uid="uid://c2ufemlrwsrhh"]
 
 [ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_06t4h"]
+[ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music/final-bell---menu.mp3" id="2_48xlc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,11 @@ theme_override_constants/margin_bottom = 5
 
 [node name="NextButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_48xlc")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
