@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhu511fc3hl3e"]
+
+[ext_resource type="Script" uid="uid://douqh28sv4sfx" path="res://Scripts/rats.gd" id="1_ur0u6"]
+[ext_resource type="Texture2D" uid="uid://c5g03dnb2ypyk" path="res://Sprites - Zach/Locker Room Sprites/Mouse-Sheet.png" id="2_24gyp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwpne"]
+atlas = ExtResource("2_24gyp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k62xt"]
+atlas = ExtResource("2_24gyp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3ti6"]
+atlas = ExtResource("2_24gyp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3p8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwpne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k62xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3ti6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Rats" type="Node2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_ur0u6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b3p8n")
+frame_progress = 0.206547

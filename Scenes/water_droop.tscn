@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=3 uid="uid://dsujchc38b7p0"]
+
+[ext_resource type="Texture2D" uid="uid://b0qgqmwed2jwr" path="res://Sprites - Zach/Locker Room Sprites/Waterdrop Animation-Sheet.png" id="1_i54np"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7bra"]
+atlas = ExtResource("1_i54np")
+region = Rect2(0, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ru7s"]
+atlas = ExtResource("1_i54np")
+region = Rect2(26, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spcre"]
+atlas = ExtResource("1_i54np")
+region = Rect2(52, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2trw"]
+atlas = ExtResource("1_i54np")
+region = Rect2(78, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxfsh"]
+atlas = ExtResource("1_i54np")
+region = Rect2(104, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llane"]
+atlas = ExtResource("1_i54np")
+region = Rect2(130, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hing"]
+atlas = ExtResource("1_i54np")
+region = Rect2(156, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx4x6"]
+atlas = ExtResource("1_i54np")
+region = Rect2(182, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xywn7"]
+atlas = ExtResource("1_i54np")
+region = Rect2(208, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81ukm"]
+atlas = ExtResource("1_i54np")
+region = Rect2(234, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey51i"]
+atlas = ExtResource("1_i54np")
+region = Rect2(260, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utta5"]
+atlas = ExtResource("1_i54np")
+region = Rect2(286, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07i7y"]
+atlas = ExtResource("1_i54np")
+region = Rect2(312, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jauuo"]
+atlas = ExtResource("1_i54np")
+region = Rect2(338, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrtgc"]
+atlas = ExtResource("1_i54np")
+region = Rect2(364, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abb15"]
+atlas = ExtResource("1_i54np")
+region = Rect2(390, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ybov"]
+atlas = ExtResource("1_i54np")
+region = Rect2(416, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w21i8"]
+atlas = ExtResource("1_i54np")
+region = Rect2(442, 0, 26, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vfrj"]
+atlas = ExtResource("1_i54np")
+region = Rect2(468, 0, 26, 155)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds074"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7bra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ru7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spcre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2trw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxfsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hing")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx4x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xywn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81ukm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey51i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utta5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07i7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jauuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrtgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abb15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ybov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w21i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vfrj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="WaterDroop" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 13.4167)
+scale = Vector2(1, 0.826882)
+sprite_frames = SubResource("SpriteFrames_ds074")
+autoplay = "default"
+frame_progress = 0.855236

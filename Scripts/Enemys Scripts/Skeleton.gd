@@ -1,7 +1,6 @@
 func Actions(enemy_node):
 	print(enemy_node.health, enemy_node.stamina, enemy_node.power)
-	var action = randi_range(1, 3)
-	print 
+	var action = randi_range(1, 3)# change this back to 1, 3 
 	match action:
 		1:
 			enemy_node.animation_player.play("Dodge")# change the animation player to also change their hittability
