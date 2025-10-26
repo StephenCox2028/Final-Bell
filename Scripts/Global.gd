@@ -41,7 +41,6 @@ func getPlayerStamina():
 func getPlayerPopwer():
 	return playerStats.power
 #when player health reaches 0 change to a new scene - Mirza
-"""
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
