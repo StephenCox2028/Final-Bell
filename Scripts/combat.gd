@@ -17,7 +17,38 @@ var pressTimes = {
 	"leftAttack": -1.0,
 	"rightAttack": -1.0
 }
+
 var health: float = 100.0
+
+#Rounds and Timer - Mirza 
+var timer: Timer
+var time_in_seconds : int = 0
+var rounds = 0
+
+func on_timer_timeout():
+	var m = 0
+	var s = 0
+	time_in_seconds += 1
+	m = int(time_in_seconds / 60) #calulates minutes
+	s = time_in_seconds - m * 60 #calculates seconds 
+	start_nextRound(rounds) #starts round 1 and sets new rounds
+	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
+	if m == 0  && s == 05:
+		start_nextRound(rounds) 
+	
+		
+	
+
+func start_nextRound(rounds):
+	rounds += 1
+	$rounds.text = 'Rounds: ' + str(rounds)
+
+	
+		
+		
+func end_match():
+	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
+	
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
