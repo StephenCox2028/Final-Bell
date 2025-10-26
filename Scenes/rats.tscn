@@ -33,6 +33,7 @@ animations = [{
 }]
 
 [node name="Rats" type="Node2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_ur0u6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -147,6 +147,8 @@ animations = [{
 scale = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 13.4167)
+scale = Vector2(1, 0.826882)
 sprite_frames = SubResource("SpriteFrames_ds074")
 autoplay = "default"
 frame_progress = 0.855236

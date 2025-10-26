@@ -20,6 +20,6 @@ func spawn_rat():
 	var rat = RATS.instantiate()
 
 	# Optional: set position or random offset
-	rat.position = Vector2(-120, -56)
+	rat.position = Vector2(-120, -52)
 	# Add it as a child of this scene
 	add_child(rat)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckr3vupr0q7rq" path="res://Scenes/locker_room.gd" id="1_22xvq"]
 [ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/Locker Room Sprites/locker room.png" id="1_rn47g"]
-[ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://water_droop.tscn" id="3_rn47g"]
+[ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
 
 [node name="LockerRoom" type="Sprite2D"]
 position = Vector2(576, 324)
@@ -15,6 +15,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="WaterDroop" parent="." instance=ExtResource("3_rn47g")]
-position = Vector2(-237.76, -79.0123)
+position = Vector2(-238.237, -79.9383)
+scale = Vector2(-2.75216, 2)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
