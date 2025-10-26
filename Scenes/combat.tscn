@@ -132,10 +132,12 @@ _data = {
 }
 
 [node name="Combat" type="Node2D"]
+position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
 isdodge = true
 ispunch = true
 canmove = false
+metadata/_edit_horizontal_guides_ = [460.0]
 
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]
 position = Vector2(588, 401)
@@ -150,4 +152,23 @@ libraries = {
 position = Vector2(608, 233)
 scale = Vector2(3, 3)
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="rounds" type="Label" parent="."]
+offset_left = 607.0
+offset_top = -2.0
+offset_right = 873.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 50
+text = "Rounds: "
+
+[node name="Label" type="Label" parent="."]
+offset_left = 439.0
+offset_right = 625.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
