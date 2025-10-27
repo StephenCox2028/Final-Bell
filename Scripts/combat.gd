@@ -6,6 +6,9 @@ extends Node2D
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 
+const ENEMY = preload("res://Scenes/enemys.tscn")
+const BOSS = preload("res://Scenes/bosses.tscn")
+
 var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
@@ -30,6 +33,23 @@ func _ready():
 	ispunch = false
 	isHolding = false
 	canmove = true
+	
+	if (Global.boss_flip == true) :
+		var boss = BOSS.instantiate()
+			# Optional: set position or random offset
+		boss.position = Vector2(605, 235)
+		boss.scale = Vector2(3,3)
+			# Add it as a child of this scene
+		add_child(boss)
+	else:
+		var enemy = ENEMY.instantiate()
+			# Optional: set position or random offset
+		enemy.position = Vector2(605, 235)
+		enemy.scale = Vector2(3,3)
+			# Add it as a child of this scene
+		add_child(enemy)
+	
+	
 
 func on_timer_timeout():
 	var m = 0

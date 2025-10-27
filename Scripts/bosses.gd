@@ -18,7 +18,7 @@ var enmActions = []
 func _ready():
 	enmActions = [spider]#add more latter
 	
-	match Globals.Boss_counter:
+	match Global.Boss_counter:
 		1:
 			action = 0
 			change_stats(20,20,20)

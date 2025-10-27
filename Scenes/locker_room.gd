@@ -23,3 +23,8 @@ func spawn_rat():
 	rat.position = Vector2(-120, -52)
 	# Add it as a child of this scene
 	add_child(rat)
+
+
+func _on_next_button_pressed() -> void:
+	Global.boss_flip = true
+	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
