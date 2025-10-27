@@ -135,9 +135,6 @@ _data = {
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
-isdodge = true
-ispunch = true
-canmove = false
 metadata/_edit_horizontal_guides_ = [460.0]
 
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]

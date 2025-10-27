@@ -25,6 +25,12 @@ var timer: Timer
 var time_in_seconds : int = 0
 var rounds = 0
 
+func _ready():
+	isdodge = false
+	ispunch = false
+	isHolding = false
+	canmove = true
+
 func on_timer_timeout():
 	var m = 0
 	var s = 0
@@ -35,24 +41,18 @@ func on_timer_timeout():
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
 	if m == 0  && s == 05:
 		start_nextRound(rounds) 
-	
-		
-	
 
 func start_nextRound(rounds):
 	rounds += 1
 	$rounds.text = 'Rounds: ' + str(rounds)
 
-	
-		
-		
 func end_match():
 	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
-	
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
+		print("Dodge Right")
 		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.
 				if isHolding == false:
@@ -60,6 +60,7 @@ func _input(event):
 					Global.playerStats.dodging = true
 					pass
 	if Input.is_action_just_pressed("dodgeleft"):
+		print("Dodge Left")
 		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.
 				if isHolding == false:

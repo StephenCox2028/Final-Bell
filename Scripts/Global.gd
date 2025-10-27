@@ -1,5 +1,7 @@
 extends Node
 
+var Score = 0
+var Boss_counter = 1 # make this increase when leaving the locker room
 var currentBoss = null
 
 #Player stats - Mirza
@@ -25,13 +27,13 @@ func depleteStamina(move, multiplier) -> void:
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
 			bosses[currentBoss].health -= playerStats.power
 		print(bosses[currentBoss].health)
-		#win_conditions()
+		win_conditions()
 	elif move == "hook":
 		playerStats.stamina -= multiplier * 2
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
 			bosses[currentBoss].health -= (playerStats.power + multiplier)
 		print(bosses[currentBoss].health)
-		#win_conditions()
+		win_conditions()
 	elif move == "dodge":
 		playerStats.stamina -= 1
 func getPlayerHealth():

@@ -3,4 +3,4 @@ extends Control
 @onready var score: Label = $Score
 
 func _ready() -> void:
-	score.text = str("Score: ",Globals.Score)
+	score.text = str("Score: ",Global.Score)
