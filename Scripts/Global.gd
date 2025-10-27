@@ -1,8 +1,10 @@
 extends Node
 
 var Score = 0
-var Boss_counter = 1 # make this increase when leaving the locker room
+var Boss_counter = 0 # make this increase when leaving the locker room
+var boss_flip = false # make sure its off
 var currentBoss = null
+var Enemy_tally = 0
 
 #Player stats - Mirza
 var playerStats = {

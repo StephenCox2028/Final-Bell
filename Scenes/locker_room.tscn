@@ -18,4 +18,12 @@ autostart = true
 position = Vector2(-238.237, -79.9383)
 scale = Vector2(-2.75216, 2)
 
+[node name="NextButton" type="Button" parent="."]
+offset_left = 162.326
+offset_top = -97.8395
+offset_right = 272.326
+offset_bottom = -44.8395
+text = "NEXT"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
