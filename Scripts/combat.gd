@@ -72,20 +72,20 @@ func end_match():
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeright")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 	if Input.is_action_just_pressed("dodgeleft"):
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeleft")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 
 	if Input.is_action_pressed("attackLeft"):
