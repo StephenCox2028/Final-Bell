@@ -25,6 +25,7 @@ func spawn_rat():
 	rat.position = Vector2(-120, -52)
 	# Add it as a child of this scene
 	add_child(rat)
+
 	
 #Move the character in locker room - Mirza
 @onready var sprite: Sprite2D = $Mc  
@@ -50,4 +51,9 @@ func _process(delta):
 		sprite.position += v.normalized() * speed * delta
 
 func _on_hitbox_entered(area: Area2D):
+	Global.boss_flip = true
 	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+
+
+func _on_next_button_pressed() -> void:
+	Global.boss_flip = true

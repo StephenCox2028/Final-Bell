@@ -6,7 +6,10 @@ extends Node2D
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 
-var originalPos = Vector2(544.0, 585.0)		#Original position of the character. - Stephen
+const ENEMY = preload("res://Scenes/enemys.tscn")
+const BOSS = preload("res://Scenes/bosses.tscn")
+
+var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -30,6 +33,23 @@ func _ready():
 	ispunch = false
 	isHolding = false
 	canmove = true
+	
+	if (Global.boss_flip == true) :
+		var boss = BOSS.instantiate()
+			# Optional: set position or random offset
+		boss.position = Vector2(605, 235)
+		boss.scale = Vector2(3,3)
+			# Add it as a child of this scene
+		add_child(boss)
+	else:
+		var enemy = ENEMY.instantiate()
+			# Optional: set position or random offset
+		enemy.position = Vector2(605, 235)
+		enemy.scale = Vector2(3,3)
+			# Add it as a child of this scene
+		add_child(enemy)
+	
+	
 
 func on_timer_timeout():
 	var m = 0
@@ -54,18 +74,18 @@ func end_match():
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
-		print("Dodge Right")
 		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.
 				if isHolding == false:
+					isdodge = true
 					animation.play("dodgeright")
 					Global.playerStats.dodging = true
 					pass
 	if Input.is_action_just_pressed("dodgeleft"):
-		print("Dodge Left")
 		if canmove == true: # this is if you're able to move so attacks and the like go here
 			if isdodge == false: #this is if you're dodging or not.
 				if isHolding == false:
+					isdodge = true
 					animation.play("dodgeleft")
 					Global.playerStats.dodging = true
 					pass
@@ -79,18 +99,19 @@ func _input(event):
 			start_shake()	#Run the shaking function.
 			heldTime = 0	#Set heldTime back to 0. 
 	if Input.is_action_just_released("attackLeft"):
-		heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
-		if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
-			animation.play("punch") #Simply punch
-			Global.depleteStamina("attack", heldTime)
-		else:
-			animation.play("punch")
-			Global.depleteStamina("hook", heldTime)
-		heldTime = 0		#Reset holdTime
-		isHolding = false
-		if character.position != originalPos:	#If the character position is not at it's original...
-			character.position = originalPos	#Reset the position after shaking.
-			animation.play("punch")
+		if isdodge == false:
+			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
+			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
+				animation.play("punch") #Simply punch
+				Global.depleteStamina("attack", heldTime)
+			else:
+				animation.play("punch")
+				Global.depleteStamina("hook", heldTime)
+			heldTime = 0		#Reset holdTime
+			isHolding = false
+			if character.position != originalPos:	#If the character position is not at it's original...
+				character.position = originalPos	#Reset the position after shaking.
+				animation.play("punch")
 
 	if Input.is_action_pressed("attackRight"):
 		if isHolding == false:	#If E is not being held down.
@@ -101,18 +122,19 @@ func _input(event):
 			start_shake()	#Run the shaking function.
 			heldTime = 0	#Set heldTime back to 0.
 	if Input.is_action_just_released("attackRight"):
-		heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
-		if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
-			animation.play("punch")	#Simply punch
-			Global.depleteStamina("attack", heldTime)
-		else:
-			animation.play("punch")
-			Global.depleteStamina("hook", heldTime)
-		heldTime = 0	#Resets holdTime
-		isHolding = false
-		if character.position != originalPos:	#If the character position is not at it's original...
-			character.position = originalPos	#Reset the position after shaking.
-			animation.play("punch")
+		if isdodge == false:
+			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
+			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
+				animation.play("punch")	#Simply punch
+				Global.depleteStamina("attack", heldTime)
+			else:
+				animation.play("punch")
+				Global.depleteStamina("hook", heldTime)
+			heldTime = 0	#Resets holdTime
+			isHolding = false
+			if character.position != originalPos:	#If the character position is not at it's original...
+				character.position = originalPos	#Reset the position after shaking.
+				animation.play("punch")
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" and anim_name == "dodgeright":
