@@ -4,7 +4,9 @@ extends Control
 
 func _ready() -> void:
 	score.text = str("Score: ",Global.Score)
-	Global.boss_flip = false
+	if Global.boss_flip == true:
+		Global.boss_flip = false
+		Global.Boss_counter +1
 
 
 func _on_next_button_pressed() -> void:
