@@ -17,6 +17,7 @@ var bosses = {
 	"Hit-Man Skeleton": {"health" : 40, "stamina" : 30, "power" : 5, "dodge" : false, "block" : false}, #all stats are just placeholders for know
 	"Devil": {"health" : 100, "stamina" : 50, "power" : 50, "dodge": false, "block" : false} #all stats are just placeholders for know
 }
+
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses[currentBoss].power
@@ -46,10 +47,7 @@ func getPlayerPopwer():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-	else:
-		"""
-		to change scene to locker room
-		get._tree().change_scene_to_file()
-		"""
-	if(bosses[currentBoss].health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/victory_menu.tscn")
+	elif(bosses[currentBoss].health <= 0):
+		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
+		
+	

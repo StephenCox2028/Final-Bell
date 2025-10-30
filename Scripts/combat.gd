@@ -6,7 +6,7 @@ extends Node2D
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 
-var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephen
+var originalPos = Vector2(544.0, 585.0)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -39,12 +39,14 @@ func on_timer_timeout():
 	s = time_in_seconds - m * 60 #calculates seconds 
 	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if m == 0  && s == 05:
+	if m == 1  && s == 30:
 		start_nextRound(rounds) 
 
 func start_nextRound(rounds):
 	rounds += 1
 	$rounds.text = 'Rounds: ' + str(rounds)
+	if rounds > 8:
+		end_match()
 
 func end_match():
 	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")

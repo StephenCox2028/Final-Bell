@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=10 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
+[ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://b5e8diyl6l2qs" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 [ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
 
@@ -135,11 +136,16 @@ _data = {
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
+isdodge = true
+canmove = false
 metadata/_edit_horizontal_guides_ = [460.0]
 
-[node name="Character" parent="." instance=ExtResource("2_4ln8h")]
-position = Vector2(588, 401)
-scale = Vector2(3, 3)
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(605, 225)
+scale = Vector2(1.00694, 1.23148)
+texture = ExtResource("2_ut0kg")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -147,24 +153,29 @@ libraries = {
 }
 
 [node name="Enemys" parent="." instance=ExtResource("3_4ln8h")]
-position = Vector2(608, 233)
+position = Vector2(554, 455)
+scale = Vector2(3, 3)
+
+[node name="Character" parent="." instance=ExtResource("2_4ln8h")]
+position = Vector2(544, 585)
 scale = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="rounds" type="Label" parent="."]
-offset_left = 607.0
-offset_top = -2.0
-offset_right = 873.0
-offset_bottom = 79.0
+offset_left = 631.0
+offset_top = 118.0
+offset_right = 897.0
+offset_bottom = 199.0
 theme_override_font_sizes/font_size = 50
 text = "Rounds: "
 
 [node name="Label" type="Label" parent="."]
-offset_left = 439.0
-offset_right = 625.0
-offset_bottom = 69.0
+offset_left = 376.0
+offset_top = 121.0
+offset_right = 562.0
+offset_bottom = 190.0
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 
