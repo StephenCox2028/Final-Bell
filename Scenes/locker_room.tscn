@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://boopgjn3iu5f3"]
+[gd_scene load_steps=8 format=3 uid="uid://boopgjn3iu5f3"]
 
 [ext_resource type="Script" uid="uid://ckr3vupr0q7rq" path="res://Scenes/locker_room.gd" id="1_22xvq"]
-[ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/Locker Room Sprites/locker room.png" id="1_rn47g"]
+[ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/locker room.png" id="1_rn47g"]
 [ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
+[ext_resource type="Texture2D" uid="uid://gg407q23cxx8" path="res://Sprites Mirza/Main Character/MC.png" id="4_t4m78"]
+[ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ydan"]
+size = Vector2(34.3749, 46.9136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4m78"]
+size = Vector2(24.8002, 147.531)
 
 [node name="LockerRoom" type="Sprite2D"]
 position = Vector2(576, 324)
@@ -18,12 +26,32 @@ autostart = true
 position = Vector2(-238.237, -79.9383)
 scale = Vector2(-2.75216, 2)
 
-[node name="NextButton" type="Button" parent="."]
-offset_left = 162.326
-offset_top = -97.8395
-offset_right = 272.326
-offset_bottom = -44.8395
-text = "NEXT"
+[node name="Bench" type="Sprite2D" parent="."]
+position = Vector2(9.07117, 65.1235)
+texture = ExtResource("5_ttavy")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
+build_mode = 1
+polygon = PackedVector2Array(-0.954865, 0.30864, 0, 53.7037, 246.354, 50, 276.432, 99.3827, -275.477, 100, -274.522, 49.0741, -0.954865, 51.8519, -0.954865, 51.8519, -0.954865, 51.8519, 2.86456, 56.1728)
+
+[node name="Mc" type="Sprite2D" parent="."]
+position = Vector2(-182.211, 62.963)
+scale = Vector2(1.53692, 1.12211)
+texture = ExtResource("4_t4m78")
+
+[node name="player_area" type="Area2D" parent="Mc"]
+
+[node name="player_collision" type="CollisionShape2D" parent="Mc/player_area"]
+position = Vector2(-0.419369, -6.60136)
+scale = Vector2(0.650653, 0.891181)
+shape = SubResource("RectangleShape2D_8ydan")
+
+[node name="screen_area" type="Area2D" parent="."]
+
+[node name="screen_collision" type="CollisionShape2D" parent="screen_area"]
+position = Vector2(262.573, 10.1852)
+shape = SubResource("RectangleShape2D_t4m78")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

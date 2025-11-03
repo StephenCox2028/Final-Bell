@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gbwpxucwmnxx"
-path="res://.godot/imported/locker room.png-cdf40aadc2f282c61bd5020c58618b16.ctex"
+uid="uid://w1elkrve14w"
+path="res://.godot/imported/Main Character Ring1.png-c08c8f3b99dd5e2ac571e491b31823c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Locker Room Sprites/locker room.png"
-dest_files=["res://.godot/imported/locker room.png-cdf40aadc2f282c61bd5020c58618b16.ctex"]
+source_file="res://Sprites - Zach/Ring/Main Character Ring1.png"
+dest_files=["res://.godot/imported/Main Character Ring1.png-c08c8f3b99dd5e2ac571e491b31823c2.ctex"]
 
 [params]
 

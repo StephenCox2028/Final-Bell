@@ -20,6 +20,7 @@ var bosses = {
 	"dodge": false,
 	"block" : false
 }
+
 #boss stats - Mirza
 
 #Global functions - Stephen
@@ -52,10 +53,6 @@ func getPlayerPopwer():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-	else:
-		"""
-		to change scene to locker room
-		get._tree().change_scene_to_file()
-		"""
-	if(bosses.health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/victory_menu.tscn")
+
+	elif(bosses[currentBoss].health <= 0):
+		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")

@@ -66,12 +66,14 @@ func on_timer_timeout():
 	s = time_in_seconds - m * 60 #calculates seconds 
 	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if m == 0  && s == 05:
+	if m == 1  && s == 30:
 		start_nextRound(rounds) 
 
 func start_nextRound(rounds):
 	rounds += 1
 	$rounds.text = 'Rounds: ' + str(rounds)
+	if rounds > 8:
+		end_match()
 
 func end_match():
 	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
@@ -79,20 +81,20 @@ func end_match():
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeright")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 	if Input.is_action_just_pressed("dodgeleft"):
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeleft")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 
 	if Input.is_action_pressed("attackLeft"):
