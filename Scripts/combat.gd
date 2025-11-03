@@ -6,6 +6,8 @@ extends Node2D
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var progress_bar_2: ProgressBar = $ProgressBar2
+
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -30,13 +32,17 @@ var time_in_seconds : int = 0
 var rounds = 0
 
 func _ready():
+	Global.combat_ui = self
 	isdodge = false
 	ispunch = false
 	isHolding = false
 	canmove = true
 	progress_bar.value = (100)
+	progress_bar_2.value = (100)
+	Global.playerStats.health = Global.MAXHEALTH
+	Global.playerStats.stamina = Global.MAXSTAMINA
+	Global.playerStats.power = Global.MAXPOWER
 
-	
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
 			# Optional: set position or random offset
@@ -111,9 +117,11 @@ func _input(event):
 			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
 				animation.play("punch") #Simply punch
 				Global.depleteStamina("attack", heldTime)
+				##
 			else:
 				animation.play("punch")
 				Global.depleteStamina("hook", heldTime)
+				##
 			heldTime = 0		#Reset holdTime
 			isHolding = false
 			if character.position != originalPos:	#If the character position is not at it's original...
@@ -134,9 +142,11 @@ func _input(event):
 			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
 				animation.play("punch")	#Simply punch
 				Global.depleteStamina("attack", heldTime)
+				##
 			else:
 				animation.play("punch")
 				Global.depleteStamina("hook", heldTime)
+				##
 			heldTime = 0	#Resets holdTime
 			isHolding = false
 			if character.position != originalPos:	#If the character position is not at it's original...
@@ -190,7 +200,7 @@ func DamageTaken():
 				if chance <= probablityHook:
 					health -= hook
 					print ("Health:")
-		progress_bar.value = (health/100)
+		
 		print("apple sauce")
 
 	if health <= 0:
