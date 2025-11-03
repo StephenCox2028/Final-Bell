@@ -40,6 +40,6 @@ func _on_timer_timeout() -> void:
 	enmActions[action].call("Actions", self)
 
 func change_stats(hp,sta,pow):
-	health = hp
-	stamina = sta
-	power = pow
+	Global.playerStats.health = hp
+	Global.playerStats.stamina = sta
+	Global.playerStats.power = pow

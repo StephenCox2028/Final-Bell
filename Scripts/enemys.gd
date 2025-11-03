@@ -49,7 +49,7 @@ func _on_animation_player_animation_finished(anim_name):
 	print(anim_name)
 
 func change_stats(hp,sta,pow):
-	#Global.playerStats.health = hp
-	#Global.playerStats.stamina = sta
-	#Global.playerStats.power = pow
+	Global.playerStats.health = hp
+	Global.playerStats.stamina = sta
+	Global.playerStats.power = pow
 	pass
