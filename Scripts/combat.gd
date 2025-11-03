@@ -9,7 +9,7 @@ extends Node2D
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
-var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephen
+var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephenq
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0

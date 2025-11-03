@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=9 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
-[ext_resource type="PackedScene" uid="uid://b5e8diyl6l2qs" path="res://Scenes/enemys.tscn" id="3_4ln8h"]
 [ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
@@ -152,30 +151,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_ubpar")
 }
 
-[node name="Enemys" parent="." instance=ExtResource("3_4ln8h")]
-position = Vector2(554, 455)
-scale = Vector2(3, 3)
-
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]
-position = Vector2(544, 585)
+position = Vector2(552, 589)
 scale = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="rounds" type="Label" parent="."]
-offset_left = 631.0
-offset_top = 118.0
-offset_right = 897.0
-offset_bottom = 199.0
+offset_left = 656.0
+offset_top = 11.0
+offset_right = 922.0
+offset_bottom = 92.0
 theme_override_font_sizes/font_size = 50
 text = "Rounds: "
 
 [node name="Label" type="Label" parent="."]
-offset_left = 376.0
-offset_top = 121.0
-offset_right = 562.0
-offset_bottom = 190.0
+offset_left = 330.0
+offset_top = 5.0
+offset_right = 516.0
+offset_bottom = 74.0
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 
