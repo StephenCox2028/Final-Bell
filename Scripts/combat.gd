@@ -5,6 +5,7 @@ extends Node2D
 @export var ispunch = false # is your boolean for punching. - Stephen
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -33,6 +34,8 @@ func _ready():
 	ispunch = false
 	isHolding = false
 	canmove = true
+	progress_bar.value = (100)
+
 	
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
@@ -43,12 +46,16 @@ func _ready():
 		add_child(boss)
 	else:
 		var enemy = ENEMY.instantiate()
+		
 			# Optional: set position or random offset
 		enemy.position = Vector2(605, 235)
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
-	
+		print(Global.playerStats.stamina)
+		print(Global.playerStats.health)
+		print(Global.playerStats.power)
+
 	
 
 func on_timer_timeout():
@@ -74,20 +81,20 @@ func end_match():
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeright")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 	if Input.is_action_just_pressed("dodgeleft"):
-		if canmove == true: # this is if you're able to move so attacks and the like go here
-			if isdodge == false: #this is if you're dodging or not.
-				if isHolding == false:
+		if canmove == true: # Conditional to check if the player is able to make a move.
+			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
 					isdodge = true
 					animation.play("dodgeleft")
-					Global.playerStats.dodging = true
+					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 					pass
 
 	if Input.is_action_pressed("attackLeft"):
@@ -183,6 +190,8 @@ func DamageTaken():
 				if chance <= probablityHook:
 					health -= hook
 					print ("Health:")
+		progress_bar.value = (health/100)
+		print("apple sauce")
 
 	if health <= 0:
 		health = 0

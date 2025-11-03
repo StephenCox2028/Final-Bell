@@ -23,7 +23,7 @@ func _ready():
 	match enemy:
 		1:
 			action = 0
-			change_stats(1,2,3)
+			change_stats(30,30,30)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			Global.currentBoss = "Hit-Man Skeleton"
 			skeletonMusic.play()
@@ -31,7 +31,7 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
-			change_stats(4,5,6)
+			change_stats(90,90,90)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
 			devilMusic.play()
@@ -49,6 +49,7 @@ func _on_animation_player_animation_finished(anim_name):
 	print(anim_name)
 
 func change_stats(hp,sta,pow):
-	health = hp
-	stamina = sta
-	power = pow
+	#Global.playerStats.health = hp
+	#Global.playerStats.stamina = sta
+	#Global.playerStats.power = pow
+	pass
