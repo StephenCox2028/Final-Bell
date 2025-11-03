@@ -1,7 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://elsw72ii6qai"]
+[gd_scene load_steps=9 format=3 uid="uid://elsw72ii6qai"]
 
 [ext_resource type="Script" uid="uid://gagcufyq874w" path="res://Scripts/bosses.gd" id="1_l3loj"]
 [ext_resource type="Texture2D" uid="uid://bgdxc2gcnna7y" path="res://Sprites/pider.jpg" id="2_s2j0o"]
+[ext_resource type="Texture2D" uid="uid://buwu28nq0g7x7" path="res://Sprites/bear.jpg" id="3_lk8fx"]
+[ext_resource type="Texture2D" uid="uid://cbio314lkmlxy" path="res://Sprites/image0racoon.jpg" id="4_ui284"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgj40"]
+atlas = ExtResource("2_s2j0o")
+region = Rect2(0, 0, 268, 188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwb5f"]
+atlas = ExtResource("3_lk8fx")
+region = Rect2(0, 0, 320, 225)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwou1"]
+atlas = ExtResource("4_ui284")
+region = Rect2(0, 0, 444, 592)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a34e7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgj40")
+}],
+"loop": true,
+"name": &"Spider",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwb5f")
+}],
+"loop": true,
+"name": &"bear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwou1")
+}],
+"loop": true,
+"name": &"racoon",
+"speed": 5.0
+}]
 
 [node name="Bosses" type="Node2D"]
 script = ExtResource("1_l3loj")
@@ -12,7 +53,8 @@ script = ExtResource("1_l3loj")
 wait_time = 5.0
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_s2j0o")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a34e7")
+animation = &"Spider"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
