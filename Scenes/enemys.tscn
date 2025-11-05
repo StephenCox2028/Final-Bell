@@ -529,8 +529,7 @@ animation = &"SkeleBlock"
 autoplay = "SkeleDefault"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+wait_time = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -539,11 +538,9 @@ libraries = {
 
 [node name="SkeletonMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_cbqis")
-volume_db = -10.0
 
 [node name="DevilMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_i4f6o")
-volume_db = -10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

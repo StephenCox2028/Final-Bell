@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1mmk5ldbptu4"]
+[gd_scene load_steps=3 format=3 uid="uid://b1mmk5ldbptu4"]
 
 [ext_resource type="Texture2D" uid="uid://gg407q23cxx8" path="res://Sprites Mirza/Main Character/MC.png" id="1_lkv7d"]
+[ext_resource type="Texture2D" uid="uid://c7mg1kkoatnek" path="res://Materials/sweat.png" id="2_ushfy"]
 
 [node name="Character" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lkv7d")
+
+[node name="SweatParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -23)
+emitting = false
+amount = 1
+texture = ExtResource("2_ushfy")
+lifetime = 0.35
+emission_shape = 1
+emission_sphere_radius = 15.52
+gravity = Vector2(0, 520)
+scale_amount_min = 0.05
+scale_amount_max = 0.05

@@ -26,25 +26,39 @@ var playerStats = {
 
 #boss stats - Mirza
 var bosses = { 
-	"Hit-Man Skeleton": {"health" : 40, "stamina" : 30, "power" : 5, "dodge" : false, "block" : false}, #all stats are just placeholders for know
-	"Devil": {"health" : 100, "stamina" : 50, "power" : 50, "dodge": false, "block" : false} #all stats are just placeholders for know
+	"HitManSkeleton": {"health" : 40, "stamina" : 30, "power" : 5, "dodge" : false, "block" : false, "difficulty" : 5.0}, #all stats are just placeholders for know
+	"Devil": {"health" : 100, "stamina" : 50, "power" : 50, "dodge": false, "block" : false, "difficulty" : 3.5} #all stats are just placeholders for know
 }
 
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses[currentBoss].power
-	#win_conditions()
+	win_conditions()
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
 		playerStats.stamina -= 2
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			bosses[currentBoss].health -= playerStats.power
+			if bosses[currentBoss].difficulty < 5.0:
+				var chance = randi_range(1, 2)
+				if chance == 1:
+					bosses[currentBoss].health -= playerStats.power
+				else:
+					print("NO DAMAGE DONE!")
+			else:
+				bosses[currentBoss].health -= playerStats.power
 		print(bosses[currentBoss].health)
 		win_conditions()
 	elif move == "hook":
 		playerStats.stamina -= multiplier * 2
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			bosses[currentBoss].health -= (playerStats.power + multiplier)
+			if bosses[currentBoss].difficulty < 5.0:
+				var chance = randi_range(1,2)
+				if chance == 1:
+					bosses[currentBoss].health -= (playerStats.power + multiplier)
+				else: 
+					print("NO DAMAGE DONE!")
+			else:
+				bosses[currentBoss].health -= (playerStats.power + multiplier)
 		print(bosses[currentBoss].health)
 		win_conditions()
 	elif move == "dodge":

@@ -6,6 +6,8 @@ extends Node2D
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var staminaCooldown = $StaminaCooldown
+@onready var sweatParticles = $Character/SweatParticles
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -14,6 +16,7 @@ var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - 
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
+var exhaustion = false
 
 #Dictionary value that carries the time intervals for each attack. It starts with a negative number
 #to allow for a longer press to be able to hook. - Stephen
@@ -56,7 +59,23 @@ func _ready():
 		print(Global.playerStats.health)
 		print(Global.playerStats.power)
 
-	
+func _process(delta) -> void:
+	if exhaustion == false:
+		#If the player reaches ZERO stamina, cause Exhaustion.
+		if Global.playerStats.stamina <= 0:
+			exhaustion = true
+			sweatParticles.emitting = true
+			staminaCooldown.start()
+		#If player is at max (or greater than max) stamina, keep at max.
+		if Global.playerStats.stamina >= Global.playerStats.maxStamina:
+			Global.playerStats.stamina = Global.playerStats.maxStamina
+	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
+		Global.playerStats.stamina += 0.01
+	print(Global.getPlayerStamina())
+
+func _on_stamina_cooldown_timeout():
+	sweatParticles.emitting = false
+	exhaustion = false
 
 func on_timer_timeout():
 	var m = 0
@@ -81,67 +100,75 @@ func end_match():
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
-		if canmove == true: # Conditional to check if the player is able to make a move.
-			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
-				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
-					isdodge = true
-					animation.play("dodgeright")
-					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
-					pass
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if canmove == true: # Conditional to check if the player is able to make a move.
+				if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+					if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
+						isdodge = true
+						animation.play("dodgeright")
+						Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
+						Global.depleteStamina("dodge", heldTime)
+						pass
 	if Input.is_action_just_pressed("dodgeleft"):
-		if canmove == true: # Conditional to check if the player is able to make a move.
-			if isdodge == false: # Checks to see if you aren't in the middle of dodging.
-				if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
-					isdodge = true
-					animation.play("dodgeleft")
-					Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
-					pass
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if canmove == true: # Conditional to check if the player is able to make a move.
+				if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+					if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
+						isdodge = true
+						animation.play("dodgeleft")
+						Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
+						Global.depleteStamina("dodge", heldTime)
+						pass
 
 	if Input.is_action_pressed("attackLeft"):
-		if isHolding == false:	#If Q is not being held down.
-			pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
-			isHolding = true
-		heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that Q was first held down.
-		if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If Q has been held longer than the HOLD_TIME_THRESHOLD... 
-			start_shake()	#Run the shaking function.
-			heldTime = 0	#Set heldTime back to 0. 
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if isHolding == false:	#If Q is not being held down.
+				pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
+				isHolding = true
+			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that Q was first held down.
+			if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If Q has been held longer than the HOLD_TIME_THRESHOLD... 
+				start_shake()	#Run the shaking function.
+				heldTime = 0	#Set heldTime back to 0. 
 	if Input.is_action_just_released("attackLeft"):
-		if isdodge == false:
-			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
-			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
-				animation.play("punch") #Simply punch
-				Global.depleteStamina("attack", heldTime)
-			else:
-				animation.play("punch")
-				Global.depleteStamina("hook", heldTime)
-			heldTime = 0		#Reset holdTime
-			isHolding = false
-			if character.position != originalPos:	#If the character position is not at it's original...
-				character.position = originalPos	#Reset the position after shaking.
-				animation.play("punch")
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if isdodge == false:
+				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
+				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
+					animation.play("punch") #Simply punch
+					Global.depleteStamina("attack", heldTime)
+				else:
+					animation.play("punch")
+					Global.depleteStamina("hook", heldTime)
+				heldTime = 0		#Reset holdTime
+				isHolding = false
+				if character.position != originalPos:	#If the character position is not at it's original...
+					character.position = originalPos	#Reset the position after shaking.
+					animation.play("punch")
 
 	if Input.is_action_pressed("attackRight"):
-		if isHolding == false:	#If E is not being held down.
-			pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
-			isHolding = true
-		heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that E was first held down.
-		if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If E has been held longer than the HOLD_TIME_THRESHOLD...
-			start_shake()	#Run the shaking function.
-			heldTime = 0	#Set heldTime back to 0.
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if isHolding == false:	#If E is not being held down.
+				pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
+				isHolding = true
+			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that E was first held down.
+			if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If E has been held longer than the HOLD_TIME_THRESHOLD...
+				start_shake()	#Run the shaking function.
+				heldTime = 0	#Set heldTime back to 0.
 	if Input.is_action_just_released("attackRight"):
-		if isdodge == false:
-			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
-			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
-				animation.play("punch")	#Simply punch
-				Global.depleteStamina("attack", heldTime)
-			else:
-				animation.play("punch")
-				Global.depleteStamina("hook", heldTime)
-			heldTime = 0	#Resets holdTime
-			isHolding = false
-			if character.position != originalPos:	#If the character position is not at it's original...
-				character.position = originalPos	#Reset the position after shaking.
-				animation.play("punch")
+		if Global.getPlayerStamina() > 0 and exhaustion == false:
+			if isdodge == false:
+				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
+				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
+					animation.play("punch")	#Simply punch
+					Global.depleteStamina("attack", heldTime)
+				else:
+					animation.play("punch")
+					Global.depleteStamina("hook", heldTime)
+				heldTime = 0	#Resets holdTime
+				isHolding = false
+				if character.position != originalPos:	#If the character position is not at it's original...
+					character.position = originalPos	#Reset the position after shaking.
+					animation.play("punch")
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" and anim_name == "dodgeright":
