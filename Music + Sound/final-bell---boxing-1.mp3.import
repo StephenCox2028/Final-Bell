@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djft1cn0w18ci"
+path="res://.godot/imported/final-bell---boxing-1.mp3-eebd8b958d2736d0b81b3f560422e6dd.mp3str"
+
+[deps]
+
+source_file="res://Music + Sound/final-bell---boxing-1.mp3"
+dest_files=["res://.godot/imported/final-bell---boxing-1.mp3-eebd8b958d2736d0b81b3f560422e6dd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

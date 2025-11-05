@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1coby5a1nws8"
+path="res://.godot/imported/denied.mp3-3e670b7c7a1d00b4a3905311ec86c04e.mp3str"
+
+[deps]
+
+source_file="res://Music + Sound/denied.mp3"
+dest_files=["res://.godot/imported/denied.mp3-3e670b7c7a1d00b4a3905311ec86c04e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

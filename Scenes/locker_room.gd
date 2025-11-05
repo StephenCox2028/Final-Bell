@@ -1,14 +1,16 @@
 extends Node2D
 
+@onready var upgradeButton = $UpgradeButton
+@onready var continueButton = $ContinueButton
+@onready var quitButton = $QuitButton
+
 const RATS = preload("res://Scenes/rats.tscn")
 const PLAYER = preload("res://Scenes/character.tscn")
 
 var rng = RandomNumberGenerator.new()
-var timeofset
-func _onready():
-	pass
+
 func _on_timer_timeout() -> void:
-	timeofset = randi_range(-5, 5)
+	var timeofset = randi_range(-5, 5)
 	# make a rat as chird at a location
 	spawn_rat()
 	# make timer again
@@ -26,34 +28,14 @@ func spawn_rat():
 	# Add it as a child of this scene
 	add_child(rat)
 
-	
-#Move the character in locker room - Mirza
-@onready var sprite: Sprite2D = $Mc  
-@onready var hitbox: Area2D = $Mc/player_area
-var speed = 100
-var player_inside = false
-
-func _ready():
-	print("[READY] hitbox layer=", hitbox.collision_layer, " mask=", hitbox.collision_mask)
-	hitbox.area_entered.connect(_on_hitbox_entered)
-		
-func _process(delta):
-	var v := Vector2.ZERO
-	if Input.is_action_pressed("move_up"):
-		sprite.position.y -= speed * delta
-	if Input.is_action_pressed("move_down"):
-		sprite.position.y += speed * delta
-	if Input.is_action_pressed("move_right"):
-		sprite.position.x += speed * delta
-	if Input.is_action_pressed("move_left"):
-		sprite.position.x -= speed * delta
-	if v != Vector2.ZERO:
-		sprite.position += v.normalized() * speed * delta
-
-func _on_hitbox_entered(area: Area2D):
-	Global.boss_flip = true
-	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
-
-
 func _on_next_button_pressed() -> void:
 	Global.boss_flip = true
+
+func _on_upgrade_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
+
+func _on_continue_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

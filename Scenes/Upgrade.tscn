@@ -1,0 +1,302 @@
+[gd_scene load_steps=13 format=3 uid="uid://bebl8umacxmra"]
+
+[ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="1_m1npt"]
+[ext_resource type="Script" uid="uid://dx74b058486s8" path="res://Scenes/upgrade.gd" id="1_rhnba"]
+[ext_resource type="Texture2D" uid="uid://d3g0i16ameypd" path="res://Materials/red.png" id="3_f760y"]
+[ext_resource type="Texture2D" uid="uid://bj8wqn6fn0wa4" path="res://Materials/green.png" id="4_kr20n"]
+[ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_pt5ib"]
+[ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_q44um"]
+
+[sub_resource type="Animation" id="Animation_f760y"]
+resource_name = "redHealth"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Health/RedHealth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kr20n"]
+resource_name = "redStamina"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stamina/RedStamina:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pt5ib"]
+resource_name = "redPower"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Power/RedPower:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_q44um"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Health/RedHealth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Power/RedPower:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stamina/RedStamina:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cj77a"]
+resource_name = "levelUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q44um"]
+_data = {
+&"RESET": SubResource("Animation_q44um"),
+&"levelUp": SubResource("Animation_cj77a"),
+&"redHealth": SubResource("Animation_f760y"),
+&"redPower": SubResource("Animation_pt5ib"),
+&"redStamina": SubResource("Animation_kr20n")
+}
+
+[node name="Upgrade" type="Node2D"]
+script = ExtResource("1_rhnba")
+
+[node name="SkeletonMain" type="Sprite2D" parent="."]
+position = Vector2(562, 425)
+scale = Vector2(3.53125, 4.32813)
+texture = ExtResource("1_m1npt")
+
+[node name="Health" type="Label" parent="."]
+offset_left = 129.0
+offset_top = 75.0
+offset_right = 308.0
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 35
+text = "HEALTH"
+horizontal_alignment = 1
+
+[node name="HealthButton" type="Button" parent="Health"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 187.0
+offset_bottom = 102.0
+focus_mode = 0
+text = "UPGRADE +1"
+
+[node name="HealthCost" type="Label" parent="Health"]
+layout_mode = 0
+offset_top = 115.0
+offset_right = 187.0
+offset_bottom = 138.0
+text = "Total Cost: "
+horizontal_alignment = 1
+
+[node name="CurrentHealth" type="Label" parent="Health"]
+layout_mode = 0
+offset_top = 140.0
+offset_right = 187.0
+offset_bottom = 163.0
+text = "Current Health: "
+horizontal_alignment = 1
+
+[node name="RedHealth" type="Sprite2D" parent="Health"]
+visible = false
+position = Vector2(94.5, 79.5)
+scale = Vector2(0.764, 0.18)
+texture = ExtResource("3_f760y")
+
+[node name="Stamina" type="Label" parent="."]
+offset_left = 468.5
+offset_top = 75.0
+offset_right = 655.5
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 35
+text = "STAMINA"
+horizontal_alignment = 1
+
+[node name="StaminaButton" type="Button" parent="Stamina"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 187.0
+offset_bottom = 102.0
+focus_mode = 0
+text = "UPGRADE +1"
+
+[node name="StaminaCost" type="Label" parent="Stamina"]
+layout_mode = 0
+offset_top = 115.0
+offset_right = 187.0
+offset_bottom = 138.0
+text = "Total Cost: "
+horizontal_alignment = 1
+
+[node name="CurrentStamina" type="Label" parent="Stamina"]
+layout_mode = 0
+offset_top = 140.0
+offset_right = 187.0
+offset_bottom = 163.0
+text = "Current Stamina: "
+horizontal_alignment = 1
+
+[node name="RedStamina" type="Sprite2D" parent="Stamina"]
+visible = false
+position = Vector2(94.5, 81)
+scale = Vector2(0.764, 0.18)
+texture = ExtResource("3_f760y")
+
+[node name="Power" type="Label" parent="."]
+offset_left = 826.0
+offset_top = 75.0
+offset_right = 1013.0
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 35
+text = "POWER"
+horizontal_alignment = 1
+
+[node name="PowerButton" type="Button" parent="Power"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 187.0
+offset_bottom = 102.0
+focus_mode = 0
+text = "UPGRADE +1"
+
+[node name="PowerCost" type="Label" parent="Power"]
+layout_mode = 0
+offset_top = 115.0
+offset_right = 187.0
+offset_bottom = 138.0
+text = "Total Cost: "
+horizontal_alignment = 1
+
+[node name="CurrentPower" type="Label" parent="Power"]
+layout_mode = 0
+offset_top = 140.0
+offset_right = 187.0
+offset_bottom = 163.0
+text = "Current Power: "
+horizontal_alignment = 1
+
+[node name="RedPower" type="Sprite2D" parent="Power"]
+visible = false
+position = Vector2(96, 80)
+scale = Vector2(0.764, 0.18)
+texture = ExtResource("3_f760y")
+
+[node name="TotalXP" type="Label" parent="."]
+offset_left = 470.5
+offset_top = 603.0
+offset_right = 657.5
+offset_bottom = 626.0
+text = "Total XP: "
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 129.0
+offset_top = 550.0
+offset_right = 316.0
+offset_bottom = 592.0
+text = "BACK TO LOCKERS"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q44um")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(555, 325)
+emitting = false
+amount = 13
+texture = ExtResource("4_kr20n")
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 98.85
+spread = 180.0
+gravity = Vector2(0, 555)
+scale_amount_min = 0.03
+scale_amount_max = 0.04
+
+[node name="LevelUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pt5ib")
+
+[node name="Denied" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_q44um")
+
+[connection signal="pressed" from="Health/HealthButton" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]
+[connection signal="pressed" from="Power/PowerButton" to="." method="_on_power_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvs05smedvow4"
+path="res://.godot/imported/final-bell---menu.mp3-3c864dfc4a7cc8c7b85e3b3524cba22b.mp3str"
+
+[deps]
+
+source_file="res://Music + Sound/final-bell---menu.mp3"
+dest_files=["res://.godot/imported/final-bell---menu.mp3-3c864dfc4a7cc8c7b85e3b3524cba22b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

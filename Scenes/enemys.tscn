@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dkgdbsoibls2p" path="res://Sprites/skeleton dodge right.png" id="3_seb7f"]
 [ext_resource type="Texture2D" uid="uid://ctmqwkafgrbrm" path="res://Sprites/fire man.png" id="4_4k4ca"]
 [ext_resource type="Texture2D" uid="uid://cppu016eydigj" path="res://Sprites/Fireman blue.png" id="5_8lwso"]
-[ext_resource type="AudioStream" uid="uid://djft1cn0w18ci" path="res://Music/final-bell---boxing-1.mp3" id="7_cbqis"]
-[ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music/satan’s-finale.mp3" id="8_i4f6o"]
+[ext_resource type="AudioStream" uid="uid://djft1cn0w18ci" path="res://Music + Sound/final-bell---boxing-1.mp3" id="7_cbqis"]
+[ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music + Sound/satan’s-finale.mp3" id="8_i4f6o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbf3c"]
 atlas = ExtResource("2_8lwso")
