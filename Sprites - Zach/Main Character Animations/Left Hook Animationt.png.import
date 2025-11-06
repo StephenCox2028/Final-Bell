@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w1elkrve14w"
-path="res://.godot/imported/Main Character Ring1.png-c08c8f3b99dd5e2ac571e491b31823c2.ctex"
+uid="uid://d07b0nsa8s8co"
+path="res://.godot/imported/Left Hook Animationt.png-c9b4a9b913bdf250fbec3798892be5cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Ring/Main Character Ring1.png"
-dest_files=["res://.godot/imported/Main Character Ring1.png-c08c8f3b99dd5e2ac571e491b31823c2.ctex"]
+source_file="res://Sprites - Zach/Main Character Animations/Left Hook Animationt.png"
+dest_files=["res://.godot/imported/Left Hook Animationt.png-c9b4a9b913bdf250fbec3798892be5cb.ctex"]
 
 [params]
 

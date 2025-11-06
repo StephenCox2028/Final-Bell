@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
-[ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
+[ext_resource type="PackedScene" path="res://Scenes/rats.tscn" id="4_ubpar"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -142,7 +142,7 @@ metadata/_edit_horizontal_guides_ = [460.0]
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(605, 225)
+position = Vector2(587, 225)
 scale = Vector2(1.00694, 1.23148)
 texture = ExtResource("2_ut0kg")
 

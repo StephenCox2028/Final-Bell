@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckr3vupr0q7rq" path="res://Scenes/locker_room.gd" id="1_22xvq"]
 [ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/locker room.png" id="1_rn47g"]
-[ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
+[ext_resource type="PackedScene" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
 [ext_resource type="Texture2D" uid="uid://gg407q23cxx8" path="res://Sprites Mirza/Main Character/MC.png" id="4_t4m78"]
 [ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
 

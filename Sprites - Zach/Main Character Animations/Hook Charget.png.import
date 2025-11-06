@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btiwku70er16n"
-path="res://.godot/imported/Main Character right cross.png-113d21babb8815c042165f5e56e187b6.ctex"
+uid="uid://dw471asotwdwq"
+path="res://.godot/imported/Hook Charget.png-15bccc61b7b4bf2ce236c84ce9383d8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Ring/Main Character right cross.png"
-dest_files=["res://.godot/imported/Main Character right cross.png-113d21babb8815c042165f5e56e187b6.ctex"]
+source_file="res://Sprites - Zach/Main Character Animations/Hook Charget.png"
+dest_files=["res://.godot/imported/Hook Charget.png-15bccc61b7b4bf2ce236c84ce9383d8d.ctex"]
 
 [params]
 
