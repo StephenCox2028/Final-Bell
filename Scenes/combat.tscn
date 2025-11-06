@@ -136,6 +136,12 @@ _data = {
 &"punch": SubResource("Animation_ut0kg")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpar"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut0kg"]
+bg_color = Color(0.394702, 0.684329, 0.326459, 1)
+
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
@@ -184,6 +190,17 @@ offset_left = 204.0
 offset_top = 388.0
 offset_right = 421.0
 offset_bottom = 433.0
+theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+offset_left = 203.0
+offset_top = 484.0
+offset_right = 420.0
+offset_bottom = 529.0
+theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
 
 [node name="StaminaCooldown" type="Timer" parent="."]
 wait_time = 3.0

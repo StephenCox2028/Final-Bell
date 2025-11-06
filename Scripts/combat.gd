@@ -14,6 +14,7 @@ extends Node2D
 @onready var Punch = $Punch
 @onready var Hook = $Hook
 @onready var Bell = $Bell
+@onready var progress_bar_2: ProgressBar = $ProgressBar2
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -41,11 +42,16 @@ var rounds = 0
 func _ready():
 	transition.play("fade-in")
 	Bell.play()
+	Global.combat_ui = self
 	isdodge = false
 	ispunch = false
 	isHolding = false
 	canmove = true
 	progress_bar.value = (100)
+	progress_bar_2.value = (100)
+	Global.playerStats.health = Global.MAXHEALTH
+	Global.playerStats.stamina = Global.MAXSTAMINA
+	Global.playerStats.power = Global.MAXPOWER
 
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
@@ -156,7 +162,6 @@ func _input(event):
 					character.position = originalPos	#Reset the position after shaking.
 					animation.play("punch")
 					Punch.play()
-
 	if Input.is_action_pressed("attackRight"):
 		if Global.getPlayerStamina() > 0 and exhaustion == false:
 			if isHolding == false:	#If E is not being held down.
@@ -184,7 +189,6 @@ func _input(event):
 					character.position = originalPos	#Reset the position after shaking.
 					animation.play("punch")
 					Punch.play()
-
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" and anim_name == "dodgeright":
 		canmove = true
@@ -233,7 +237,7 @@ func DamageTaken():
 				if chance <= probablityHook:
 					health -= hook
 					print ("Health:")
-		progress_bar.value = (health/100)
+		
 		print("apple sauce")
 
 	if health <= 0:
