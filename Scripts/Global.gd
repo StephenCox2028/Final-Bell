@@ -26,8 +26,8 @@ var playerStats = {
 
 #boss stats - Mirza
 var bosses = { 
-	"HitManSkeleton": {"health" : 40, "stamina" : 30, "power" : 5, "dodge" : false, "block" : false, "difficulty" : 5.0}, #all stats are just placeholders for know
-	"Devil": {"health" : 100, "stamina" : 50, "power" : 50, "dodge": false, "block" : false, "difficulty" : 3.5} #all stats are just placeholders for know
+	"HitManSkeleton": {"health" : 40, "power" : 5, "dodge" : false, "block" : false, "difficulty" : 5.0}, #all stats are just placeholders for know
+	"Devil": {"health" : 100, "power" : 50, "dodge": false, "block" : false, "difficulty" : 3.5} #all stats are just placeholders for know
 }
 
 #Global functions - Stephen
@@ -87,6 +87,9 @@ func resetAllPlayerStats() -> void:
 	playerStats.health = playerStats.maxHealth
 	playerStats.stamina = playerStats.maxStamina
 	playerStats.power = playerStats.maxPower
+func resetAllEnemyStats() -> void:
+	bosses.HitManSkeleton.health = 40; bosses.HitManSkeleton.power = 5
+	bosses.Devil.health = 100; bosses.Devil.power = 50
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
 func setMaxPlayerStamina(new) -> void:

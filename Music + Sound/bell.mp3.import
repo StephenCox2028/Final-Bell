@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0gy0mcelthkm"
+path="res://.godot/imported/bell.mp3-7de604afe270dc2e5e1bed5f42eca675.mp3str"
+
+[deps]
+
+source_file="res://Music + Sound/bell.mp3"
+dest_files=["res://.godot/imported/bell.mp3-7de604afe270dc2e5e1bed5f42eca675.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

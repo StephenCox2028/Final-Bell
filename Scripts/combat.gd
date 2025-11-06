@@ -9,6 +9,11 @@ extends Node2D
 @onready var staminaCooldown = $StaminaCooldown
 @onready var sweatParticles = $Character/SweatParticles
 
+#Sounds
+@onready var Punch = $Punch
+@onready var Hook = $Hook
+@onready var Bell = $Bell
+
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
@@ -33,13 +38,13 @@ var time_in_seconds : int = 0
 var rounds = 0
 
 func _ready():
+	Bell.play()
 	isdodge = false
 	ispunch = false
 	isHolding = false
 	canmove = true
 	progress_bar.value = (100)
 
-	
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
 			# Optional: set position or random offset
@@ -63,12 +68,14 @@ func _process(delta) -> void:
 	if exhaustion == false:
 		#If the player reaches ZERO stamina, cause Exhaustion.
 		if Global.playerStats.stamina <= 0:
+			Global.playerStats.stamina = 0
 			exhaustion = true
 			sweatParticles.emitting = true
 			staminaCooldown.start()
 		#If player is at max (or greater than max) stamina, keep at max.
 		if Global.playerStats.stamina >= Global.playerStats.maxStamina:
 			Global.playerStats.stamina = Global.playerStats.maxStamina
+	#If player is NOT greater or equal to the max stamina, raise stamina.
 	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
 		Global.playerStats.stamina += 0.01
 	print(Global.getPlayerStamina())
@@ -136,14 +143,17 @@ func _input(event):
 				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
 					animation.play("punch") #Simply punch
 					Global.depleteStamina("attack", heldTime)
+					Punch.play()
 				else:
 					animation.play("punch")
 					Global.depleteStamina("hook", heldTime)
+					Hook.play()
 				heldTime = 0		#Reset holdTime
 				isHolding = false
 				if character.position != originalPos:	#If the character position is not at it's original...
 					character.position = originalPos	#Reset the position after shaking.
 					animation.play("punch")
+					Punch.play()
 
 	if Input.is_action_pressed("attackRight"):
 		if Global.getPlayerStamina() > 0 and exhaustion == false:
@@ -161,14 +171,17 @@ func _input(event):
 				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
 					animation.play("punch")	#Simply punch
 					Global.depleteStamina("attack", heldTime)
+					Punch.play()
 				else:
 					animation.play("punch")
 					Global.depleteStamina("hook", heldTime)
+					Hook.play()
 				heldTime = 0	#Resets holdTime
 				isHolding = false
 				if character.position != originalPos:	#If the character position is not at it's original...
 					character.position = originalPos	#Reset the position after shaking.
 					animation.play("punch")
+					Punch.play()
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" and anim_name == "dodgeright":
@@ -187,6 +200,7 @@ func start_shake():
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
 
+"""
 func DamageTaken():
 	var jab = 0.005 
 	var cross = 0.01
@@ -223,3 +237,4 @@ func DamageTaken():
 	if health <= 0:
 		health = 0
 		print ("You Died")
+"""

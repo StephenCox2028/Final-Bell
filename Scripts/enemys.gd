@@ -12,7 +12,6 @@ var enmActions = []
 @export var stamina = 1
 @export var power = 1
 
-
 var rng = RandomNumberGenerator.new()
 var action : int
 var enemy
@@ -45,7 +44,7 @@ func _ready():
 func _on_timer_timeout() -> void:	
 	enmActions[action].call("Actions", self)
 	print(timer.wait_time)
-	
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Dodge" or anim_name == "Temp Dodge":
 		Global.bosses[Global.currentBoss].dodge = false

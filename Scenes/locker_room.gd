@@ -3,11 +3,15 @@ extends Node2D
 @onready var upgradeButton = $UpgradeButton
 @onready var continueButton = $ContinueButton
 @onready var quitButton = $QuitButton
+@onready var character = $SkeletonMain
+@onready var animation = $AnimationPlayer
 
 const RATS = preload("res://Scenes/rats.tscn")
-const PLAYER = preload("res://Scenes/character.tscn")
 
 var rng = RandomNumberGenerator.new()
+
+func _ready():
+	animation.play("breathing")
 
 func _on_timer_timeout() -> void:
 	var timeofset = randi_range(-5, 5)
@@ -35,6 +39,8 @@ func _on_upgrade_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
 
 func _on_continue_button_pressed():
+	Global.resetAllEnemyStats()
+	Global.resetAllPlayerStats()
 	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
 
 func _on_quit_button_pressed():

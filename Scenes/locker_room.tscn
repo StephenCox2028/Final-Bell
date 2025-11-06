@@ -1,10 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://boopgjn3iu5f3"]
+[gd_scene load_steps=10 format=3 uid="uid://boopgjn3iu5f3"]
 
 [ext_resource type="Script" uid="uid://ckr3vupr0q7rq" path="res://Scenes/locker_room.gd" id="1_22xvq"]
 [ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/locker room.png" id="1_rn47g"]
 [ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="5_8ydan"]
 [ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
+[ext_resource type="AudioStream" uid="uid://laq7mf71u3eu" path="res://Music + Sound/final-bell---locker-room.mp3" id="6_t4m78"]
+
+[sub_resource type="Animation" id="Animation_t4m78"]
+resource_name = "breathing"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkeletonMain:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-87.3696, 59.8765), Vector2(-87.37, 62.211), Vector2(-87.37, 62.211), Vector2(-87.3696, 59.8765)]
+}
+
+[sub_resource type="Animation" id="Animation_ttavy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkeletonMain:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-87.37, 62.211)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ayq17"]
+_data = {
+&"RESET": SubResource("Animation_ttavy"),
+&"breathing": SubResource("Animation_t4m78")
+}
 
 [node name="LockerRoom" type="Sprite2D"]
 position = Vector2(576, 324)
@@ -26,7 +65,7 @@ position = Vector2(9.07117, 65.1235)
 texture = ExtResource("5_ttavy")
 
 [node name="SkeletonMain" type="Sprite2D" parent="."]
-position = Vector2(-87.3696, 59.8765)
+position = Vector2(-87.37, 62.211)
 scale = Vector2(1.25325, 0.988619)
 texture = ExtResource("5_8ydan")
 
@@ -51,6 +90,15 @@ offset_right = 234.041
 offset_bottom = 34.7037
 text = "QUIT
 "
+
+[node name="Locker Room Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_t4m78")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ayq17")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
