@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2ufemlrwsrhh"]
+[gd_scene load_steps=5 format=3 uid="uid://c2ufemlrwsrhh"]
 
 [ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_1ehe0"]
 [ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music + Sound/final-bell---menu.mp3" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="4_ce3w2"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -77,6 +78,11 @@ stream = ExtResource("2_48xlc")
 volume_db = -10.0
 autoplay = true
 
+[node name="Transition" parent="." instance=ExtResource("4_ce3w2")]
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+
+[editable path="Transition"]

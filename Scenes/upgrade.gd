@@ -20,6 +20,7 @@ These objects select the labels and buttons that the user will press.
 @onready var animations = $AnimationPlayer
 @onready var levelUp = $LevelUp
 @onready var denied = $Denied
+@onready var transition = $Transition/Transition
 
 #Sets all labels to present stats.
 func _ready():
@@ -107,4 +108,7 @@ func _on_power_button_pressed():
 
 #If the back button is pressed, go back to the locker room.
 func _on_back_button_pressed():
+	transition.play("fade-out")
+
+func _on_transition_animation_finished(anim_name):
 	get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")

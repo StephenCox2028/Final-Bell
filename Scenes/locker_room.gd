@@ -5,12 +5,16 @@ extends Node2D
 @onready var quitButton = $QuitButton
 @onready var character = $SkeletonMain
 @onready var animation = $AnimationPlayer
+@onready var transition = $Transition/Transition
+
+var choice
 
 const RATS = preload("res://Scenes/rats.tscn")
 
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	transition.play("fade-in")
 	animation.play("breathing")
 
 func _on_timer_timeout() -> void:
@@ -36,12 +40,26 @@ func _on_next_button_pressed() -> void:
 	Global.boss_flip = true
 
 func _on_upgrade_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
+	choice = 1
+	transition.play("fade-out")
+	
 
 func _on_continue_button_pressed():
 	Global.resetAllEnemyStats()
 	Global.resetAllPlayerStats()
-	get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+	choice = 2
+	transition.play("fade-out")
+
 
 func _on_quit_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	choice = 3
+	transition.play("fade-out")
+
+func _on_transition_animation_finished(anim_name):
+		match choice:
+			1:
+				get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
+			2:
+				get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+			3:
+				get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

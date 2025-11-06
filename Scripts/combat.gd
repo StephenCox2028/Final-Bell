@@ -8,6 +8,7 @@ extends Node2D
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var staminaCooldown = $StaminaCooldown
 @onready var sweatParticles = $Character/SweatParticles
+@onready var transition = $Transition/Transition
 
 #Sounds
 @onready var Punch = $Punch
@@ -38,6 +39,7 @@ var time_in_seconds : int = 0
 var rounds = 0
 
 func _ready():
+	transition.play("fade-in")
 	Bell.play()
 	isdodge = false
 	ispunch = false

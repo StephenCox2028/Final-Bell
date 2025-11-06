@@ -25,7 +25,7 @@ func _ready():
 			change_stats(30,30,30)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			Global.currentBoss = "HitManSkeleton"
-			timer.wait_time = Global.bosses.HitManSkeleton.difficulty
+			timer.wait_time = randf_range(Global.bosses.HitManSkeleton.difficultyMin, Global.bosses.HitManSkeleton.difficultyMax)
 			timer.start()
 			skeletonMusic.play()
 			skeletonMusic.autoplay = true
@@ -35,7 +35,7 @@ func _ready():
 			change_stats(90,90,90)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
-			timer.wait_time = Global.bosses.Devil.difficulty
+			timer.wait_time = randf_range(Global.bosses.Devil.difficultyMin, Global.bosses.Devil.difficultyMax)
 			timer.start()
 			devilMusic.play()
 			devilMusic.autoplay = true
@@ -43,7 +43,8 @@ func _ready():
 
 func _on_timer_timeout() -> void:	
 	enmActions[action].call("Actions", self)
-	print(timer.wait_time)
+	timer.wait_time = randf_range(Global.bosses[Global.currentBoss].difficultyMin, Global.bosses[Global.currentBoss].difficultyMax)
+	timer.start()
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Dodge" or anim_name == "Temp Dodge":

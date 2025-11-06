@@ -26,8 +26,8 @@ var playerStats = {
 
 #boss stats - Mirza
 var bosses = { 
-	"HitManSkeleton": {"health" : 40, "power" : 5, "dodge" : false, "block" : false, "difficulty" : 5.0}, #all stats are just placeholders for know
-	"Devil": {"health" : 100, "power" : 50, "dodge": false, "block" : false, "difficulty" : 3.5} #all stats are just placeholders for know
+	"HitManSkeleton": {"health" : 40, "power" : 5, "dodge" : false, "block" : false, "difficultyMax" : 5.0, "difficultyMin": 5.0}, #all stats are just placeholders for now
+	"Devil": {"health" : 100, "power" : 50, "dodge": false, "block" : false, "difficultyMax" : 3.5, "difficultyMin" : 1.5} #all stats are just placeholders for now
 }
 
 #Global functions - Stephen
@@ -38,7 +38,7 @@ func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
 		playerStats.stamina -= 2
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			if bosses[currentBoss].difficulty < 5.0:
+			if bosses[currentBoss].difficultyMax < 5.0:
 				var chance = randi_range(1, 2)
 				if chance == 1:
 					bosses[currentBoss].health -= playerStats.power
@@ -51,7 +51,7 @@ func depleteStamina(move, multiplier) -> void:
 	elif move == "hook":
 		playerStats.stamina -= multiplier * 2
 		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			if bosses[currentBoss].difficulty < 5.0:
+			if bosses[currentBoss].difficultyMax < 5.0:
 				var chance = randi_range(1,2)
 				if chance == 1:
 					bosses[currentBoss].health -= (playerStats.power + multiplier)

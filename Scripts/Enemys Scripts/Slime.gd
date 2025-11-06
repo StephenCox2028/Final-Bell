@@ -10,6 +10,7 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("TempSmack")
 			if Global.playerStats.dodging == false:
 				Global.depleteHealth()
+				
 			print(Global.getPlayerHealth())
 		3:
 			enemy_node.animation_player.play("Tempblock")

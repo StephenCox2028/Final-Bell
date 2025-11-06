@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=13 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
 [ext_resource type="AudioStream" uid="uid://sjyvqs3grmm5" path="res://Music + Sound/punch.mp3" id="5_3w34b"]
@@ -138,8 +139,6 @@ _data = {
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
-isdodge = true
-canmove = false
 metadata/_edit_horizontal_guides_ = [460.0]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -155,7 +154,7 @@ libraries = {
 }
 
 [node name="Character" parent="." instance=ExtResource("2_4ln8h")]
-position = Vector2(544, 585)
+position = Vector2(588, 401)
 scale = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="."]
@@ -198,8 +197,15 @@ stream = ExtResource("6_avwh6")
 [node name="Bell" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_d53gg")
 
+[node name="Transition" parent="." instance=ExtResource("2_avwh6")]
+
+[node name="Black" parent="Transition" index="1"]
+position = Vector2(584, 295)
+
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
 [connection signal="timeout" from="StaminaCooldown" to="." method="_on_stamina_cooldown_timeout"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
 
 [editable path="Character"]
+[editable path="Transition"]

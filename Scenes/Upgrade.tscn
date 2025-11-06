@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bebl8umacxmra"]
+[gd_scene load_steps=14 format=3 uid="uid://bebl8umacxmra"]
 
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="1_m1npt"]
 [ext_resource type="Script" uid="uid://dx74b058486s8" path="res://Scenes/upgrade.gd" id="1_rhnba"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bj8wqn6fn0wa4" path="res://Materials/green.png" id="4_kr20n"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_pt5ib"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_q44um"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_cj77a"]
 
 [sub_resource type="Animation" id="Animation_q44um"]
 length = 0.001
@@ -295,8 +296,13 @@ stream = ExtResource("5_pt5ib")
 [node name="Denied" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_q44um")
 
+[node name="Transition" parent="." instance=ExtResource("7_cj77a")]
+
 [connection signal="pressed" from="Health/HealthButton" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]
 [connection signal="pressed" from="Power/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+
+[editable path="Transition"]
