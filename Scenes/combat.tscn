@@ -144,7 +144,7 @@ metadata/_edit_horizontal_guides_ = [460.0]
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(605, 225)
+position = Vector2(587, 225)
 scale = Vector2(1.00694, 1.23148)
 texture = ExtResource("2_ut0kg")
 
