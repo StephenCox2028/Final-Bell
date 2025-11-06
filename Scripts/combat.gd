@@ -73,10 +73,8 @@ func start_nextRound(rounds):
 	rounds += 1
 	$rounds.text = 'Rounds: ' + str(rounds)
 	if rounds > 8:
-		end_match()
+		Global.end_match()
 
-func end_match():
-	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -111,9 +109,13 @@ func _input(event):
 			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
 				animation.play("punch") #Simply punch
 				Global.depleteStamina("attack", heldTime)
+				Global.num_punches += 1
+				print("Number of Punches: " + str(Global.num_punches))
 			else:
 				animation.play("punch")
 				Global.depleteStamina("hook", heldTime)
+				Global.num_punches += 1
+				print("Number of Punches: " + str(Global.num_punches))
 			heldTime = 0		#Reset holdTime
 			isHolding = false
 			if character.position != originalPos:	#If the character position is not at it's original...
@@ -134,14 +136,20 @@ func _input(event):
 			if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
 				animation.play("punch")	#Simply punch
 				Global.depleteStamina("attack", heldTime)
+				Global.num_punches += 1
+				print("Number of Punches: " + str(Global.num_punches))
 			else:
 				animation.play("punch")
 				Global.depleteStamina("hook", heldTime)
+				Global.num_punches += 1
+				print("Number of Punches: " + str(Global.num_punches))
 			heldTime = 0	#Resets holdTime
 			isHolding = false
 			if character.position != originalPos:	#If the character position is not at it's original...
 				character.position = originalPos	#Reset the position after shaking.
 				animation.play("punch")
+				Global.num_punches += 1
+				print("Number of Punches: " + str(Global.num_punches))
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" and anim_name == "dodgeright":
@@ -177,21 +185,21 @@ func DamageTaken():
 			1:	
 				if chance <= probablityBlock: #Checks the probablitiy if you will block. It's 100% so you will always block.
 					health -= block #Does minor damage if enemy hits you
-					print ("Health:", health)  # This prints out your current health.
+					#print ("Health:", health)  # This prints out your current health.
 			2:#Exact same with the rest.
 				if chance <= probablityJab:
 					health -= jab
-					print ("Health:", health)
+					#print ("Health:", health)
 			3:
 				if chance <= probablityCross:
 					health -= cross
-					print ("Health:", health)
+					#print ("Health:", health)
 			4:
 				if chance <= probablityHook:
 					health -= hook
-					print ("Health:")
+					#print ("Health:")
 		progress_bar.value = (health/100)
-		print("apple sauce")
+		#print("apple sauce")
 
 	if health <= 0:
 		health = 0
