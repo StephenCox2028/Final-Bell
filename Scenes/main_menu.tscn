@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2ufemlrwsrhh"]
 
 [ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://bdq6npclkkeh7" path="res://Sprites - John/Main Menu background-Recovered-export.png" id="2_1ehe0"]
 [ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music/final-bell---menu.mp3" id="2_48xlc"]
 
 [node name="MainMenu" type="Control"]
@@ -23,60 +23,44 @@ script = ExtResource("1_06t4h")
 position = Vector2(587, 329)
 texture = ExtResource("2_1ehe0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 172.0
-offset_top = -398.0
-offset_right = 332.0
-offset_bottom = -193.0
-grow_vertical = 0
-theme_override_constants/separation = 2
-
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-clip_contents = true
-layout_mode = 2
-text = "Start"
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Options"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 34
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="NextButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_48xlc")
 volume_db = -10.0
 autoplay = true
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Story" type="Button" parent="."]
+layout_mode = 2
+offset_left = 179.0
+offset_top = 317.0
+offset_right = 339.0
+offset_bottom = 348.0
+text = "Story"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 179.0
+offset_top = 386.0
+offset_right = 329.0
+offset_bottom = 417.0
+text = "Quit"
+
+[node name="StartButton" type="Button" parent="."]
+clip_contents = true
+layout_mode = 2
+offset_left = 179.0
+offset_top = 205.0
+offset_right = 339.0
+offset_bottom = 236.0
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 179.0
+offset_top = 251.0
+offset_right = 339.0
+offset_bottom = 282.0
+text = "Options"
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
