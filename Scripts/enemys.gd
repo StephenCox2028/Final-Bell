@@ -17,7 +17,7 @@ var action : int
 var enemy
 func _ready():
 	enmActions = [skeletin,slime]#add more latter
-	enemy = randi_range(1, 1)
+	enemy = randi_range(1, 2)
 
 	match enemy:
 		1:

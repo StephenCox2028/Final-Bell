@@ -35,13 +35,13 @@ var playerStats = {
 	"dodging": false,
 	"totalXP" : 0
 }
-var bosses = {
-	"health" : 1,
-	"stamina" : 1,
-	"power" : 1,
-	"dodge": false,
-	"block" : false
-}
+#var bosses = {
+#	"health" : 1,
+#	"stamina" : 1,
+#	"power" : 1,
+#	"dodge": false,
+#	"block" : false
+#}
 
 #boss stats - Mirza
 var bosses = { 
@@ -50,13 +50,8 @@ var bosses = {
 }
 
 #Global functions - Stephen
-#func depleteHealth() -> void:
-	#playerStats.health -= bosses[currentBoss].power
-
-
-#Global functions - Stephen
 func depleteHealth() -> void:
-	playerStats.health -= bosses.power
+	playerStats.health -= bosses[currentBoss].power
 	if combat_ui:
 		combat_ui.progress_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 
@@ -64,39 +59,31 @@ func depleteHealth() -> void:
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
 		playerStats.stamina -= 2
-
-		#if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			#if bosses[currentBoss].difficultyMax < 5.0:
-				#var chance = randi_range(1, 2)
-				#if chance == 1:
-					#bosses[currentBoss].health -= playerStats.power
-				#else:
-					#print("NO DAMAGE DONE!")
-			#else:
-				#bosses[currentBoss].health -= playerStats.power
-		#print(bosses[currentBoss].health)
-		#win_conditions()
-	#elif move == "hook":
-		#playerStats.stamina -= multiplier * 2
-		#if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
-			#if bosses[currentBoss].difficultyMax < 5.0:
-				#var chance = randi_range(1,2)
-				#if chance == 1:
-					#bosses[currentBoss].health -= (playerStats.power + multiplier)
-				#else: 
-					#print("NO DAMAGE DONE!")
-			#else:
-				#bosses[currentBoss].health -= (playerStats.power + multiplier)
-		#print(bosses[currentBoss].health)
-
-		if bosses.dodge != true and bosses.block != true:
-			bosses.health -= playerStats.power
+		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
+			if bosses[currentBoss].difficultyMax < 5.0:
+				var chance = randi_range(1, 2)
+				if chance == 1:
+					bosses[currentBoss].health -= playerStats.power
+				else:
+					print("NO DAMAGE DONE!")
+			else:
+				bosses[currentBoss].health -= playerStats.power
+		print(bosses[currentBoss].health)
 		win_conditions()
 	elif move == "hook":
 		playerStats.stamina -= multiplier * 2
-		if bosses.dodge != true and bosses.block != true:
-			bosses.health -= (playerStats.power + multiplier)
-		print(bosses.health)
+		if bosses[currentBoss].dodge != true and bosses[currentBoss].block != true:
+			if bosses[currentBoss].difficultyMax < 5.0:
+				var chance = randi_range(1,2)
+				if chance == 1:
+					bosses[currentBoss].health -= (playerStats.power + multiplier)
+				else: 
+					print("NO DAMAGE DONE!")
+			else:
+				bosses[currentBoss].health -= (playerStats.power + multiplier)
+		print(bosses[currentBoss].health)
+		#if bosses.dodge != true and bosses.block != true:
+			#bosses.health -= playerStats.power
 		win_conditions()
 	elif move == "dodge":
 		playerStats.stamina -= 1
@@ -151,7 +138,7 @@ func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 
-	elif(bosses.health <= 0):
+	elif(bosses[currentBoss].health <= 0):
 		Global.totalXP()
 		Global.resetAllPlayerStats()
 		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")

@@ -1,8 +1,10 @@
 extends Control
-@onready var quit_button: Button = $VBoxContainer/QuitButton
-@onready var options_button: Button = $VBoxContainer/OptionsButton
-@onready var start_button: Button = $VBoxContainer/StartButton
+@onready var quit_button: Button = $QuitButton
+@onready var options_button: Button = $OptionsButton
+@onready var start_button: Button = $StartButton
+@onready var story_button: Button = $Story
 @onready var transition = $Transition/Transition
+
 
 var choice
 

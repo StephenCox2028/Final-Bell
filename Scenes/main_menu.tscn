@@ -1,7 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2ufemlrwsrhh"]
 
 [ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_06t4h"]
-
 [ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_1ehe0"]
 [ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music + Sound/final-bell---menu.mp3" id="2_48xlc"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="4_ce3w2"]
@@ -63,6 +62,11 @@ offset_right = 339.0
 offset_bottom = 282.0
 text = "Options"
 
+[node name="Transition" parent="." instance=ExtResource("4_ce3w2")]
+
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+
+[editable path="Transition"]

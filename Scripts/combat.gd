@@ -237,3 +237,4 @@ func DamageTaken():
 					#print ("Health:")
 		progress_bar.value = (health/100)
 		#print("apple sauce")
+"""
