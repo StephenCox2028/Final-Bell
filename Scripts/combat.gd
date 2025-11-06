@@ -19,7 +19,7 @@ extends Node2D
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
-var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephen
+var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephenq
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -107,10 +107,8 @@ func start_nextRound(rounds):
 	rounds += 1
 	$rounds.text = 'Rounds: ' + str(rounds)
 	if rounds > 8:
-		end_match()
+		Global.end_match()
 
-func end_match():
-	get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -224,23 +222,18 @@ func DamageTaken():
 			1:	
 				if chance <= probablityBlock: #Checks the probablitiy if you will block. It's 100% so you will always block.
 					health -= block #Does minor damage if enemy hits you
-					print ("Health:", health)  # This prints out your current health.
+					#print ("Health:", health)  # This prints out your current health.
 			2:#Exact same with the rest.
 				if chance <= probablityJab:
 					health -= jab
-					print ("Health:", health)
+					#print ("Health:", health)
 			3:
 				if chance <= probablityCross:
 					health -= cross
-					print ("Health:", health)
+					#print ("Health:", health)
 			4:
 				if chance <= probablityHook:
 					health -= hook
-					print ("Health:")
-		
-		print("apple sauce")
-
-	if health <= 0:
-		health = 0
-		print ("You Died")
-"""
+					#print ("Health:")
+		progress_bar.value = (health/100)
+		#print("apple sauce")

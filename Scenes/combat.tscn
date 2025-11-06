@@ -167,18 +167,18 @@ scale = Vector2(3, 3)
 autostart = true
 
 [node name="rounds" type="Label" parent="."]
-offset_left = 631.0
-offset_top = 118.0
-offset_right = 897.0
-offset_bottom = 199.0
+offset_left = 656.0
+offset_top = 11.0
+offset_right = 922.0
+offset_bottom = 92.0
 theme_override_font_sizes/font_size = 50
 text = "Rounds: "
 
 [node name="Label" type="Label" parent="."]
-offset_left = 376.0
-offset_top = 121.0
-offset_right = 562.0
-offset_bottom = 190.0
+offset_left = 330.0
+offset_top = 5.0
+offset_right = 516.0
+offset_bottom = 74.0
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 

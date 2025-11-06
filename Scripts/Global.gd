@@ -16,6 +16,14 @@ var levelCosts = {
 
 var combat_ui
 
+#Variables for scoring
+var rng = RandomNumberGenerator.new()
+var num_punches = 0
+var punches_landed = 0
+var accuracy = 0
+var power_punches = 0
+var knockdowns = 0
+
 #Player stats - Mirza
 var playerStats = {
 	"health" : 40,
