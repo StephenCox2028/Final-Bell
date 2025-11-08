@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2ufemlrwsrhh"]
+[gd_scene load_steps=6 format=3 uid="uid://dco7j81tbjlbi"]
 
-[ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_1ehe0"]
-[ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music + Sound/final-bell---menu.mp3" id="2_48xlc"]
-[ext_resource type="Texture2D" uid="uid://bdq6npclkkeh7" path="res://Sprites - John/Main Menu background-Recovered-export.png" id="3_n45e2"]
-[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="4_ce3w2"]
+[ext_resource type="Script" uid="uid://o7hycwm83oei" path="res://Scripts/main_menu.gd" id="1_dma66"]
+[ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_n664l"]
+[ext_resource type="Texture2D" uid="uid://bdq6npclkkeh7" path="res://Sprites - John/Main Menu background-Recovered-export.png" id="3_bve4r"]
+[ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music + Sound/final-bell---menu.mp3" id="4_w8mej"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="5_oan3g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,21 +17,21 @@ offset_right = -8.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_06t4h")
+script = ExtResource("1_dma66")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(-467.106, 489.535)
-scale = Vector2(-0.000184499, -0.000106509)
-texture = ExtResource("2_1ehe0")
+position = Vector2(-338.846, 415.725)
+scale = Vector2(-0.223245, -0.227214)
+texture = ExtResource("2_n664l")
 
 [node name="MainMenuBackground-recovered-export" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(585, 325)
-texture = ExtResource("3_n45e2")
+texture = ExtResource("3_bve4r")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_48xlc")
+stream = ExtResource("4_w8mej")
 volume_db = -10.0
 autoplay = true
 
@@ -68,12 +68,18 @@ offset_right = 339.0
 offset_bottom = 282.0
 text = "Options"
 
-[node name="Transition" parent="." instance=ExtResource("4_ce3w2")]
+[node name="Transition" parent="." instance=ExtResource("5_oan3g")]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [connection signal="pressed" from="Story" to="." method="_on_story_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="Transition"]

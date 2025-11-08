@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="5_8ydan"]
 [ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
 [ext_resource type="AudioStream" uid="uid://laq7mf71u3eu" path="res://Music + Sound/final-bell---locker-room.mp3" id="6_t4m78"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ttavy"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="7_ttavy"]
 
 [sub_resource type="Animation" id="Animation_ttavy"]
 length = 0.001

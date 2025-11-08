@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5oq5upyvk02y"]
+
+[ext_resource type="Texture2D" uid="uid://cdrs7ea7vukrq" path="res://Sprites - John/Sprite-0004-Recovered.png" id="1_xas8l"]
+[ext_resource type="Script" uid="uid://cidwjvrpog7r4" path="res://last_story_scene.gd" id="2_oplpx"]
+
+[node name="Sprite-0004-recovered" type="Sprite2D"]
+position = Vector2(575, 322)
+texture = ExtResource("1_xas8l")
+script = ExtResource("2_oplpx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -570.0
+offset_top = 224.0
+offset_right = 433.0
+offset_bottom = 325.0
+text = "I had no idea where I was. I just saw a figure by the throne. He stated, I had to do two things to ensure my family's health, I 
+had to beat 7 fighters. The second was since this was a fight in hell. I had to start this battle in a skeleton like form. 
+This would make me weaker at the beginning, but every fight I won, I would gain more of myself. If I got beaten by a fighter,
+ it would be game over for my family and I. "
+
+[node name="Final Next button" type="Button" parent="."]
+offset_left = 396.0
+offset_top = 205.0
+offset_right = 567.0
+offset_bottom = 315.0
+text = "Next"
+
+[connection signal="pressed" from="Final Next button" to="." method="_on_final_next_button_pressed"]
