@@ -46,12 +46,14 @@ var playerStats = {
 #boss stats - Mirza
 var bosses = { 
 	"HitManSkeleton": {"health" : 40, "power" : 5, "dodge" : false, "block" : false, "difficultyMax" : 5.0, "difficultyMin": 5.0}, #all stats are just placeholders for now
-	"Devil": {"health" : 100, "power" : 50, "dodge": false, "block" : false, "difficultyMax" : 3.5, "difficultyMin" : 1.5} #all stats are just placeholders for now
+	"Devil": {"health" : 100, "power" : 10, "dodge": false, "block" : false, "difficultyMax" : 3.5, "difficultyMin" : 1.5} #all stats are just placeholders for now
 }
 
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses[currentBoss].power
+	print("Took health")
+	print(playerStats.health)
 	if combat_ui:
 		combat_ui.progress_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 
@@ -68,7 +70,6 @@ func depleteStamina(move, multiplier) -> void:
 					print("NO DAMAGE DONE!")
 			else:
 				bosses[currentBoss].health -= playerStats.power
-		print(bosses[currentBoss].health)
 		win_conditions()
 	elif move == "hook":
 		playerStats.stamina -= multiplier * 2
@@ -81,7 +82,6 @@ func depleteStamina(move, multiplier) -> void:
 					print("NO DAMAGE DONE!")
 			else:
 				bosses[currentBoss].health -= (playerStats.power + multiplier)
-		print(bosses[currentBoss].health)
 		#if bosses.dodge != true and bosses.block != true:
 			#bosses.health -= playerStats.power
 		win_conditions()

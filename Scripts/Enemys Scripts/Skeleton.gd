@@ -1,5 +1,4 @@
 func Actions(enemy_node):
-	print(enemy_node.health, enemy_node.stamina, enemy_node.power)
 	var action = randi_range(1, 3)# change this back to 1, 3 
 	match action:
 		1:
@@ -9,7 +8,6 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("Smack")
 			if Global.playerStats.dodging == false:
 				Global.depleteHealth()
-			print(Global.getPlayerHealth())
 		3:
 			enemy_node.animation_player.play("Block")
 # in this code we need to change it so that after the animation playes the animation player changes the 

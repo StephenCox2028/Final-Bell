@@ -1,7 +1,6 @@
 func Actions(enemy_node):
 
 	var action = randi_range(2, 2)
-	print(enemy_node.health, enemy_node.stamina, enemy_node.power)
 	match action:
 		1:
 			enemy_node.animation_player.play("Temp Dodge")# change the animation player to also change their hittability
@@ -11,6 +10,5 @@ func Actions(enemy_node):
 			if Global.playerStats.dodging == false:
 				Global.depleteHealth()
 				
-			print(Global.getPlayerHealth())
 		3:
 			enemy_node.animation_player.play("Tempblock")

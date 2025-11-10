@@ -14,6 +14,8 @@ extends Node2D
 @onready var Punch = $Punch
 @onready var Hook = $Hook
 @onready var Bell = $Bell
+@onready var heartbeat = $Heartbeat
+
 @onready var progress_bar_2: ProgressBar = $ProgressBar2
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
@@ -68,11 +70,15 @@ func _ready():
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
-		print(Global.playerStats.stamina)
-		print(Global.playerStats.health)
-		print(Global.playerStats.power)
 
 func _process(delta) -> void:
+	if Global.getPlayerHealth() <= 10:
+		heartbeat.autoplay = true
+		heartbeat.play()
+	else:
+		if heartbeat.playing == true and Global.getPlayerHealth() > 10:
+			heartbeat.autoplay = false
+			heartbeat.stop()
 	if exhaustion == false:
 		#If the player reaches ZERO stamina, cause Exhaustion.
 		if Global.playerStats.stamina <= 0:
@@ -86,7 +92,6 @@ func _process(delta) -> void:
 	#If player is NOT greater or equal to the max stamina, raise stamina.
 	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
 		Global.playerStats.stamina += 0.01
-	print(Global.getPlayerStamina())
 
 func _on_stamina_cooldown_timeout():
 	sweatParticles.emitting = false
@@ -108,7 +113,6 @@ func start_nextRound(rounds):
 	$rounds.text = 'Rounds: ' + str(rounds)
 	if rounds > 8:
 		Global.end_match()
-
 
 #Player dodge and attack inputs - Stephen
 func _input(event):

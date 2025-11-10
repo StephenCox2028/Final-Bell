@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=16 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://b1mmk5ldbptu4" path="res://Scenes/character.tscn" id="2_4ln8h"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://sjyvqs3grmm5" path="res://Music + Sound/punch.mp3" id="5_3w34b"]
 [ext_resource type="AudioStream" uid="uid://biqgaj0xu2iib" path="res://Music + Sound/hook.mp3" id="6_avwh6"]
 [ext_resource type="AudioStream" uid="uid://d0gy0mcelthkm" path="res://Music + Sound/bell.mp3" id="7_d53gg"]
+[ext_resource type="AudioStream" uid="uid://isj76770im5a" path="res://Music + Sound/heartbeat.mp3" id="9_d53gg"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -145,6 +146,8 @@ bg_color = Color(0.394702, 0.684329, 0.326459, 1)
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
+isdodge = true
+canmove = false
 metadata/_edit_horizontal_guides_ = [460.0]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -213,6 +216,10 @@ stream = ExtResource("6_avwh6")
 
 [node name="Bell" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_d53gg")
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_d53gg")
+volume_db = 20.0
 
 [node name="Transition" parent="." instance=ExtResource("2_avwh6")]
 
