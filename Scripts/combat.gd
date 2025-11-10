@@ -192,11 +192,11 @@ func _input(event):
 					animation.play("punch")
 					Punch.play()
 func _on_animation_animation_finished(anim_name):
-	if anim_name == "dodgeleft" and anim_name == "dodgeright":
+	if anim_name == "dodgeleft" or anim_name == "dodgeright":
 		canmove = true
 		isdodge = false
 		isHolding = false
-		Global.playerStats.dodge = false
+		Global.playerStats.dodging = false
 
 #shake hook animation - Stephen
 func start_shake():

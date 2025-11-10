@@ -132,6 +132,16 @@ func powerCostUp() -> void:
 	levelCosts.powerCost += 15
 func totalXP():
 	playerStats.totalXP += 50
+func dead():
+	playerStats.totalXP = 0
+	playerStats.maxPower = 10
+	playerStats.maxStamina = 10
+	playerStats.maxHealth = 40
+	levelCosts.healthCost = 10
+	levelCosts.staminaCost = 10
+	levelCosts.powerCost = 15
+	resetAllEnemyStats()
+	resetAllPlayerStats()
 
 #when player health reaches 0 change to a new scene - Mirza
 func win_conditions() -> void:
