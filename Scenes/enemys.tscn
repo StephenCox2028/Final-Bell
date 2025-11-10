@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b5e8diyl6l2qs"]
+[gd_scene load_steps=59 format=3 uid="uid://b5e8diyl6l2qs"]
 
 [ext_resource type="Script" uid="uid://ul7j3sh1fm25" path="res://Scripts/enemys.gd" id="1_cm7k0"]
 [ext_resource type="Texture2D" uid="uid://hdyfx0svy627" path="res://Sprites/skeletin.png" id="1_vyyno"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cppu016eydigj" path="res://Sprites/Fireman blue.png" id="5_8lwso"]
 [ext_resource type="AudioStream" uid="uid://djft1cn0w18ci" path="res://Music + Sound/final-bell---boxing-1.mp3" id="7_cbqis"]
 [ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music + Sound/satan’s-finale.mp3" id="8_i4f6o"]
+[ext_resource type="Texture2D" uid="uid://ccce0e2lvmvu2" path="res://Sprites/!.png" id="9_i4f6o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbf3c"]
 atlas = ExtResource("2_8lwso")
@@ -530,6 +531,7 @@ autoplay = "SkeleDefault"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -544,5 +546,16 @@ volume_db = -10.0
 stream = ExtResource("8_i4f6o")
 volume_db = -10.0
 
+[node name="!" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -44)
+scale = Vector2(0.4375, 0.395833)
+texture = ExtResource("9_i4f6o")
+
+[node name="WarningTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="WarningTimer" to="." method="_on_warning_timer_timeout"]

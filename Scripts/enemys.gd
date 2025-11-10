@@ -1,9 +1,11 @@
 extends Node2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var warningTimer: Timer = $WarningTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var skeletonMusic: AudioStreamPlayer = $SkeletonMusic
 @onready var devilMusic: AudioStreamPlayer = $DevilMusic
+@onready var exclamationPoint = $"!"
 var skeletin = load("res://Scripts/Enemys Scripts/Skeleton.gd").new()# so i can add more later easily
 var slime = load("res://Scripts/Enemys Scripts/Slime.gd").new()# so i can add more later easily
 var safe = false # used to detect if blocking or dodging
@@ -41,7 +43,12 @@ func _ready():
 			devilMusic.autoplay = true
 			pass# same here
 
-func _on_timer_timeout() -> void:	
+func _on_timer_timeout() -> void:
+	exclamationPoint.visible = true
+	warningTimer.start()
+	
+func _on_warning_timer_timeout():
+	exclamationPoint.visible = false
 	enmActions[action].call("Actions", self)
 	timer.wait_time = randf_range(Global.bosses[Global.currentBoss].difficultyMin, Global.bosses[Global.currentBoss].difficultyMax)
 	timer.start()
@@ -54,6 +61,5 @@ func _on_animation_player_animation_finished(anim_name):
 
 func change_stats(hp,sta,pow):
 	Global.bosses.health = hp
-	#Global.bosses.stamina = sta
 	Global.bosses.power = pow
 	pass
