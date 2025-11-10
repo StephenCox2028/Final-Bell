@@ -36,18 +36,18 @@ func spawn_rat():
 	# Add it as a child of this scene
 	add_child(rat)
 
-func _on_next_button_pressed() -> void:
-	Global.boss_flip = true
-
 func _on_upgrade_button_pressed():
 	choice = 1
 	transition.play("fade-out")
 	
 
 func _on_continue_button_pressed():
-	Global.resetAllEnemyStats()
 	Global.resetAllPlayerStats()
 	choice = 2
+	if Global.Boss_counter == 2:
+		Global.boss_flip = true
+		print(Global.boss_flip)
+		print(Global.Boss_counter)
 	transition.play("fade-out")
 
 
@@ -55,6 +55,11 @@ func _on_quit_button_pressed():
 	choice = 3
 	transition.play("fade-out")
 
+
+func _on_coaches_button_pressed() -> void:
+	choice = 4
+	transition.play("fade-out")
+	
 func _on_transition_animation_finished(anim_name):
 		match choice:
 			1:
@@ -63,3 +68,5 @@ func _on_transition_animation_finished(anim_name):
 				get_tree().change_scene_to_file("res://Scenes/combat.tscn")
 			3:
 				get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+			4:
+				get_tree().change_scene_to_file("res://Scenes/Coaches.tscn")

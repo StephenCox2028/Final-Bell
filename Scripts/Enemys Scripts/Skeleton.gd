@@ -9,7 +9,6 @@ func Actions(enemy_node):
 			enemy_node.animation_player.play("Smack")
 			if Global.playerStats.dodging == false:
 				Global.depleteHealth()
-			print(Global.getPlayerHealth())
 		3:
 			enemy_node.animation_player.play("Block")
 # in this code we need to change it so that after the animation playes the animation player changes the 

@@ -70,28 +70,6 @@ position = Vector2(-87.37, 62.211)
 scale = Vector2(1.25325, 0.988619)
 texture = ExtResource("5_8ydan")
 
-[node name="UpgradeButton" type="Button" parent="."]
-offset_left = -267.838
-offset_top = -32.407
-offset_right = -159.838
-offset_bottom = -1.407
-text = "UPGRADE"
-
-[node name="ContinueButton" type="Button" parent="."]
-offset_left = 126.041
-offset_top = -32.4074
-offset_right = 234.041
-offset_bottom = -1.40741
-text = "CONTINUE"
-
-[node name="QuitButton" type="Button" parent="."]
-offset_left = 126.041
-offset_top = 3.70371
-offset_right = 234.041
-offset_bottom = 34.7037
-text = "QUIT
-"
-
 [node name="Locker Room Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_t4m78")
 autoplay = true
@@ -106,10 +84,52 @@ libraries = {
 [node name="Black" parent="Transition" index="1"]
 position = Vector2(179.036, 141.975)
 
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -535.676
+offset_top = -64.814
+offset_right = -495.676
+offset_bottom = -24.814
+
+[node name="UpgradeButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 267.838
+offset_top = 32.407
+offset_right = 375.838
+offset_bottom = 63.407
+text = "UPGRADE"
+
+[node name="CoachesButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 267.838
+offset_top = 68.518
+offset_right = 375.838
+offset_bottom = 99.518
+text = "COACHES"
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 661.717
+offset_top = 68.5177
+offset_right = 769.717
+offset_bottom = 99.5177
+text = "QUIT
+"
+
+[node name="ContinueButton" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 661.717
+offset_top = 32.4066
+offset_right = 769.717
+offset_bottom = 63.4066
+text = "CONTINUE"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="pressed" from="Buttons/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="Buttons/CoachesButton" to="." method="_on_coaches_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
 
 [editable path="Transition"]
