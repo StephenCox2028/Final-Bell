@@ -114,7 +114,7 @@ func resetAllPlayerStats() -> void:
 	playerStats.power = playerStats.maxPower
 func resetAllEnemyStats() -> void:
 	bosses.HitManSkeleton.health = 40; bosses.HitManSkeleton.power = 5
-	bosses.Devil.health = 100; bosses.Devil.power = 50
+	bosses.Devil.health = 100; bosses.Devil.power = 10
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
 func setMaxPlayerStamina(new) -> void:

@@ -24,7 +24,7 @@ func _ready():
 	match enemy:
 		1:
 			action = 0
-			change_stats(30,30,30)
+			change_stats(30,5)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.HitManSkeleton.difficultyMin, Global.bosses.HitManSkeleton.difficultyMax)
@@ -34,7 +34,7 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
-			change_stats(90,90,10)
+			change_stats(90,10)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.Devil.difficultyMin, Global.bosses.Devil.difficultyMax)
@@ -59,7 +59,6 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Block" or anim_name == "Tempblock":
 		Global.bosses.block = false
 
-func change_stats(hp,sta,pow):
+func change_stats(hp,pow):
 	Global.bosses.health = hp
 	Global.bosses.power = pow
-	pass
