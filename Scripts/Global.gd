@@ -35,13 +35,6 @@ var playerStats = {
 	"dodging": false,
 	"totalXP" : 0
 }
-#var bosses = {
-#	"health" : 1,
-#	"stamina" : 1,
-#	"power" : 1,
-#	"dodge": false,
-#	"block" : false
-#}
 
 #boss stats - Mirza
 var bosses = { 
@@ -88,6 +81,8 @@ func depleteStamina(move, multiplier) -> void:
 	elif move == "dodge":
 		playerStats.stamina -= 1
 	combat_ui.progress_bar_2.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
+	
+#getter Funcitions - Stephen
 func getPlayerHealth():
 	return playerStats.health
 func getPlayerStamina():
@@ -137,7 +132,6 @@ func totalXP():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-
 	elif(bosses[currentBoss].health <= 0):
 		Global.totalXP()
 		Global.resetAllPlayerStats()

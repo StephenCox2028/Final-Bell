@@ -1,14 +1,43 @@
 extends Node2D
 @onready var animation: AnimationPlayer = $Animation
-@onready var character = $Character
 @export var isdodge = false # is your ability to get hit(if not dodgeing you can get smacked) -Stephen
 @export var ispunch = false # is your boolean for punching. - Stephen
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var staminaCooldown = $StaminaCooldown
-@onready var sweatParticles = $Character/SweatParticles
 @onready var transition = $Transition/Transition
+
+#Main Character animation functions - Mirza
+@onready var character = $character/MC_animated
+
+func idle():
+	character.play("Idle")
+
+func charge_right():
+	character.play("hook_charge_right")
+	
+func charge_left():
+	character.play("hook_charge_left")
+
+func block_animation():
+	character.play("block")
+	
+func cross_animation():
+	character.play("cross")
+	
+func jab_animation():
+	character.play("jab")
+
+func charge_hook():
+	character.play("hook_charge")
+
+func leftHook():
+	character.play("left_hook")
+	
+func rightHook():
+	character.play("right_hook")
+
 
 #Sounds
 @onready var Punch = $Punch
@@ -19,7 +48,7 @@ extends Node2D
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
-var originalPos = Vector2(588.0, 401.0)		#Original position of the character. - Stephenq
+var originalPos = Vector2(552, 352)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -68,9 +97,9 @@ func _ready():
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
-		print(Global.playerStats.stamina)
-		print(Global.playerStats.health)
-		print(Global.playerStats.power)
+		#print(Global.playerStats.stamina)
+		#print(Global.playerStats.health)
+		#print(Global.playerStats.power)
 
 func _process(delta) -> void:
 	if exhaustion == false:
@@ -78,18 +107,16 @@ func _process(delta) -> void:
 		if Global.playerStats.stamina <= 0:
 			Global.playerStats.stamina = 0
 			exhaustion = true
-			sweatParticles.emitting = true
 			staminaCooldown.start()
 		#If player is at max (or greater than max) stamina, keep at max.
 		if Global.playerStats.stamina >= Global.playerStats.maxStamina:
 			Global.playerStats.stamina = Global.playerStats.maxStamina
 	#If player is NOT greater or equal to the max stamina, raise stamina.
 	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
-		Global.playerStats.stamina += 0.01
-	print(Global.getPlayerStamina())
+		Global.playerStats.stamina += 0.05
+	#print(Global.getPlayerStamina())
 
 func _on_stamina_cooldown_timeout():
-	sweatParticles.emitting = false
 	exhaustion = false
 
 func on_timer_timeout():
@@ -109,8 +136,8 @@ func start_nextRound(rounds):
 	if rounds > 8:
 		Global.end_match()
 
-
 #Player dodge and attack inputs - Stephen
+
 func _input(event):
 	if Input.is_action_just_pressed("dodgeright"): 
 		if Global.getPlayerStamina() > 0 and exhaustion == false:
@@ -147,19 +174,16 @@ func _input(event):
 			if isdodge == false:
 				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
 				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
-					animation.play("punch") #Simply punch
+					jab_animation() #Simply punch
 					Global.depleteStamina("attack", heldTime)
-					Punch.play()
 				else:
-					animation.play("punch")
+					leftHook()
 					Global.depleteStamina("hook", heldTime)
-					Hook.play()
 				heldTime = 0		#Reset holdTime
 				isHolding = false
 				if character.position != originalPos:	#If the character position is not at it's original...
 					character.position = originalPos	#Reset the position after shaking.
-					animation.play("punch")
-					Punch.play()
+					leftHook()
 	if Input.is_action_pressed("attackRight"):
 		if Global.getPlayerStamina() > 0 and exhaustion == false:
 			if isHolding == false:	#If E is not being held down.
@@ -174,21 +198,19 @@ func _input(event):
 			if isdodge == false:
 				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
 				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
-					animation.play("punch")	#Simply punch
+					cross_animation()	#Simply punch
 					Global.depleteStamina("attack", heldTime)
-					Punch.play()
 				else:
-					animation.play("punch")
+					rightHook()
 					Global.depleteStamina("hook", heldTime)
-					Hook.play()
 				heldTime = 0	#Resets holdTime
 				isHolding = false
 				if character.position != originalPos:	#If the character position is not at it's original...
 					character.position = originalPos	#Reset the position after shaking.
-					animation.play("punch")
-					Punch.play()
+					cross_animation()
+
 func _on_animation_animation_finished(anim_name):
-	if anim_name == "dodgeleft" and anim_name == "dodgeright":
+	if anim_name == "dodgeleft" or anim_name == "dodgeright":
 		canmove = true
 		isdodge = false
 		isHolding = false
@@ -199,12 +221,13 @@ func start_shake():
 	#This line changes the character position from it's original to a random Vector2 depending on the shake strength. Since the function repeatedly runs
 	#while either Q or E is held down, it looks like the character is shaking, but in reality the character is shifting positions quickly.
 	character.position = originalPos + Vector2(randf_range(-SHAKE_STRENGTH, SHAKE_STRENGTH), randf_range(-SHAKE_STRENGTH, SHAKE_STRENGTH))
+	
 	await get_tree().process_frame	#Waits for the next frame.
 
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
 
-"""
+
 func DamageTaken():
 	var jab = 0.005 
 	var cross = 0.01
@@ -237,4 +260,3 @@ func DamageTaken():
 					#print ("Health:")
 		progress_bar.value = (health/100)
 		#print("apple sauce")
-"""

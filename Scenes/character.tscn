@@ -1,21 +1,102 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1mmk5ldbptu4"]
+[gd_scene load_steps=13 format=3 uid="uid://b1mmk5ldbptu4"]
 
-[ext_resource type="Texture2D" uid="uid://gg407q23cxx8" path="res://Sprites Mirza/Main Character/MC.png" id="1_lkv7d"]
-[ext_resource type="Texture2D" uid="uid://c7mg1kkoatnek" path="res://Materials/sweat.png" id="2_ushfy"]
+[ext_resource type="Texture2D" uid="uid://w1elkrve14w" path="res://Sprites - Zach/Main Character Animations/Main Character Ring1.png" id="1_reotu"]
+[ext_resource type="Texture2D" uid="uid://df4nuoutw5j47" path="res://Sprites - Zach/Main Character Animations/Block.png" id="2_a5ess"]
+[ext_resource type="Texture2D" uid="uid://btiwku70er16n" path="res://Sprites - Zach/Main Character Animations/Main Character right cross.png" id="3_wbia7"]
+[ext_resource type="Texture2D" uid="uid://dw471asotwdwq" path="res://Sprites - Zach/Main Character Animations/Hook Charget.png" id="4_kq7hj"]
+[ext_resource type="Texture2D" uid="uid://c3ho4b368y3dk" path="res://Sprites - Zach/Main Character Animations/Main Character Jab.png" id="5_7iw6i"]
+[ext_resource type="Texture2D" uid="uid://d07b0nsa8s8co" path="res://Sprites - Zach/Main Character Animations/Left Hook Animationt.png" id="6_l1rcp"]
+[ext_resource type="Texture2D" uid="uid://byliuxv8137qw" path="res://Sprites - Zach/Main Character Animations/Right Hook Animationt.png" id="7_le1tg"]
 
-[node name="Character" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2daya"]
+atlas = ExtResource("6_l1rcp")
+region = Rect2(0, 0, 264, 264)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_lkv7d")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvyft"]
+atlas = ExtResource("6_l1rcp")
+region = Rect2(264, 0, 264, 264)
 
-[node name="SweatParticles" type="CPUParticles2D" parent="."]
-position = Vector2(0, -23)
-emitting = false
-amount = 1
-texture = ExtResource("2_ushfy")
-lifetime = 0.35
-emission_shape = 1
-emission_sphere_radius = 15.52
-gravity = Vector2(0, 520)
-scale_amount_min = 0.05
-scale_amount_max = 0.05
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm6ib"]
+atlas = ExtResource("7_le1tg")
+region = Rect2(0, 0, 264, 264)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5mnj"]
+atlas = ExtResource("7_le1tg")
+region = Rect2(264, 0, 264, 264)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w85my"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_reotu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a5ess")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_reotu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wbia7")
+}],
+"loop": true,
+"name": &"cross",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kq7hj")
+}],
+"loop": true,
+"name": &"hook_charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_reotu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7iw6i")
+}],
+"loop": true,
+"name": &"jab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2daya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvyft")
+}],
+"loop": true,
+"name": &"left_hook",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm6ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5mnj")
+}],
+"loop": true,
+"name": &"right_hook",
+"speed": 5.0
+}]
+
+[node name="character" type="Node2D"]
+
+[node name="MC_animated" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w85my")
+animation = &"hook_charge"

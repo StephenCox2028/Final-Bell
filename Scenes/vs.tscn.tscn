@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnwhksvcerdcb"]
+
+[ext_resource type="Texture2D" uid="uid://cscumyv5h66fg" path="res://Sprites - Zach/Ring/Versus screen.png" id="1_reakh"]
+
+[node name="Vs_tscn" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 539)
+scale = Vector2(1.67014, 1.63889)
+texture = ExtResource("1_reakh")
