@@ -4,7 +4,6 @@ extends Node2D
 @export var ispunch = false # is your boolean for punching. - Stephen
 @export var isHolding = false #is your boolean for holding down a button - Stephen
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
-@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var staminaCooldown = $StaminaCooldown
 @onready var transition = $Transition/Transition
 
@@ -44,8 +43,11 @@ func rightHook():
 @onready var Hook = $Hook
 @onready var Bell = $Bell
 @onready var heartbeat = $Heartbeat
-
 @onready var progress_bar_2: ProgressBar = $ProgressBar2
+@onready var hp_bar: ProgressBar = $Bars/HpBar
+@onready var stamina_bar: ProgressBar = $Bars/StaminaBar
+@onready var power_bar: ProgressBar = $Bars/PowerBar
+@onready var enemy_hp: ProgressBar = $Bars/EnemyHP
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -78,11 +80,23 @@ func _ready():
 	ispunch = false
 	isHolding = false
 	canmove = true
-	progress_bar.value = (100)
-	progress_bar_2.value = (100)
+	hp_bar.value = (100)
+	stamina_bar.value = (100)
+	power_bar.value = (0)
+	enemy_hp.value = (100)
+	enemy_hp.visible = false
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
+	# make the power bar dissapear if you are smart but enemy bar apeer
+	if Global.Coach == "smart":
+		enemy_hp.visible = true
+		power_bar.visible = false
+	if Global.Coach == "vamp":
+		power_bar.visible = false
+
+	# make the power bar disapeer if you are vampire bitch
+
 
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
@@ -124,6 +138,7 @@ func _process(delta) -> void:
 	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
 		Global.playerStats.stamina += 0.05
 	#print(Global.getPlayerStamina())
+	stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
@@ -148,6 +163,15 @@ func start_nextRound(rounds):
 #Player dodge and attack inputs - Stephen
 
 func _input(event):
+	if 	power_bar.value == 100 &&Input.is_action_just_pressed("SuperMove"):
+		match Global.Coach:
+			"self":
+				Global.bosses.health -= 50# also make a bone animation
+			"angel":
+				Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+			_:
+				pass
+		power_bar.value == 0
 	if Input.is_action_just_pressed("dodgeright"): 
 		if Global.getPlayerStamina() > 0 and exhaustion == false:
 			if canmove == true: # Conditional to check if the player is able to make a move.

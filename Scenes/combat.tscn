@@ -211,12 +211,17 @@ animations = [{
 "name": &"right_hook",
 "speed": 5.0
 }]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwh6"]
+bg_color = Color(0.994069, 0.963421, 0.585046, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut0kg"]
 bg_color = Color(0.394702, 0.684329, 0.326459, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpar"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d53gg"]
+bg_color = Color(0.677448, 0.0436008, 0.0654471, 1)
 
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
@@ -305,6 +310,54 @@ text = "00:00"
 
 [node name="Black" parent="Transition" index="1"]
 position = Vector2(584, 295)
+
+[node name="Bars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 588.0
+offset_top = 401.0
+offset_right = 628.0
+offset_bottom = 441.0
+
+[node name="PowerBar" type="ProgressBar" parent="Bars"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = -1.0
+offset_right = 532.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_avwh6")
+
+[node name="StaminaBar" type="ProgressBar" parent="Bars"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = -49.0
+offset_right = 532.0
+offset_bottom = -25.0
+theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
+
+[node name="HpBar" type="ProgressBar" parent="Bars"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = -25.0
+offset_right = 532.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
+
+[node name="EnemyHP" type="ProgressBar" parent="Bars"]
+layout_mode = 0
+offset_left = -72.0
+offset_top = -244.0
+offset_right = 152.0
+offset_bottom = -220.0
+rotation = -0.00173335
+theme_override_colors/font_color = Color(1, 0.263656, 0.290483, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_d53gg")
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
