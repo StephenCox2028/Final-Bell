@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://boopgjn3iu5f3"]
+[gd_scene load_steps=13 format=3 uid="uid://boopgjn3iu5f3"]
 
 [ext_resource type="Script" uid="uid://ckr3vupr0q7rq" path="res://Scenes/locker_room.gd" id="1_22xvq"]
 [ext_resource type="Texture2D" uid="uid://gbwpxucwmnxx" path="res://Sprites - Zach/locker room.png" id="1_rn47g"]
-[ext_resource type="PackedScene" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
+[ext_resource type="PackedScene" uid="uid://dsujchc38b7p0" path="res://Scenes/water_droop.tscn" id="3_rn47g"]
+[ext_resource type="Texture2D" uid="uid://dvfskse73fumc" path="res://Sprites - Zach/Locker Room Sprites/DoorwayLight.png" id="3_up1wf"]
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="5_8ydan"]
 [ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
 [ext_resource type="AudioStream" uid="uid://laq7mf71u3eu" path="res://Music + Sound/final-bell---locker-room.mp3" id="6_t4m78"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ttavy"]
-[ext_resource type="Texture2D" uid="uid://dc7a24egw1nip" path="res://Sprites/lockerRoomBorders.png" id="8_ayq17"]
+[ext_resource type="Texture2D" uid="uid://dxjh8oi4b086c" path="res://Sprites - Zach/Locker Room Sprites/Locker room exit doorway.png" id="9_afkwx"]
 
 [sub_resource type="Animation" id="Animation_ttavy"]
 length = 0.001
@@ -48,10 +49,14 @@ _data = {
 }
 
 [node name="LockerRoom" type="Sprite2D"]
-position = Vector2(576, 324)
+position = Vector2(582, 326)
 scale = Vector2(2.09455, 3.24)
 texture = ExtResource("1_rn47g")
 script = ExtResource("1_22xvq")
+
+[node name="DoorwayLight" type="Sprite2D" parent="."]
+position = Vector2(216.276, 25)
+texture = ExtResource("3_up1wf")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -111,6 +116,10 @@ texture = ExtResource("8_ayq17")
 
 [node name="Black" parent="Transition" index="1"]
 position = Vector2(179.036, 141.975)
+
+[node name="LockerRoomExitDoorway" type="Sprite2D" parent="."]
+position = Vector2(266.406, 25.3086)
+texture = ExtResource("9_afkwx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
