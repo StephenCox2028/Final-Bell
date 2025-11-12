@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwusklcd377g5"]
+
+[ext_resource type="Texture2D" uid="uid://b74piv1tx1llr" path="res://Sprites - John/Sprite-0002-Recovered.png" id="1_ng5hq"]
+[ext_resource type="Script" uid="uid://b3iu0ik0ur1va" path="res://story_scene_2.gd" id="2_erxm5"]
+
+[node name="Sprite-0002-recovered" type="Sprite2D"]
+position = Vector2(579, 320)
+texture = ExtResource("1_ng5hq")
+script = ExtResource("2_erxm5")
+
+[node name="Next button" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 272.0
+offset_right = 573.0
+offset_bottom = 325.0
+text = "Next"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -464.0
+offset_top = -317.0
+offset_right = 530.0
+offset_bottom = -138.0
+text = " I didn’t know this till the world championship was over after being declared the winner. I drove to the hospital and saw 
+they were in critical condition. I prayed that they would be ok. While praying, I stated I would do anything to ensure this. As soon 
+as I said this, boom I got teleported. "
+
+[connection signal="pressed" from="Next button" to="." method="_on_next_button_pressed"]

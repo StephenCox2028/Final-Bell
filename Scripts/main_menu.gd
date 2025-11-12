@@ -18,13 +18,15 @@ func _on_options_button_pressed() -> void:
 	choice = 2
 	transition.play("fade-out")
 
-func _on_story_button_pressed() -> void: #Connects to story mode.
-	get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
-	pass #
 
 func _on_quit_button_pressed() -> void:
 	choice = 3
 	transition.play("fade-out")
+	
+func _on_story_pressed() -> void:
+	choice = 4
+	transition.play("fade-out")
+
 
 func _on_transition_animation_finished(anim_name):
 	match choice:
@@ -34,3 +36,5 @@ func _on_transition_animation_finished(anim_name):
 			get_tree().change_scene_to_file("res://Scenes/options_menu.tscn")
 		3:
 			get_tree().quit()
+		4: 
+			get_tree().change_scene_to_file("res://StorySceneOne.tscn")
