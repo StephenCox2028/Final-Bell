@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvkhx1soiq5xq"
-path="res://.godot/imported/Puppeteer Hook.png-3909c8f3ecf23d0e9972cd4aeadfe72a.ctex"
+uid="uid://cmhfy7csiogcq"
+path="res://.godot/imported/Puppeteer Right Punch.png-3e3e11100da96179e3ae6d6d9d7f6458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Puppeteer Boss/Puppeteer Hook.png"
-dest_files=["res://.godot/imported/Puppeteer Hook.png-3909c8f3ecf23d0e9972cd4aeadfe72a.ctex"]
+source_file="res://Sprites - Zach/Puppeteer Boss/Puppeteer Right Punch.png"
+dest_files=["res://.godot/imported/Puppeteer Right Punch.png-3e3e11100da96179e3ae6d6d9d7f6458.ctex"]
 
 [params]
 
