@@ -27,7 +27,6 @@ var power_punches = 0
 var knockdowns = 0
 var Coach = "self"
 
-
 #Player stats - Mirza
 var playerStats = {
 	"health" : 40,

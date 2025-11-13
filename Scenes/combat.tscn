@@ -42,6 +42,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("character:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-175, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_fe60u"]
 resource_name = "dodgeright"
@@ -70,40 +82,39 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("character:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(175, 0), Vector2(0, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_ut0kg"]
-resource_name = "punch"
-length = 0.3
+[sub_resource type="Animation" id="Animation_8xcd4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:ispunch")
+tracks/0/path = NodePath("character:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:canmove")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubpar"]
 _data = {
+&"RESET": SubResource("Animation_8xcd4"),
 &"dodgeleft": SubResource("Animation_ubpar"),
-&"dodgeright": SubResource("Animation_fe60u"),
-&"punch": SubResource("Animation_ut0kg")
+&"dodgeright": SubResource("Animation_fe60u")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8jr2"]
@@ -227,7 +238,6 @@ bg_color = Color(0.677448, 0.0436008, 0.0654471, 1)
 [node name="Combat" type="Node2D"]
 position = Vector2(-10, 19)
 script = ExtResource("1_fe60u")
-isdodge = true
 ispunch = true
 canmove = false
 metadata/_edit_horizontal_guides_ = [460.0]
@@ -250,7 +260,7 @@ libraries = {
 position = Vector2(544, 387)
 scale = Vector2(1.74621, 1.89015)
 sprite_frames = SubResource("SpriteFrames_3cqtn")
-animation = &"hook_charge_right"
+animation = &"cross"
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
 offset_left = 92.0
@@ -361,6 +371,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_d53gg")
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="animation_looped" from="character/MC_animated" to="." method="_on_mc_animated_animation_looped"]
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
 [connection signal="timeout" from="StaminaCooldown" to="." method="_on_stamina_cooldown_timeout"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]

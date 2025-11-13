@@ -50,7 +50,7 @@ func rightHook():
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
-var originalPos = Vector2(552, 352)		#Original position of the character. - Stephen
+var originalPos = Vector2(544, 400)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -92,9 +92,6 @@ func _ready():
 		power_bar.visible = false
 	if Global.Coach == "vamp":
 		power_bar.visible = false
-
-	# make the power bar disapeer if you are vampire bitch
-
 
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
@@ -159,7 +156,6 @@ func start_nextRound(rounds):
 		Global.end_match()
 
 #Player dodge and attack inputs - Stephen
-
 func _input(event):
 	if 	power_bar.value == 100 &&Input.is_action_just_pressed("SuperMove"):
 		match Global.Coach:
@@ -230,6 +226,7 @@ func _input(event):
 				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
 				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
 					cross_animation()	#Simply punch
+					print("cross")
 					Global.depleteStamina("attack", heldTime)
 				else:
 					rightHook()
@@ -238,7 +235,7 @@ func _input(event):
 				isHolding = false
 				if character.position != originalPos:	#If the character position is not at it's original...
 					character.position = originalPos	#Reset the position after shaking.
-					cross_animation()
+					rightHook()
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" or anim_name == "dodgeright":
@@ -257,7 +254,6 @@ func start_shake():
 
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
-
 
 func DamageTaken():
 	var jab = 0.005 
@@ -291,3 +287,23 @@ func DamageTaken():
 					#print ("Health:")
 		hp_bar.value = (health/100)
 		#print("apple sauce")
+
+
+func _on_mc_animated_animation_looped():
+	if (character.animation == "cross"):
+		character.stop()
+	if (character.animation == "hook_charge_right"):
+		character.stop()
+	if (character.animation == "hook_charge_left"):
+		character.stop()
+	if (character.animation == "block"):
+		character.stop()
+	if (character.animation == "jab"):
+		character.stop()
+	if (character.animation == "hook_charge"):
+		character.stop()
+	if (character.animation == "left_hook"):
+		character.stop()
+	if (character.animation == "right_hook"):
+		character.stop()
+	character.play("Idle")
