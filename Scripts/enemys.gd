@@ -53,15 +53,13 @@ func _ready():
 			devilMusic.play()
 			devilMusic.autoplay = true
 			pass# same here
-
-func _on_timer_timeout() -> void:
-	exclamationPoint.visible = true
-	warningTimer.start()
 	
 func _on_warning_timer_timeout():
 	exclamationPoint.visible = false
 
 func _on_timer_timeout() -> void:	
+	exclamationPoint.visible = true
+	warningTimer.start()
 	enmActions[action].call("Actions", self)
 	timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
 	timer.start()

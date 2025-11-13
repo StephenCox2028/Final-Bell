@@ -135,9 +135,6 @@ func resetAllPlayerStats() -> void:
 	playerStats.health = playerStats.maxHealth
 	playerStats.stamina = playerStats.maxStamina
 	playerStats.power = playerStats.maxPower
-#func resetAllEnemyStats() -> void:
-#	bosses.HitManSkeleton.health = 40; bosses.HitManSkeleton.power = 5
-#	bosses.Devil.health = 100; bosses.Devil.power = 50
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
 func setMaxPlayerStamina(new) -> void:
@@ -163,7 +160,6 @@ func dead():
 	levelCosts.healthCost = 10
 	levelCosts.staminaCost = 10
 	levelCosts.powerCost = 15
-	resetAllEnemyStats()
 	resetAllPlayerStats()
 
 #when player health reaches 0 change to a new scene - Mirza

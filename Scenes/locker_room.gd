@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var upgradeButton = $UpgradeButton
-@onready var continueButton = $ContinueButton
-@onready var quitButton = $QuitButton
+@onready var upgradeButton = $Buttons/UpgradeButton
+@onready var continueButton = $Buttons/ContinueButton
+@onready var quitButton = $Buttons/QuitButton
 @onready var character = $SkeletonMain
 @onready var animation = $AnimationPlayer
 @onready var transition = $Transition/Transition

@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="5_8ydan"]
 [ext_resource type="Texture2D" uid="uid://b358nkfkh67p5" path="res://Sprites - Zach/Locker Room Sprites/Bench.png" id="5_ttavy"]
 [ext_resource type="AudioStream" uid="uid://laq7mf71u3eu" path="res://Music + Sound/final-bell---locker-room.mp3" id="6_t4m78"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ttavy"]
 [ext_resource type="Texture2D" uid="uid://dxjh8oi4b086c" path="res://Sprites - Zach/Locker Room Sprites/Locker room exit doorway.png" id="9_afkwx"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="9_up1wf"]
 
 [sub_resource type="Animation" id="Animation_ttavy"]
 length = 0.001
@@ -85,16 +85,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_ayq17")
 }
 
-[node name="LockerRoomBorders" type="Sprite2D" parent="."]
-position = Vector2(1.9097, 0.15432)
-scale = Vector2(0.480745, 0.311976)
-texture = ExtResource("8_ayq17")
-
-[node name="Transition" parent="." instance=ExtResource("7_ttavy")]
-
-[node name="Black" parent="Transition" index="1"]
-position = Vector2(179.036, 141.975)
-
 [node name="LockerRoomExitDoorway" type="Sprite2D" parent="."]
 position = Vector2(266.406, 25.3086)
 texture = ExtResource("9_afkwx")
@@ -129,8 +119,7 @@ offset_left = 661.717
 offset_top = 68.5177
 offset_right = 769.717
 offset_bottom = 99.5177
-text = "QUIT
-"
+text = "QUIT"
 
 [node name="ContinueButton" type="Button" parent="Buttons"]
 layout_mode = 0
@@ -140,11 +129,16 @@ offset_right = 769.717
 offset_bottom = 63.4066
 text = "CONTINUE"
 
+[node name="Transition" parent="." instance=ExtResource("9_up1wf")]
+
+[node name="Black" parent="Transition" index="1"]
+position = Vector2(261.154, 133.951)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
 [connection signal="pressed" from="Buttons/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="Buttons/CoachesButton" to="." method="_on_coaches_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
 
 [editable path="Transition"]

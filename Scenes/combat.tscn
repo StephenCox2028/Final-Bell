@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=30 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c3ho4b368y3dk" path="res://Sprites - Zach/Main Character Animations/Main Character Jab.png" id="6_f8ge6"]
 [ext_resource type="Texture2D" uid="uid://d07b0nsa8s8co" path="res://Sprites - Zach/Main Character Animations/Left Hook Animationt.png" id="7_50454"]
 [ext_resource type="AudioStream" uid="uid://d0gy0mcelthkm" path="res://Music + Sound/bell.mp3" id="7_d53gg"]
-[ext_resource type="AudioStream" uid="uid://isj76770im5a" path="res://Music + Sound/heartbeat.mp3" id="9_d53gg"]
 [ext_resource type="Texture2D" uid="uid://byliuxv8137qw" path="res://Sprites - Zach/Main Character Animations/Right Hook Animationt.png" id="8_ceo1n"]
+[ext_resource type="AudioStream" uid="uid://isj76770im5a" path="res://Music + Sound/heartbeat.mp3" id="9_d53gg"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -211,14 +211,15 @@ animations = [{
 "name": &"right_hook",
 "speed": 5.0
 }]
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwh6"]
-bg_color = Color(0.994069, 0.963421, 0.585046, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut0kg"]
 bg_color = Color(0.394702, 0.684329, 0.326459, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpar"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwh6"]
+bg_color = Color(0.994069, 0.963421, 0.585046, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d53gg"]
 bg_color = Color(0.677448, 0.0436008, 0.0654471, 1)
@@ -288,8 +289,8 @@ stream = ExtResource("7_d53gg")
 
 [node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_d53gg")
-
 volume_db = 20.0
+
 [node name="rounds" type="Label" parent="."]
 offset_left = 459.0
 offset_top = 80.0

@@ -37,13 +37,11 @@ func leftHook():
 func rightHook():
 	character.play("right_hook")
 
-
 #Sounds
 @onready var Punch = $Punch
 @onready var Hook = $Hook
 @onready var Bell = $Bell
 @onready var heartbeat = $Heartbeat
-@onready var progress_bar_2: ProgressBar = $ProgressBar2
 @onready var hp_bar: ProgressBar = $Bars/HpBar
 @onready var stamina_bar: ProgressBar = $Bars/StaminaBar
 @onready var power_bar: ProgressBar = $Bars/PowerBar
@@ -291,5 +289,5 @@ func DamageTaken():
 				if chance <= probablityHook:
 					health -= hook
 					#print ("Health:")
-		progress_bar.value = (health/100)
+		hp_bar.value = (health/100)
 		#print("apple sauce")

@@ -17,12 +17,9 @@ func _on_start_button_pressed() -> void:	#Connects the start menu .
 func _on_options_button_pressed() -> void: 
 	choice = 2
 	transition.play("fade-out")
-
-
 func _on_quit_button_pressed() -> void:
 	choice = 3
 	transition.play("fade-out")
-	
 func _on_story_pressed() -> void:
 	choice = 4
 	transition.play("fade-out")
