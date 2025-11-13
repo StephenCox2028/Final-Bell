@@ -9,6 +9,7 @@ var MAXSTAMINA = 10
 var MAXPOWER = 10
 
 var enemy_max =1
+@export var battleStarted: bool
 
 var levelCosts = {
 	"healthCost" : 10,

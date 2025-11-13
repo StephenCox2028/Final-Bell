@@ -6,7 +6,12 @@ extends Node2D
 @export var canmove = true # is your inability to move(if you cant move you cant dodge) - Stephen
 @onready var staminaCooldown = $StaminaCooldown
 @onready var transition = $Transition/Transition
-
+@onready var hp_bar: ProgressBar = $Bars/HpBar
+@onready var stamina_bar: ProgressBar = $Bars/StaminaBar
+@onready var power_bar: ProgressBar = $Bars/PowerBar
+@onready var enemy_hp: ProgressBar = $Bars/EnemyHP
+@onready var versusScreenAnim = $VersusScreen/AnimationPlayer
+@onready var versusScreen = $VersusScreen
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
@@ -42,10 +47,6 @@ func rightHook():
 @onready var Hook = $Hook
 @onready var Bell = $Bell
 @onready var heartbeat = $Heartbeat
-@onready var hp_bar: ProgressBar = $Bars/HpBar
-@onready var stamina_bar: ProgressBar = $Bars/StaminaBar
-@onready var power_bar: ProgressBar = $Bars/PowerBar
-@onready var enemy_hp: ProgressBar = $Bars/EnemyHP
 
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
@@ -55,6 +56,7 @@ const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
 var exhaustion = false
+@export var battleStarted: bool = Global.battleStarted
 
 #Dictionary value that carries the time intervals for each attack. It starts with a negative number
 #to allow for a longer press to be able to hook. - Stephen
@@ -72,7 +74,7 @@ var rounds = 0
 
 func _ready():
 	transition.play("fade-in")
-	Bell.play()
+	versusScreenAnim.play("Versus")
 	Global.combat_ui = self
 	isdodge = false
 	ispunch = false
@@ -100,6 +102,7 @@ func _ready():
 		boss.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(boss)
+		move_child(boss, versusScreen.get_index())
 	else:
 		var enemy = ENEMY.instantiate()
 		
@@ -108,32 +111,35 @@ func _ready():
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
+		move_child(enemy, versusScreen.get_index())
 		#print(Global.playerStats.stamina)
 		#print(Global.playerStats.health)
 		#print(Global.playerStats.power)
 
 func _process(delta) -> void:
-	if Global.getPlayerHealth() <= 10:
-		heartbeat.autoplay = true
-		heartbeat.play()
-	else:
-		if heartbeat.playing == true and Global.getPlayerHealth() > 10:
-			heartbeat.autoplay = false
-			heartbeat.stop()
-	if exhaustion == false:
-		#If the player reaches ZERO stamina, cause Exhaustion.
-		if Global.playerStats.stamina <= 0:
-			Global.playerStats.stamina = 0
-			exhaustion = true
-			staminaCooldown.start()
-		#If player is at max (or greater than max) stamina, keep at max.
-		if Global.playerStats.stamina >= Global.playerStats.maxStamina:
-			Global.playerStats.stamina = Global.playerStats.maxStamina
-	#If player is NOT greater or equal to the max stamina, raise stamina.
-	if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
-		Global.playerStats.stamina += 0.05
-	#print(Global.getPlayerStamina())
-	stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
+	Global.battleStarted = battleStarted
+	if battleStarted:
+		if Global.getPlayerHealth() <= 10:
+			heartbeat.autoplay = true
+			heartbeat.play()
+		else:
+			if heartbeat.playing == true and Global.getPlayerHealth() > 10:
+				heartbeat.autoplay = false
+				heartbeat.stop()
+		if exhaustion == false:
+			#If the player reaches ZERO stamina, cause Exhaustion.
+			if Global.playerStats.stamina <= 0:
+				Global.playerStats.stamina = 0
+				exhaustion = true
+				staminaCooldown.start()
+			#If player is at max (or greater than max) stamina, keep at max.
+			if Global.playerStats.stamina >= Global.playerStats.maxStamina:
+				Global.playerStats.stamina = Global.playerStats.maxStamina
+		#If player is NOT greater or equal to the max stamina, raise stamina.
+		if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
+			Global.playerStats.stamina += 0.05
+		#print(Global.getPlayerStamina())
+		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
@@ -157,85 +163,86 @@ func start_nextRound(rounds):
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
-	if 	power_bar.value == 100 &&Input.is_action_just_pressed("SuperMove"):
-		match Global.Coach:
-			"self":
-				Global.bosses.health -= 50# also make a bone animation
-			"angel":
-				Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
-			_:
-				pass
-		power_bar.value == 0
-	if Input.is_action_just_pressed("dodgeright"): 
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if canmove == true: # Conditional to check if the player is able to make a move.
-				if isdodge == false: # Checks to see if you aren't in the middle of dodging.
-					if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
-						isdodge = true
-						animation.play("dodgeright")
-						Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
-						Global.depleteStamina("dodge", heldTime)
-						pass
-	if Input.is_action_just_pressed("dodgeleft"):
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if canmove == true: # Conditional to check if the player is able to make a move.
-				if isdodge == false: # Checks to see if you aren't in the middle of dodging.
-					if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
-						isdodge = true
-						animation.play("dodgeleft")
-						Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
-						Global.depleteStamina("dodge", heldTime)
-						pass
+	if Global.battleStarted:
+		if power_bar.value == 100 &&Input.is_action_just_pressed("SuperMove"):
+			match Global.Coach:
+				"self":
+					Global.bosses.health -= 50# also make a bone animation
+				"angel":
+					Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+				_:
+					pass
+			power_bar.value == 0
+		if Input.is_action_just_pressed("dodgeright"): 
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if canmove == true: # Conditional to check if the player is able to make a move.
+					if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+						if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
+							isdodge = true
+							animation.play("dodgeright")
+							Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
+							Global.depleteStamina("dodge", heldTime)
+							pass
+		if Input.is_action_just_pressed("dodgeleft"):
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if canmove == true: # Conditional to check if the player is able to make a move.
+					if isdodge == false: # Checks to see if you aren't in the middle of dodging.
+						if isHolding == false:	# isHolding checks to see if the player is holding down one of the attack keys.
+							isdodge = true
+							animation.play("dodgeleft")
+							Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
+							Global.depleteStamina("dodge", heldTime)
+							pass
 
-	if Input.is_action_pressed("attackLeft"):
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if isHolding == false:	#If Q is not being held down.
-				pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
-				isHolding = true
-			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that Q was first held down.
-			if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If Q has been held longer than the HOLD_TIME_THRESHOLD... 
-				start_shake()	#Run the shaking function.
-				heldTime = 0	#Set heldTime back to 0. 
-	if Input.is_action_just_released("attackLeft"):
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if isdodge == false:
-				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
-				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
-					jab_animation() #Simply punch
-					Global.depleteStamina("attack", heldTime)
-				else:
-					leftHook()
-					Global.depleteStamina("hook", heldTime)
-				heldTime = 0		#Reset holdTime
-				isHolding = false
-				if character.position != originalPos:	#If the character position is not at it's original...
-					character.position = originalPos	#Reset the position after shaking.
-					leftHook()
-	if Input.is_action_pressed("attackRight"):
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if isHolding == false:	#If E is not being held down.
-				pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
-				isHolding = true
-			heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that E was first held down.
-			if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If E has been held longer than the HOLD_TIME_THRESHOLD...
-				start_shake()	#Run the shaking function.
-				heldTime = 0	#Set heldTime back to 0.
-	if Input.is_action_just_released("attackRight"):
-		if Global.getPlayerStamina() > 0 and exhaustion == false:
-			if isdodge == false:
-				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
-				if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
-					cross_animation()	#Simply punch
-					print("cross")
-					Global.depleteStamina("attack", heldTime)
-				else:
-					rightHook()
-					Global.depleteStamina("hook", heldTime)
-				heldTime = 0	#Resets holdTime
-				isHolding = false
-				if character.position != originalPos:	#If the character position is not at it's original...
-					character.position = originalPos	#Reset the position after shaking.
-					rightHook()
+		if Input.is_action_pressed("attackLeft"):
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if isHolding == false:	#If Q is not being held down.
+					pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
+					isHolding = true
+				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that Q was first held down.
+				if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If Q has been held longer than the HOLD_TIME_THRESHOLD... 
+					start_shake()	#Run the shaking function.
+					heldTime = 0	#Set heldTime back to 0. 
+		if Input.is_action_just_released("attackLeft"):
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if isdodge == false:
+					heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
+					if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD 
+						jab_animation() #Simply punch
+						Global.depleteStamina("attack", heldTime)
+					else:
+						leftHook()
+						Global.depleteStamina("hook", heldTime)
+					heldTime = 0		#Reset holdTime
+					isHolding = false
+					if character.position != originalPos:	#If the character position is not at it's original...
+						character.position = originalPos	#Reset the position after shaking.
+						leftHook()
+		if Input.is_action_pressed("attackRight"):
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if isHolding == false:	#If E is not being held down.
+					pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
+					isHolding = true
+				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that E was first held down.
+				if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If E has been held longer than the HOLD_TIME_THRESHOLD...
+					start_shake()	#Run the shaking function.
+					heldTime = 0	#Set heldTime back to 0.
+		if Input.is_action_just_released("attackRight"):
+			if Global.getPlayerStamina() > 0 and exhaustion == false:
+				if isdodge == false:
+					heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
+					if heldTime < HOLD_TIME_THRESHOLD and isHolding == true:	#If the hold time is less than the HOLD_TIME_THRESHOLD
+						cross_animation()	#Simply punch
+						print("cross")
+						Global.depleteStamina("attack", heldTime)
+					else:
+						rightHook()
+						Global.depleteStamina("hook", heldTime)
+					heldTime = 0	#Resets holdTime
+					isHolding = false
+					if character.position != originalPos:	#If the character position is not at it's original...
+						character.position = originalPos	#Reset the position after shaking.
+						rightHook()
 
 func _on_animation_animation_finished(anim_name):
 	if anim_name == "dodgeleft" or anim_name == "dodgeright":
@@ -255,6 +262,7 @@ func start_shake():
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
 
+"""
 func DamageTaken():
 	var jab = 0.005 
 	var cross = 0.01
@@ -287,23 +295,8 @@ func DamageTaken():
 					#print ("Health:")
 		hp_bar.value = (health/100)
 		#print("apple sauce")
-
+"""
 
 func _on_mc_animated_animation_looped():
-	if (character.animation == "cross"):
-		character.stop()
-	if (character.animation == "hook_charge_right"):
-		character.stop()
-	if (character.animation == "hook_charge_left"):
-		character.stop()
-	if (character.animation == "block"):
-		character.stop()
-	if (character.animation == "jab"):
-		character.stop()
-	if (character.animation == "hook_charge"):
-		character.stop()
-	if (character.animation == "left_hook"):
-		character.stop()
-	if (character.animation == "right_hook"):
-		character.stop()
+	character.stop()
 	character.play("Idle")
