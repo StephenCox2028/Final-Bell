@@ -40,7 +40,6 @@ func _on_upgrade_button_pressed():
 	choice = 1
 	transition.play("fade-out")
 	
-
 func _on_continue_button_pressed():
 	Global.resetAllPlayerStats()
 	choice = 2
@@ -50,11 +49,9 @@ func _on_continue_button_pressed():
 		print(Global.Boss_counter)
 	transition.play("fade-out")
 
-
 func _on_quit_button_pressed():
 	choice = 3
 	transition.play("fade-out")
-
 
 func _on_coaches_button_pressed() -> void:
 	choice = 4

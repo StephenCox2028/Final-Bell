@@ -5,41 +5,46 @@ extends Node2D
 @export var health = 1
 @export var stamina = 1
 @export var power = 1
-	#examples for bosses
+		#examples for bosses
 #var skeletin = load("res://Scripts/Skeleton.gd").new()# so i can add more later easily
 #var slime = load("res://Scripts/Slime.gd").new()# so i can add more later easily
 var spider = load("res://Scripts/Bosses scripts/Spider.gd").new()
-var bear = load("res://Scripts/Bosses scripts/Bear.gd").new()
+var puppeteer = load("res://Scripts/Bosses scripts/Puppet1.gd").new()
 var racoon = load("res://Scripts/Bosses scripts/Racoon.gd").new()
 var action : int
 var safe = false # used to detect if blocking or dodging
 var enmActions = []
 
 func _ready():
-	enmActions = [spider, bear, racoon]#add more latter
-	
-	match Global.Boss_counter:
-		1:
-			action = 0
-			
-			$Sprite2D.play("Spider")
-			change_stats(20,20,20)
-			# we can change this to be other enemys later
-			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
-		2:
-			action = 1
-			$Sprite2D.play("bear")
-			change_stats(30,230,230)
-		3:
-			action = 2
-			$Sprite2D.play("racoon")
-			change_stats(240,420,420)
+		enmActions = [puppeteer]#add more latter
+
+		match Global.Boss_counter:
+				1:
+						action = 0
+						change_stats(20,20,20,5.0, 5.0, 0)
+						animated_sprite_2d.play("puppeteerIdle")
+						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
+				2:
+						action = 0
+						change_stats(20,20,20,5.0, 5.0, 0)
+						animated_sprite_2d.play("puppeteerIdle")
+						pass
+				3:
+						action = 0
+						change_stats(20,20,20,5.0, 5.0, 0)
+						animated_sprite_2d.play("puppeteerIdle")
+						pass
 
 
-func _on_timer_timeout() -> void:	
-	enmActions[action].call("Actions", self)
+func _on_timer_timeout() -> void:
+		enmActions[action].call("Actions", self)
 
-func change_stats(hp,sta,pow):
-	Global.bosses.health = hp
-	Global.bosses.stamina = sta
-	Global.bosses.power = pow
+func change_stats(hp,sta,pow,max,min, blockchance):
+	Global.bosses.health 		= hp
+	Global.bosses.stamina 		= sta
+	Global.bosses.power 		= pow
+	Global.bosses.difficultyMax = max
+	Global.bosses.difficultyMin = min
+	Global.enemy_max = hp
+	Global.bosses.block_chance= blockchance
+	pass

@@ -39,6 +39,7 @@ var playerStats = {
 	"dodging": false,
 	"totalXP" : 0
 }
+
 var bosses = {
 	"health" : 1,
 	"stamina" : 1,
@@ -47,6 +48,7 @@ var bosses = {
 	"block" : false,
 	"difficultyMax" : 5.0,
 	"difficultyMin": 5.0,
+	"block_chance" : 0
 }
 
 #boss stats - Mirza
@@ -60,8 +62,8 @@ func depleteHealth() -> void:
 	playerStats.health -= bosses.power
 	if combat_ui:
 		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
-
 	win_conditions()
+	
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
 		playerStats.stamina -= 2
@@ -111,6 +113,7 @@ func depleteStamina(move, multiplier) -> void:
 	elif move == "dodge":
 		playerStats.stamina -= 1
 	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
+	
 func getPlayerHealth():
 	return playerStats.health
 func getPlayerStamina():
