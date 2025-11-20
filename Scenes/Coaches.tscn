@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="2_8qt01"]
 [ext_resource type="Texture2D" uid="uid://ckc3rl2qq8xcv" path="res://Sprites/wow jesus3.png" id="3_uomjv"]
 [ext_resource type="Texture2D" uid="uid://cpfh7bfclqcqi" path="res://Sprites/punch coach.png" id="4_2x3aa"]
-[ext_resource type="Texture2D" uid="uid://dwwcw175y3418" path="res://icon.svg" id="5_3q88s"]
+[ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Sprite-0001.png" id="5_3q88s"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_uomjv"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_3q88s"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ea4s5"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="7_ea4s5"]
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
 [ext_resource type="Texture2D" uid="uid://drddilf3xn7n3" path="res://Materials/blue.png" id="10_3q88s"]
@@ -147,9 +147,11 @@ horizontal_alignment = 1
 
 [node name="PowerButton" type="TextureButton" parent="Power"]
 layout_mode = 0
-offset_top = 60.0
-offset_right = 128.0
-offset_bottom = 188.0
+offset_left = 6.0
+offset_top = 58.0
+offset_right = 70.0
+offset_bottom = 122.0
+scale = Vector2(2.5, 2.5)
 focus_mode = 0
 texture_normal = ExtResource("5_3q88s")
 

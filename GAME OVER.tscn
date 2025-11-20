@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgkbramegs186"]
+
+[ext_resource type="Texture2D" uid="uid://d4iejula46dvn" path="res://Sprites - John/Sprite-0002-Recovered-Recovered.png" id="1_0qrwt"]
+
+[node name="Sprite-0002-recovered-recovered" type="Sprite2D"]
+position = Vector2(930, 550)
+scale = Vector2(1.66406, 1.67747)
+texture = ExtResource("1_0qrwt")
