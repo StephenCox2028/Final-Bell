@@ -2,7 +2,7 @@ extends Node
 var Score = 0
 var Boss_counter = 0 # make this increase when leaving the locker room
 var boss_flip = false # make sure its off
-var currentBoss = null
+#var currentBoss = null
 var Enemy_tally = 0
 var MAXHEALTH = 40
 var MAXSTAMINA = 10
@@ -69,21 +69,27 @@ func depleteStamina(move, multiplier) -> void:
 		playerStats.stamina -= 2
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
-				var chance = randi_range(1, 2)
-				if chance == 1:
+				var chance = randi_range(1, 100)# HERE is the block---------------------------------------------------------
+				if chance > Global.bosses.block_chance:
 					bosses.health -= playerStats.power
 					#DAMAGE
 					combat_ui.power_bar.value += 10
+					combat_ui.enemy_hp.value = float(bosses.health)/float(enemy_max)*100
 					if (Coach == "vamp"):
-						playerStats.health += MAXHEALTH*.10  #heal bar
+						playerStats.health += MAXHEALTH*.05  #heal bar
+						if (playerStats.health > MAXHEALTH):
+							playerStats.health = MAXHEALTH
 						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 				else:
 					print("NO DAMAGE DONE!")
 			else:
 				bosses.health -= playerStats.power
 				combat_ui.power_bar.value += 10
+				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.10  #heal bar
+					playerStats.health += MAXHEALTH*.05  #heal bar
+					if (playerStats.health > MAXHEALTH):
+						playerStats.health = MAXHEALTH
 					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 		print(bosses.health)
 		win_conditions()
@@ -91,24 +97,31 @@ func depleteStamina(move, multiplier) -> void:
 		playerStats.stamina -= multiplier * 2
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
-				var chance = randi_range(1,2)
-				if chance == 1:
+				var chance = randi_range(1,100)# HERE is the block---------------------------------------------------------
+				if chance > Global.bosses.block_chance:
 					bosses.health -= (playerStats.power + multiplier)
+					combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 					combat_ui.power_bar.value += 10
 					if (Coach == "vamp"):
-						playerStats.health += MAXHEALTH*.10  #heal bar
+						playerStats.health += MAXHEALTH*.05  #heal bar
+						if (playerStats.health > MAXHEALTH):
+							playerStats.health = MAXHEALTH
 						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 				else: 
 					print("NO DAMAGE DONE!")
 			else:
 				bosses.health -= (playerStats.power + multiplier)
+				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				combat_ui.power_bar.value += 10
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.10  #heal bar
+					playerStats.health += MAXHEALTH*.05  #heal bar
+					if (playerStats.health > MAXHEALTH):
+						playerStats.health = MAXHEALTH
 					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 		print(bosses.health)
 		if bosses.dodge != true and bosses.block != true:
 			bosses.health -= playerStats.power
+			combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 		win_conditions()
 	elif move == "dodge":
 		playerStats.stamina -= 1

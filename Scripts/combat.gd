@@ -85,6 +85,7 @@ func _ready():
 	power_bar.value = (0)
 	enemy_hp.value = (100)
 	enemy_hp.visible = false
+	$Barforfightame/Barforfightame2.visible=false
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
@@ -92,6 +93,7 @@ func _ready():
 	if Global.Coach == "smart":
 		enemy_hp.visible = true
 		power_bar.visible = false
+		$Barforfightame/Barforfightame2.visible=true
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 

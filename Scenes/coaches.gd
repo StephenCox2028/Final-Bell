@@ -1,4 +1,4 @@
-extends Node2D
+extends TextureRect
 
 @onready var denied = $Denied
 @onready var transition = $Transition/Transition
@@ -19,7 +19,7 @@ func _on_stamina_button_pressed():
 
 	
 func _on_power_button_pressed():
-	Global.Coach = "glasses"# will make the enemy hp visible
+	Global.Coach = "smart"# will make the enemy hp visible
 	animations.play("blue")
 	levelUp.play()
 
@@ -29,3 +29,9 @@ func _on_back_button_pressed():
 
 func _on_transition_animation_finished(anim_name):
 	get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
+
+
+func _on_vamp_button_pressed() -> void:
+	Global.Coach = "vamp"# will make the enemy hp visible
+	animations.play("red")
+	levelUp.play()

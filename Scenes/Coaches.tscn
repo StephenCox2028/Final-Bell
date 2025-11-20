@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsmf3crlpni13"]
+[gd_scene load_steps=23 format=3 uid="uid://dsmf3crlpni13"]
 
 [ext_resource type="Script" uid="uid://chdfqtlmc68d4" path="res://Scenes/coaches.gd" id="1_fr7mw"]
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="2_8qt01"]
@@ -11,9 +11,34 @@
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
 [ext_resource type="Texture2D" uid="uid://drddilf3xn7n3" path="res://Materials/blue.png" id="10_3q88s"]
+[ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="12_3q88s"]
 
 [sub_resource type="Animation" id="Animation_q44um"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("particles/red:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("particles/light:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2x3aa"]
 resource_name = "blue"
@@ -65,6 +90,35 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8qt01"]
 resource_name = "light"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("particles/light:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_uomjv"]
+resource_name = "red"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("particles/red:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_f760y"]
 resource_name = "redHealth"
@@ -85,12 +139,16 @@ _data = {
 &"grey": SubResource("Animation_oxtv6"),
 &"levelUp": SubResource("Animation_cj77a"),
 &"light": SubResource("Animation_8qt01"),
+&"red": SubResource("Animation_uomjv"),
 &"redHealth": SubResource("Animation_f760y"),
 &"redPower": SubResource("Animation_pt5ib"),
 &"redStamina": SubResource("Animation_kr20n")
 }
 
-[node name="Upgrade" type="Node2D"]
+[node name="Upgrade" type="TextureRect"]
+offset_right = 2135.0
+offset_bottom = 1168.0
+texture = ExtResource("12_3q88s")
 script = ExtResource("1_fr7mw")
 
 [node name="SkeletonMain" type="Sprite2D" parent="."]
@@ -99,6 +157,7 @@ scale = Vector2(3.53125, 4.32813)
 texture = ExtResource("2_8qt01")
 
 [node name="Health" type="Label" parent="."]
+layout_mode = 0
 offset_left = 129.0
 offset_top = 75.0
 offset_right = 308.0
@@ -118,6 +177,7 @@ focus_mode = 0
 texture_normal = ExtResource("3_uomjv")
 
 [node name="Stamina" type="Label" parent="."]
+layout_mode = 0
 offset_left = 468.5
 offset_top = 75.0
 offset_right = 655.5
@@ -137,6 +197,7 @@ focus_mode = 0
 texture_normal = ExtResource("4_2x3aa")
 
 [node name="Power" type="Label" parent="."]
+layout_mode = 0
 offset_left = 826.0
 offset_top = 75.0
 offset_right = 1013.0
@@ -156,6 +217,7 @@ focus_mode = 0
 texture_normal = ExtResource("5_3q88s")
 
 [node name="BackButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 129.0
 offset_top = 550.0
 offset_right = 316.0
@@ -218,11 +280,43 @@ gravity = Vector2(0, 555)
 scale_amount_min = 0.03
 scale_amount_max = 0.04
 
+[node name="red" type="CPUParticles2D" parent="particles"]
+position = Vector2(13, -55)
+emitting = false
+amount = 13
+texture = ExtResource("9_uomjv")
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 98.85
+spread = 180.0
+gravity = Vector2(0, 555)
+scale_amount_min = 0.03
+scale_amount_max = 0.04
+color = Color(0.807843, 0.0705882, 0, 1)
+
+[node name="Power2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1161.0
+offset_top = 78.0
+offset_right = 1348.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 35
+text = "Vampire"
+horizontal_alignment = 1
+
+[node name="VampButton" type="TextureButton" parent="Power2"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 128.0
+offset_bottom = 188.0
+focus_mode = 0
+texture_normal = ExtResource("5_3q88s")
+
 [connection signal="pressed" from="Health/HealthButton" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]
 [connection signal="pressed" from="Power/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="pressed" from="Power2/VampButton" to="." method="_on_vamp_button_pressed"]
 
 [editable path="Transition"]

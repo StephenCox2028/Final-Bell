@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bebl8umacxmra"]
+[gd_scene load_steps=15 format=3 uid="uid://bebl8umacxmra"]
 
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="1_m1npt"]
 [ext_resource type="Script" uid="uid://dx74b058486s8" path="res://Scenes/upgrade.gd" id="1_rhnba"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_pt5ib"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_q44um"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_cj77a"]
+[ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="8_02w2n"]
 
 [sub_resource type="Animation" id="Animation_q44um"]
 length = 0.001
@@ -132,7 +133,10 @@ _data = {
 &"redStamina": SubResource("Animation_kr20n")
 }
 
-[node name="Upgrade" type="Node2D"]
+[node name="Upgrade" type="TextureRect"]
+offset_right = 2338.0
+offset_bottom = 1454.0
+texture = ExtResource("8_02w2n")
 script = ExtResource("1_rhnba")
 
 [node name="SkeletonMain" type="Sprite2D" parent="."]
@@ -141,6 +145,7 @@ scale = Vector2(3.53125, 4.32813)
 texture = ExtResource("1_m1npt")
 
 [node name="Health" type="Label" parent="."]
+layout_mode = 0
 offset_left = 129.0
 offset_top = 75.0
 offset_right = 308.0
@@ -180,6 +185,7 @@ scale = Vector2(0.764, 0.18)
 texture = ExtResource("3_f760y")
 
 [node name="Stamina" type="Label" parent="."]
+layout_mode = 0
 offset_left = 468.5
 offset_top = 75.0
 offset_right = 655.5
@@ -219,6 +225,7 @@ scale = Vector2(0.764, 0.18)
 texture = ExtResource("3_f760y")
 
 [node name="Power" type="Label" parent="."]
+layout_mode = 0
 offset_left = 826.0
 offset_top = 75.0
 offset_right = 1013.0
@@ -258,6 +265,7 @@ scale = Vector2(0.764, 0.18)
 texture = ExtResource("3_f760y")
 
 [node name="TotalXP" type="Label" parent="."]
+layout_mode = 0
 offset_left = 470.5
 offset_top = 603.0
 offset_right = 657.5
@@ -266,6 +274,7 @@ text = "Total XP: "
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 129.0
 offset_top = 550.0
 offset_right = 316.0

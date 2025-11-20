@@ -1,4 +1,4 @@
-extends Node2D
+extends TextureRect
 
 """
 Onready allows the objects to be created before the scene runs. It is similar to the _ready function.

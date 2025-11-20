@@ -5,7 +5,12 @@ extends Node2D
 @export var health = 1
 @export var stamina = 1
 @export var power = 1
-		#examples for bosses
+@onready var warningTimer: Timer = $WarningTimer
+@onready var skeletonMusic: AudioStreamPlayer = $SkeletonMusic
+@onready var devilMusic: AudioStreamPlayer = $DevilMusic
+@onready var exclamationPoint = $"!"
+
+	#examples for bosses
 #var skeletin = load("res://Scripts/Skeleton.gd").new()# so i can add more later easily
 #var slime = load("res://Scripts/Slime.gd").new()# so i can add more later easily
 var spider = load("res://Scripts/Bosses scripts/Spider.gd").new()

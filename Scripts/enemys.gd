@@ -21,14 +21,14 @@ var enemy
 
 func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
-	enemy = randi_range(1, 2)
+	enemy = randi_range(3, 3)
 
 	match enemy:
 		1:
 			action = 0
-			change_stats(45,30,10,5.0,5.0)
+			change_stats(10,30,5,5.0,5.0,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
-			Global.currentBoss = "HitManSkeleton"
+			#Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
 			timer.start()
 			skeletonMusic.play()
@@ -36,19 +36,19 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
-			change_stats(30,30,30, 3.5, 1.5)
+			change_stats(9,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
-			Global.currentBoss = "Devil"
+			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
 			timer.start()
 			devilMusic.play()
 			devilMusic.autoplay = true
 			pass# same here
 		3:
-			action = 3
-			change_stats(30,30,30, 4.0, 3.0)
-			animated_sprite_2d.play("TempDefault")
-			Global.currentBoss = "Devil"
+			action = 2
+			change_stats(5,90,30, 4.0, 3.0,0)
+			animated_sprite_2d.play("blackidle")
+			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
 			timer.start()
 			devilMusic.play()
@@ -66,16 +66,17 @@ func _on_timer_timeout() -> void:
 	timer.start()
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "Dodge" or anim_name == "Temp Dodge":
+	if anim_name == "Dodge" or anim_name == "Temp Dodge" or anim_name == "blackdodge":
 		Global.bosses.dodge = false
-	if anim_name == "Block" or anim_name == "Tempblock":
+	if anim_name == "Block" or anim_name == "Tempblock" or anim_name == "blackblock":
 		Global.bosses.block = false
 
-func change_stats(hp,sta,pow,max,min):
+func change_stats(hp,sta,pow,max,min, blckchnce):
 	Global.bosses.health 		= hp
 	Global.bosses.stamina 		= sta
 	Global.bosses.power 		= pow
 	Global.bosses.difficultyMax = max
 	Global.bosses.difficultyMin = min
 	Global.enemy_max 			= hp
+	Global.bosses.block_chance=blckchnce
 	pass
