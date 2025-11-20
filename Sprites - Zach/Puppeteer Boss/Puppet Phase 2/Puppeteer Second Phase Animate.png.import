@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvkhx1soiq5xq"
-path="res://.godot/imported/Puppeteer Hook.png-3909c8f3ecf23d0e9972cd4aeadfe72a.ctex"
+uid="uid://dfrdykieiklia"
+path="res://.godot/imported/Puppeteer Second Phase Animate.png-d6ce875f828421f65966a9cd9f0624dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Puppeteer Boss/Puppeteer Hook.png"
-dest_files=["res://.godot/imported/Puppeteer Hook.png-3909c8f3ecf23d0e9972cd4aeadfe72a.ctex"]
+source_file="res://Sprites - Zach/Puppeteer Boss/Puppet Phase 2/Puppeteer Second Phase Animate.png"
+dest_files=["res://.godot/imported/Puppeteer Second Phase Animate.png-d6ce875f828421f65966a9cd9f0624dc.ctex"]
 
 [params]
 
