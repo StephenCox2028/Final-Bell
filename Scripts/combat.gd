@@ -83,6 +83,7 @@ func _ready():
 	power_bar.value = (0)
 	enemy_hp.value = (100)
 	enemy_hp.visible = false
+	$Barforfightame/Barforfightame2.visible=false
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
@@ -90,6 +91,7 @@ func _ready():
 	if Global.Coach == "smart":
 		enemy_hp.visible = true
 		power_bar.visible = false
+		$Barforfightame/Barforfightame2.visible=true
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -111,10 +113,7 @@ func _ready():
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
-		#print(Global.playerStats.stamina)
-		#print(Global.playerStats.health)
-		#print(Global.playerStats.power)
-
+	Global.enemy_max = Global.bosses.health
 func _process(delta) -> void:
 	if Global.getPlayerHealth() <= 10:
 		heartbeat.autoplay = true
@@ -137,7 +136,7 @@ func _process(delta) -> void:
 		Global.playerStats.stamina += 0.05
 	#print(Global.getPlayerStamina())
 	stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
-
+	
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
@@ -165,8 +164,12 @@ func _input(event):
 		match Global.Coach:
 			"self":
 				Global.bosses.health -= 50# also make a bone animation
+				enemy_hp.value = float(Global.bosses.health)/float(Global.enemy_max)*100
+				power_bar.value = 0
 			"angel":
-				Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+				Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+				hp_bar.value = 100
+				power_bar.value = 0
 			_:
 				pass
 		power_bar.value == 0

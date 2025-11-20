@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://b5e8diyl6l2qs"]
+[gd_scene load_steps=79 format=3 uid="uid://b5e8diyl6l2qs"]
 
 [ext_resource type="Script" uid="uid://ul7j3sh1fm25" path="res://Scripts/enemys.gd" id="1_cm7k0"]
 [ext_resource type="Texture2D" uid="uid://hdyfx0svy627" path="res://Sprites/skeletin.png" id="1_vyyno"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dkgdbsoibls2p" path="res://Sprites/skeleton dodge right.png" id="3_seb7f"]
 [ext_resource type="Texture2D" uid="uid://ctmqwkafgrbrm" path="res://Sprites/fire man.png" id="4_4k4ca"]
 [ext_resource type="Texture2D" uid="uid://cppu016eydigj" path="res://Sprites/Fireman blue.png" id="5_8lwso"]
+[ext_resource type="Texture2D" uid="uid://ck5l6imf74qpk" path="res://Sprites/skeleton dodge righblackt.png" id="7_by22s"]
 [ext_resource type="AudioStream" uid="uid://djft1cn0w18ci" path="res://Music + Sound/final-bell---boxing-1.mp3" id="7_cbqis"]
 [ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music + Sound/satan’s-finale.mp3" id="8_i4f6o"]
+[ext_resource type="Texture2D" uid="uid://bh5p3d46rbsy" path="res://Sprites/skeleblockblack.png" id="8_ps8ol"]
+[ext_resource type="Texture2D" uid="uid://dmdhjg0rdi1iy" path="res://Sprites/skeletinad.png" id="9_gkutu"]
 [ext_resource type="Texture2D" uid="uid://ccce0e2lvmvu2" path="res://Sprites/!.png" id="9_i4f6o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbf3c"]
@@ -170,6 +173,62 @@ region = Rect2(160, 0, 16, 20)
 atlas = ExtResource("5_8lwso")
 region = Rect2(176, 0, 16, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3bnh"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u7es"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r550m"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv31d"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8b4s"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32roc"]
+atlas = ExtResource("8_ps8ol")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfko7"]
+atlas = ExtResource("7_by22s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x45bv"]
+atlas = ExtResource("7_by22s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6h7o"]
+atlas = ExtResource("7_by22s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gambl"]
+atlas = ExtResource("9_gkutu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44efw"]
+atlas = ExtResource("9_gkutu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp2qe"]
+atlas = ExtResource("9_gkutu")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnu3n"]
+atlas = ExtResource("9_gkutu")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scd1w"]
+atlas = ExtResource("9_gkutu")
+region = Rect2(256, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_droi5"]
 animations = [{
 "frames": [{
@@ -315,6 +374,63 @@ animations = [{
 }],
 "loop": true,
 "name": &"TempDodgeL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3bnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u7es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r550m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv31d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8b4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32roc")
+}],
+"loop": true,
+"name": &"blackblock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfko7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x45bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6h7o")
+}],
+"loop": true,
+"name": &"blackdodge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gambl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44efw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp2qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnu3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scd1w")
+}],
+"loop": true,
+"name": &"blackidle",
 "speed": 5.0
 }]
 
@@ -510,6 +626,75 @@ tracks/1/keys = {
 "values": [&"TempDefault", &"TempDefault"]
 }
 
+[sub_resource type="Animation" id="Animation_wvx6a"]
+resource_name = "blackblock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"blackblock", &"blackidle"]
+}
+
+[sub_resource type="Animation" id="Animation_ps8ol"]
+resource_name = "blackdodge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"blackdodge", &"blackidle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_by22s"]
+resource_name = "blacksmack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"blackidle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4k4ca"]
 _data = {
 &"Block": SubResource("Animation_8lwso"),
@@ -518,7 +703,10 @@ _data = {
 &"Smack": SubResource("Animation_4k4ca"),
 &"Temp Dodge": SubResource("Animation_i4f6o"),
 &"TempSmack": SubResource("Animation_cbqis"),
-&"Tempblock": SubResource("Animation_trqtg")
+&"Tempblock": SubResource("Animation_trqtg"),
+&"blackblock": SubResource("Animation_wvx6a"),
+&"blackdodge": SubResource("Animation_ps8ol"),
+&"blacksmack": SubResource("Animation_by22s")
 }
 
 [node name="Enemys" type="Node2D"]
@@ -526,9 +714,8 @@ script = ExtResource("1_cm7k0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_droi5")
-animation = &"SkeleDefault"
+animation = &"blackidle"
 autoplay = "SkeleDefault"
-frame_progress = 0.016698
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

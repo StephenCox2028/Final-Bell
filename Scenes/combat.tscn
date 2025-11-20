@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=31 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://d0gy0mcelthkm" path="res://Music + Sound/bell.mp3" id="7_d53gg"]
 [ext_resource type="Texture2D" uid="uid://byliuxv8137qw" path="res://Sprites - Zach/Main Character Animations/Right Hook Animationt.png" id="8_ceo1n"]
 [ext_resource type="AudioStream" uid="uid://isj76770im5a" path="res://Music + Sound/heartbeat.mp3" id="9_d53gg"]
+[ext_resource type="Texture2D" uid="uid://cabo165u56ekv" path="res://Scenes/barforfightame.png" id="15_f8ge6"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -253,18 +254,18 @@ sprite_frames = SubResource("SpriteFrames_3cqtn")
 animation = &"hook_charge_right"
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
-offset_left = 92.0
-offset_top = 111.0
-offset_right = 248.0
-offset_bottom = 134.0
+offset_left = 69.0
+offset_top = 181.0
+offset_right = 225.0
+offset_bottom = 204.0
 theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 96.0
-offset_top = 46.0
-offset_right = 416.0
-offset_bottom = 69.0
+offset_left = 67.0
+offset_top = 209.0
+offset_right = 387.0
+offset_bottom = 232.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
@@ -322,43 +323,59 @@ offset_bottom = 441.0
 
 [node name="PowerBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 308.0
-offset_top = -1.0
-offset_right = 532.0
-offset_bottom = 23.0
+offset_left = -487.0
+offset_top = -338.0
+offset_right = -263.0
+offset_bottom = -314.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_avwh6")
 
 [node name="StaminaBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 308.0
-offset_top = -49.0
-offset_right = 532.0
-offset_bottom = -25.0
+offset_left = -487.0
+offset_top = -383.0
+offset_right = -263.0
+offset_bottom = -359.0
 theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
 
 [node name="HpBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 308.0
-offset_top = -25.0
-offset_right = 532.0
-offset_bottom = -1.0
+offset_left = -487.0
+offset_top = -432.0
+offset_right = -263.0
+offset_bottom = -408.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
 
 [node name="EnemyHP" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = -72.0
-offset_top = -244.0
-offset_right = 152.0
-offset_bottom = -220.0
+offset_left = 318.0
+offset_top = -383.0
+offset_right = 542.0
+offset_bottom = -359.0
 rotation = -0.00173335
 theme_override_colors/font_color = Color(1, 0.263656, 0.290483, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_d53gg")
+
+[node name="Barforfightame" type="Sprite2D" parent="."]
+position = Vector2(214, 75)
+texture = ExtResource("15_f8ge6")
+
+[node name="Barforfightame" type="Sprite2D" parent="Barforfightame"]
+position = Vector2(0, -45)
+texture = ExtResource("15_f8ge6")
+
+[node name="Barforfightame" type="Sprite2D" parent="Barforfightame/Barforfightame"]
+position = Vector2(0, -49)
+texture = ExtResource("15_f8ge6")
+
+[node name="Barforfightame2" type="Sprite2D" parent="Barforfightame"]
+position = Vector2(805, -45)
+texture = ExtResource("15_f8ge6")
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
