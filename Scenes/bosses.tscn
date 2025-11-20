@@ -1,60 +1,87 @@
-[gd_scene load_steps=9 format=3 uid="uid://elsw72ii6qai"]
+[gd_scene load_steps=8 format=3 uid="uid://elsw72ii6qai"]
 
 [ext_resource type="Script" uid="uid://gagcufyq874w" path="res://Scripts/bosses.gd" id="1_l3loj"]
-[ext_resource type="Texture2D" uid="uid://bgdxc2gcnna7y" path="res://Sprites/pider.jpg" id="2_s2j0o"]
-[ext_resource type="Texture2D" uid="uid://buwu28nq0g7x7" path="res://Sprites/bear.jpg" id="3_lk8fx"]
-[ext_resource type="Texture2D" uid="uid://cbio314lkmlxy" path="res://Sprites/image0racoon.jpg" id="4_ui284"]
+[ext_resource type="Texture2D" uid="uid://bkbcoeekxelw2" path="res://Sprites - Zach/Puppeteer Boss/Puppeteer Block.png" id="2_pxg58"]
+[ext_resource type="Texture2D" uid="uid://b6sc22ikaq8bu" path="res://Sprites - Zach/Puppeteer Boss/Puppeteer Neutral.png" id="3_lk8fx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgj40"]
-atlas = ExtResource("2_s2j0o")
-region = Rect2(0, 0, 268, 188)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwb5f"]
-atlas = ExtResource("3_lk8fx")
-region = Rect2(0, 0, 320, 225)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwou1"]
-atlas = ExtResource("4_ui284")
-region = Rect2(0, 0, 444, 592)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a34e7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3loj"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgj40")
-}],
+"frames": [],
 "loop": true,
-"name": &"Spider",
+"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fwb5f")
+"texture": ExtResource("3_lk8fx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pxg58")
 }],
-"loop": true,
-"name": &"bear",
+"loop": false,
+"name": &"puppeteerBlock",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bwou1")
+"texture": ExtResource("3_lk8fx")
 }],
 "loop": true,
-"name": &"racoon",
+"name": &"puppeteerIdle",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_lk8fx"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"puppeteerBlock"]
+}
+
+[sub_resource type="Animation" id="Animation_pxg58"]
+resource_name = "block"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"puppeteerBlock", &"puppeteerIdle"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ui284"]
+_data = {
+&"RESET": SubResource("Animation_lk8fx"),
+&"block": SubResource("Animation_pxg58")
+}
 
 [node name="Bosses" type="Node2D"]
 script = ExtResource("1_l3loj")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.62939e-06, 4)
+scale = Vector2(0.769531, 0.806641)
+sprite_frames = SubResource("SpriteFrames_l3loj")
+animation = &"puppeteerBlock"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ui284")
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_a34e7")
-animation = &"Spider"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

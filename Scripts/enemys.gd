@@ -18,6 +18,7 @@ var enmActions = []
 var rng = RandomNumberGenerator.new()
 var action : int
 var enemy
+
 func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
 	enemy = randi_range(1, 2)
@@ -35,7 +36,7 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
-			change_stats(90,90,30, 3.5, 1.5)
+			change_stats(30,30,30, 3.5, 1.5)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -45,7 +46,7 @@ func _ready():
 			pass# same here
 		3:
 			action = 3
-			change_stats(50,90,30, 4.0, 3.0)
+			change_stats(30,30,30, 4.0, 3.0)
 			animated_sprite_2d.play("TempDefault")
 			Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)

@@ -50,7 +50,7 @@ func rightHook():
 const ENEMY = preload("res://Scenes/enemys.tscn")
 const BOSS = preload("res://Scenes/bosses.tscn")
 
-var originalPos = Vector2(552, 352)		#Original position of the character. - Stephen
+var originalPos = Vector2(917.0, 773)		#Original position of the character. - Stephen
 const HOLD_TIME_THRESHOLD = 0.5
 const SHAKE_STRENGTH = 10.0		#Strength and intensity of player shaking. - Stephen
 var heldTime = 0
@@ -99,7 +99,7 @@ func _ready():
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
 			# Optional: set position or random offset
-		boss.position = Vector2(605, 235)
+		boss.position = Vector2(902.0, 640.0)
 		boss.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(boss)
@@ -107,7 +107,7 @@ func _ready():
 		var enemy = ENEMY.instantiate()
 		
 			# Optional: set position or random offset
-		enemy.position = Vector2(605, 235)
+		enemy.position = Vector2(902, 640.0)
 		enemy.scale = Vector2(3,3)
 			# Add it as a child of this scene
 		add_child(enemy)
@@ -258,7 +258,7 @@ func start_shake():
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
 
-
+"""
 func DamageTaken():
 	var jab = 0.005 
 	var cross = 0.01
@@ -290,4 +290,4 @@ func DamageTaken():
 					health -= hook
 					#print ("Health:")
 		hp_bar.value = (health/100)
-		#print("apple sauce")
+		#print("apple sauce") """
