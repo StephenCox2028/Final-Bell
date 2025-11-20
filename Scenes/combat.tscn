@@ -1,10 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://r7n78i1k8jn7"]
+[gd_scene load_steps=36 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
-[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="2_avwh6"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="Texture2D" uid="uid://w1elkrve14w" path="res://Sprites - Zach/Main Character Animations/Main Character Ring1.png" id="4_d53gg"]
-[ext_resource type="PackedScene" path="res://Scenes/rats.tscn" id="4_ubpar"]
+[ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
 [ext_resource type="Texture2D" uid="uid://bt8l8c67kf61o" path="res://Sprites - Zach/Main Character Animations/Back Dodge.png" id="4_y8jr2"]
 [ext_resource type="AudioStream" uid="uid://sjyvqs3grmm5" path="res://Music + Sound/punch.mp3" id="5_3w34b"]
 [ext_resource type="Texture2D" uid="uid://btiwku70er16n" path="res://Sprites - Zach/Main Character Animations/Main Character right cross.png" id="5_8xcd4"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://isj76770im5a" path="res://Music + Sound/heartbeat.mp3" id="9_d53gg"]
 [ext_resource type="Texture2D" uid="uid://coyase05lmwvx" path="res://Sprites - Zach/Ring/Ring Overlay.png" id="15_f8ge6"]
 [ext_resource type="Texture2D" uid="uid://cscumyv5h66fg" path="res://Sprites - Zach/Ring/Versus screen.png" id="16_50454"]
+[ext_resource type="Texture2D" uid="uid://cabo165u56ekv" path="res://Scenes/barforfightame.png" id="17_cabo16"]
 
 [sub_resource type="Animation" id="Animation_8xcd4"]
 length = 0.001
@@ -31,7 +32,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-[ext_resource type="Texture2D" uid="uid://cabo165u56ekv" path="res://Scenes/barforfightame.png" id="15_f8ge6"]
 
 [sub_resource type="Animation" id="Animation_ubpar"]
 resource_name = "dodgeleft"
@@ -226,17 +226,56 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwh6"]
+bg_color = Color(0.994069, 0.963421, 0.585046, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut0kg"]
 bg_color = Color(0.394702, 0.684329, 0.326459, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubpar"]
 bg_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avwh6"]
-bg_color = Color(0.994069, 0.963421, 0.585046, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d53gg"]
 bg_color = Color(0.677448, 0.0436008, 0.0654471, 1)
+
+[sub_resource type="Animation" id="Animation_ceo1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../VersusScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../VersusScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:battleStarted")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_50454"]
 resource_name = "Versus"
@@ -290,45 +329,6 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_ceo1n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../VersusScreen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../VersusScreen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..:battleStarted")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jcm61"]
 _data = {
 &"RESET": SubResource("Animation_ceo1n"),
@@ -361,25 +361,7 @@ libraries = {
 position = Vector2(917, 773)
 scale = Vector2(2.00189, 2.16856)
 sprite_frames = SubResource("SpriteFrames_3cqtn")
-animation = &"cross"
 animation = &"Idle"
-
-[node name="ProgressBar2" type="ProgressBar" parent="."]
-offset_left = 69.0
-offset_top = 181.0
-offset_right = 225.0
-offset_bottom = 204.0
-theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 67.0
-offset_top = 209.0
-offset_right = 387.0
-offset_bottom = 232.0
-theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -404,18 +386,18 @@ stream = ExtResource("9_d53gg")
 volume_db = 20.0
 
 [node name="rounds" type="Label" parent="."]
-offset_left = 945.0
-offset_top = -3.0
-offset_right = 1211.0
-offset_bottom = 78.0
+offset_left = 1027.0
+offset_top = 51.0
+offset_right = 1293.0
+offset_bottom = 132.0
 theme_override_font_sizes/font_size = 50
 text = "Rounds: "
 
 [node name="Label" type="Label" parent="."]
-offset_left = 721.0
-offset_top = 6.0
-offset_right = 873.0
-offset_bottom = 75.0
+offset_left = 722.0
+offset_top = 53.0
+offset_right = 874.0
+offset_bottom = 122.0
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 
@@ -434,47 +416,69 @@ offset_bottom = 441.0
 
 [node name="PowerBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 866.0
-offset_top = 304.0
-offset_right = 1090.0
-offset_bottom = 328.0
+offset_left = -426.0
+offset_top = -29.0
+offset_right = -202.0
+offset_bottom = -5.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_avwh6")
 
 [node name="StaminaBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 869.0
-offset_top = 266.0
-offset_right = 1093.0
-offset_bottom = 290.0
+offset_left = -428.0
+offset_top = -97.0
+offset_right = -204.0
+offset_bottom = -73.0
 theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
 
 [node name="HpBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 228.0
-offset_right = 1092.0
-offset_bottom = 252.0
+offset_left = -435.0
+offset_top = -159.0
+offset_right = -211.0
+offset_bottom = -135.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
 
 [node name="EnemyHP" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 318.0
-offset_top = -383.0
-offset_right = 542.0
-offset_bottom = -359.0
+offset_left = 926.0
+offset_top = -1.0
+offset_right = 1150.0
+offset_bottom = 23.0
 rotation = -0.00173335
 theme_override_colors/font_color = Color(1, 0.263656, 0.290483, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_d53gg")
 
 [node name="RingOverlay" type="Sprite2D" parent="."]
-position = Vector2(594, -97)
+position = Vector2(968, 52)
+scale = Vector2(1.65799, 1)
 texture = ExtResource("15_f8ge6")
+
+[node name="BarContainer" type="Node2D" parent="."]
+position = Vector2(214, 75)
+
+[node name="Barforfightame" type="Sprite2D" parent="BarContainer"]
+position = Vector2(52, 179)
+texture = ExtResource("17_cabo16")
+
+[node name="BarforfightameTop1" type="Sprite2D" parent="BarContainer"]
+position = Vector2(60, 242)
+scale = Vector2(1.01339, 1)
+texture = ExtResource("17_cabo16")
+
+[node name="BarforfightameTop2" type="Sprite2D" parent="BarContainer"]
+position = Vector2(1413.25, 337)
+scale = Vector2(1.01228, 1)
+texture = ExtResource("17_cabo16")
+
+[node name="BarforfightameRight" type="Sprite2D" parent="BarContainer"]
+position = Vector2(61, 311)
+texture = ExtResource("17_cabo16")
 
 [node name="VersusScreen" type="Sprite2D" parent="."]
 visible = false
@@ -483,25 +487,9 @@ scale = Vector2(1.66623, 1.6713)
 texture = ExtResource("16_50454")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VersusScreen"]
-root_node = NodePath("../../RingOverlay")
 libraries = {
 &"": SubResource("AnimationLibrary_jcm61")
 }
-[node name="Barforfightame" type="Sprite2D" parent="."]
-position = Vector2(214, 75)
-texture = ExtResource("15_f8ge6")
-
-[node name="Barforfightame" type="Sprite2D" parent="Barforfightame"]
-position = Vector2(0, -45)
-texture = ExtResource("15_f8ge6")
-
-[node name="Barforfightame" type="Sprite2D" parent="Barforfightame/Barforfightame"]
-position = Vector2(0, -49)
-texture = ExtResource("15_f8ge6")
-
-[node name="Barforfightame2" type="Sprite2D" parent="Barforfightame"]
-position = Vector2(805, -45)
-texture = ExtResource("15_f8ge6")
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="animation_looped" from="character/MC_animated" to="." method="_on_mc_animated_animation_looped"]

@@ -702,10 +702,8 @@ script = ExtResource("1_cm7k0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_droi5")
-animation = &"SkeleBlock"
-autoplay = "SkeleDefault"
-frame_progress = 0.816754
 animation = &"blackidle"
+autoplay = "SkeleDefault"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

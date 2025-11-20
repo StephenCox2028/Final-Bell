@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsmf3crlpni13"]
+[gd_scene load_steps=24 format=3 uid="uid://dsmf3crlpni13"]
 
 [ext_resource type="Script" uid="uid://chdfqtlmc68d4" path="res://Scenes/coaches.gd" id="1_fr7mw"]
 [ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="2_8qt01"]
@@ -7,11 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Sprite-0001.png" id="5_3q88s"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_uomjv"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_3q88s"]
-[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="7_ea4s5"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ea4s5"]
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
 [ext_resource type="Texture2D" uid="uid://drddilf3xn7n3" path="res://Materials/blue.png" id="10_3q88s"]
 [ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="12_3q88s"]
+[ext_resource type="Texture2D" uid="uid://clsox23l0lqt8" path="res://Sprites - John/Sprite-0002.png" id="13_ea4s5"]
 
 [sub_resource type="Animation" id="Animation_q44um"]
 length = 0.001
@@ -306,11 +307,13 @@ horizontal_alignment = 1
 
 [node name="VampButton" type="TextureButton" parent="Power2"]
 layout_mode = 0
-offset_top = 60.0
-offset_right = 128.0
-offset_bottom = 188.0
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 74.0
+offset_bottom = 116.0
+scale = Vector2(2.5, 2.5)
 focus_mode = 0
-texture_normal = ExtResource("5_3q88s")
+texture_normal = ExtResource("13_ea4s5")
 
 [connection signal="pressed" from="Health/HealthButton" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]

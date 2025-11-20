@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://60ka4o03vhs3"]
+[gd_scene load_steps=2 format=3 uid="uid://60ka4o03vhs3"]
 
-[ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Sprite-0001.png" id="1_dpabd"]
 [ext_resource type="Script" uid="uid://lvkhdv46q6fb" path="res://StoryScript.gd" id="2_32ugh"]
 
 [node name="Sprite-0001" type="Sprite2D"]
 position = Vector2(574, 316)
-texture = ExtResource("1_dpabd")
 script = ExtResource("2_32ugh")
 
 [node name="Next Button" type="Button" parent="."]
