@@ -20,7 +20,7 @@ var action : int
 var enemy
 func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
-	enemy = randi_range(1, 1)
+	enemy = randi_range(3, 3)
 
 	match enemy:
 		1:
@@ -65,9 +65,9 @@ func _on_timer_timeout() -> void:
 	timer.start()
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "Dodge" or anim_name == "Temp Dodge":
+	if anim_name == "Dodge" or anim_name == "Temp Dodge" or anim_name == "blackdodge":
 		Global.bosses.dodge = false
-	if anim_name == "Block" or anim_name == "Tempblock":
+	if anim_name == "Block" or anim_name == "Tempblock" or anim_name == "blackblock":
 		Global.bosses.block = false
 
 func change_stats(hp,sta,pow,max,min, blckchnce):
