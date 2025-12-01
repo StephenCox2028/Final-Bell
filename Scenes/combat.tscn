@@ -356,8 +356,10 @@ libraries = {
 }
 
 [node name="character" type="CharacterBody2D" parent="."]
+z_index = 1
 
 [node name="MC_animated" type="AnimatedSprite2D" parent="character"]
+z_index = 1
 position = Vector2(917, 773)
 scale = Vector2(2.00189, 2.16856)
 sprite_frames = SubResource("SpriteFrames_3cqtn")
@@ -407,18 +409,20 @@ text = "00:00"
 position = Vector2(584, 295)
 
 [node name="Bars" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 588.0
-offset_top = 401.0
-offset_right = 628.0
-offset_bottom = 441.0
+offset_left = 669.0
+offset_top = 340.0
+offset_right = 709.0
+offset_bottom = 380.0
+scale = Vector2(1.5, 1.5)
 
 [node name="PowerBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = -426.0
+offset_left = -435.0
 offset_top = -29.0
-offset_right = -202.0
+offset_right = -211.0
 offset_bottom = -5.0
 theme_override_colors/font_color = Color(0.123575, 0.344864, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
@@ -426,9 +430,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_avwh6")
 
 [node name="StaminaBar" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = -428.0
+offset_left = -435.0
 offset_top = -97.0
-offset_right = -204.0
+offset_right = -211.0
 offset_bottom = -73.0
 theme_override_colors/font_color = Color(1, 0.0156863, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_ut0kg")
@@ -445,10 +449,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ubpar")
 
 [node name="EnemyHP" type="ProgressBar" parent="Bars"]
 layout_mode = 0
-offset_left = 926.0
-offset_top = -1.0
-offset_right = 1150.0
-offset_bottom = 23.0
+offset_left = 613.333
+offset_top = -159.0
+offset_right = 837.333
+offset_bottom = -135.0
 rotation = -0.00173335
 theme_override_colors/font_color = Color(1, 0.263656, 0.290483, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0.996078, 1)
@@ -460,28 +464,29 @@ scale = Vector2(1.65799, 1)
 texture = ExtResource("15_f8ge6")
 
 [node name="BarContainer" type="Node2D" parent="."]
-position = Vector2(214, 75)
+z_index = 1
+position = Vector2(215, -165)
+scale = Vector2(1.5, 1.5)
 
 [node name="Barforfightame" type="Sprite2D" parent="BarContainer"]
-position = Vector2(52, 179)
+position = Vector2(-19.3333, 190)
 texture = ExtResource("17_cabo16")
 
 [node name="BarforfightameTop1" type="Sprite2D" parent="BarContainer"]
-position = Vector2(60, 242)
-scale = Vector2(1.01339, 1)
+position = Vector2(-19.3333, 252)
 texture = ExtResource("17_cabo16")
 
 [node name="BarforfightameTop2" type="Sprite2D" parent="BarContainer"]
-position = Vector2(1413.25, 337)
-scale = Vector2(1.01228, 1)
+position = Vector2(1028, 190)
 texture = ExtResource("17_cabo16")
 
 [node name="BarforfightameRight" type="Sprite2D" parent="BarContainer"]
-position = Vector2(61, 311)
+position = Vector2(-19.3333, 320)
 texture = ExtResource("17_cabo16")
 
 [node name="VersusScreen" type="Sprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(969.25, 522.5)
 scale = Vector2(1.66623, 1.6713)
 texture = ExtResource("16_50454")

@@ -94,6 +94,7 @@ func _ready():
 		enemy_hp.visible = true
 		power_bar.visible = false
 		$BarContainer/BarforfightameTop2.visible=true
+		$BarContainer/BarforfightameRight.visible=false
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 

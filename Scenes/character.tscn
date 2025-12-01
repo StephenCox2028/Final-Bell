@@ -96,6 +96,7 @@ animations = [{
 }]
 
 [node name="character" type="Node2D"]
+z_index = 1
 
 [node name="MC_animated" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w85my")

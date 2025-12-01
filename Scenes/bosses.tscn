@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://elsw72ii6qai"]
+[gd_scene load_steps=21 format=3 uid="uid://elsw72ii6qai"]
 
 [ext_resource type="Script" uid="uid://gagcufyq874w" path="res://Scripts/bosses.gd" id="1_l3loj"]
 [ext_resource type="Texture2D" uid="uid://bgdxc2gcnna7y" path="res://Sprites/pider.jpg" id="2_s2j0o"]
@@ -7,6 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://qjhofundnr6i" path="res://Music + Sound/satan’s-finale.mp3" id="6_bwou1"]
 [ext_resource type="Texture2D" uid="uid://ccce0e2lvmvu2" path="res://Sprites/!.png" id="7_a34e7"]
 [ext_resource type="Texture2D" uid="uid://cbio314lkmlxy" path="res://Sprites/image0racoon.jpg" id="8_pxg58"]
+[ext_resource type="Texture2D" uid="uid://bytj7drp36ck6" path="res://Sprites - Zach/Demon Boss Sprites/Devil Boss Bits/Devil_Boss_Body.png" id="8_ru5de"]
+[ext_resource type="Texture2D" uid="uid://ocg41bj8mhsl" path="res://Sprites - Zach/Demon Boss Sprites/Devil Boss Bits/ForearmGlove.png" id="9_c234i"]
+[ext_resource type="Texture2D" uid="uid://c8cpcjq2ofpry" path="res://Sprites - Zach/Demon Boss Sprites/Devil Boss Bits/Forearmguy_Head.png" id="10_1p2kt"]
+[ext_resource type="Texture2D" uid="uid://bmamixkgu5o5j" path="res://brn baby burn.png" id="11_c234i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l3loj"]
 animations = [{
@@ -38,39 +42,443 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_pxg58"]
+resource_name = "Evilblock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pictures/ForearmGlove:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(93, -33), Vector2(40, -56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pictures/ForearmGlove:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.789288, -0.381739]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pictures/ForearmGlove2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-33, -33), Vector2(-40, -48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pictures/ForearmGlove2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.977384, 0.382227]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer:current_animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Evilidle"]
+}
+
+[sub_resource type="Animation" id="Animation_1p2kt"]
+resource_name = "Evilbonk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pictures/ForearmguyHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, -96), Vector2(4, 200), Vector2(4, -96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pictures/ForearmguyHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:current_animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Evilidle"]
+}
+
+[sub_resource type="Animation" id="Animation_c234i"]
+resource_name = "Evilbwah"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pictures/ForearmguyHead:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.6, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BrnBabyBurn:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BrnBabyBurn:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Evilidle"]
+}
+
+[sub_resource type="Animation" id="Animation_fwb5f"]
+resource_name = "Evilidle"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pictures/ForearmGlove:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0100001, 0.11, 0.21, 0.31, 0.41, 0.51, 0.633333, 0.766667, 0.966667, 1.16667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(93, -33), Vector2(93, -36), Vector2(96, -36), Vector2(96, -33), Vector2(96, -30), Vector2(93, -30), Vector2(90, -30), Vector2(90, -33), Vector2(90, -36), Vector2(93, -36), Vector2(93, -33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pictures/ForearmGlove2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.233333, 0.433333, 0.6, 0.733333, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-33, -33), Vector2(-33, -36), Vector2(-30, -36), Vector2(-30, -33), Vector2(-30, -30), Vector2(-33, -30), Vector2(-36, -30), Vector2(-36, -33), Vector2(-36, -36), Vector2(-33, -36), Vector2(-33, -33)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pictures/ForearmguyHead:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 0.149, 1, 7, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pictures/DevilBossBody:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.7, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 3), Vector2(0, -3), Vector2(-3, -9), Vector2(-6, -15), Vector2(-3, -21), Vector2(0, -27), Vector2(-3, -21), Vector2(-6, -15), Vector2(-3, -9), Vector2(0, -3), Vector2(-2, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pictures/ForearmguyHead:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pictures/ForearmGlove:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.789288]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("pictures/ForearmGlove:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.04199)]
+}
+
+[sub_resource type="Animation" id="Animation_ru5de"]
+resource_name = "Evilpunch"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pictures/ForearmGlove:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.7, 1.36667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(92.405, -36), Vector2(100, 15), Vector2(38, 29), Vector2(24, 56), Vector2(-400, 800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pictures/ForearmGlove:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.789288, 3.49066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pictures/ForearmGlove:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1.04199), Vector2(1, 1.47511)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Evilidle"]
+}
+
 [sub_resource type="Animation" id="Animation_lk8fx"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("pictures/ForearmGlove:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"puppeteerBlock"]
+"update": 0,
+"values": [Vector2(93, -33)]
 }
-
-[sub_resource type="Animation" id="Animation_pxg58"]
-resource_name = "block"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pictures/ForearmguyHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pictures/ForearmGlove:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.789288]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pictures/ForearmGlove:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.04199)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer:current_animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"puppeteerBlock", &"puppeteerIdle"]
+"values": [""]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pictures/ForearmGlove2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-33, -33)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("pictures/ForearmGlove2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.382227]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("pictures/ForearmguyHead:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -96)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("pictures/ForearmguyHead:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BrnBabyBurn:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BrnBabyBurn:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ui284"]
 _data = {
-&"RESET": SubResource("Animation_lk8fx"),
-&"block": SubResource("Animation_pxg58")
+&"Evilblock": SubResource("Animation_pxg58"),
+&"Evilbonk": SubResource("Animation_1p2kt"),
+&"Evilbwah": SubResource("Animation_c234i"),
+&"Evilidle": SubResource("Animation_fwb5f"),
+&"Evilpunch": SubResource("Animation_ru5de"),
+&"RESET": SubResource("Animation_lk8fx")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a34e7"]
@@ -88,6 +496,7 @@ animations = [{
 script = ExtResource("1_l3loj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(7.62939e-06, 4)
 scale = Vector2(0.769531, 0.806641)
 sprite_frames = SubResource("SpriteFrames_l3loj")
@@ -97,12 +506,14 @@ animation = &"puppeteerBlock"
 libraries = {
 &"": SubResource("AnimationLibrary_ui284")
 }
+autoplay = "Evilidle"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
 [node name="Spider" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_a34e7")
 animation = &"Spider"
 
@@ -123,5 +534,34 @@ texture = ExtResource("7_a34e7")
 [node name="WarningTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="pictures" type="Node2D" parent="."]
+visible = false
+scale = Vector2(0.75, 0.75)
+
+[node name="DevilBossBody" type="Sprite2D" parent="pictures"]
+position = Vector2(-2, 3)
+texture = ExtResource("8_ru5de")
+
+[node name="ForearmGlove" type="Sprite2D" parent="pictures"]
+position = Vector2(93, -33)
+rotation = 0.789288
+scale = Vector2(1, 1.04199)
+texture = ExtResource("9_c234i")
+
+[node name="ForearmguyHead" type="Sprite2D" parent="pictures"]
+position = Vector2(4, -96)
+texture = ExtResource("10_1p2kt")
+
+[node name="ForearmGlove2" type="Sprite2D" parent="pictures"]
+position = Vector2(-33, -33)
+rotation = 0.382227
+texture = ExtResource("9_c234i")
+
+[node name="BrnBabyBurn" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 104)
+scale = Vector2(2.375, 6)
+texture = ExtResource("11_c234i")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,9 +11,7 @@ var slime = load("res://Scripts/Enemys Scripts/Slime.gd").new()# so i can add mo
 var darkiplier = load("res://Scripts/Enemys Scripts/darkiplier.gd").new()
 var safe = false # used to detect if blocking or dodging
 var enmActions = []
-@export var health = 1
-@export var stamina = 1
-@export var power = 1
+
 
 var rng = RandomNumberGenerator.new()
 var action : int
