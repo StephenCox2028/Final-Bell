@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="2_avwh6"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="Texture2D" uid="uid://w1elkrve14w" path="res://Sprites - Zach/Main Character Animations/Main Character Ring1.png" id="4_d53gg"]
 [ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
