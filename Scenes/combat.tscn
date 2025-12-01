@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="Texture2D" uid="uid://w1elkrve14w" path="res://Sprites - Zach/Main Character Animations/Main Character Ring1.png" id="4_d53gg"]
-[ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
+[ext_resource type="PackedScene" path="res://Scenes/rats.tscn" id="4_ubpar"]
 [ext_resource type="Texture2D" uid="uid://bt8l8c67kf61o" path="res://Sprites - Zach/Main Character Animations/Back Dodge.png" id="4_y8jr2"]
 [ext_resource type="AudioStream" uid="uid://sjyvqs3grmm5" path="res://Music + Sound/punch.mp3" id="5_3w34b"]
 [ext_resource type="Texture2D" uid="uid://btiwku70er16n" path="res://Sprites - Zach/Main Character Animations/Main Character right cross.png" id="5_8xcd4"]
