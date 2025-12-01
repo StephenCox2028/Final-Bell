@@ -153,8 +153,8 @@ texture = ExtResource("12_3q88s")
 script = ExtResource("1_fr7mw")
 
 [node name="SkeletonMain" type="Sprite2D" parent="."]
-position = Vector2(562, 425)
-scale = Vector2(3.53125, 4.32813)
+position = Vector2(964, 604)
+scale = Vector2(4.57813, 5.83594)
 texture = ExtResource("2_8qt01")
 
 [node name="Health" type="Label" parent="."]
@@ -179,9 +179,9 @@ texture_normal = ExtResource("3_uomjv")
 
 [node name="Stamina" type="Label" parent="."]
 layout_mode = 0
-offset_left = 468.5
+offset_left = 597.5
 offset_top = 75.0
-offset_right = 655.5
+offset_right = 784.5
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Smack"
@@ -199,9 +199,9 @@ texture_normal = ExtResource("4_2x3aa")
 
 [node name="Power" type="Label" parent="."]
 layout_mode = 0
-offset_left = 826.0
+offset_left = 1134.5
 offset_top = 75.0
-offset_right = 1013.0
+offset_right = 1321.5
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Vision"
@@ -219,10 +219,11 @@ texture_normal = ExtResource("5_3q88s")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 129.0
-offset_top = 550.0
-offset_right = 316.0
-offset_bottom = 592.0
+offset_left = 63.0
+offset_top = 546.0
+offset_right = 379.0
+offset_bottom = 633.0
+theme_override_font_sizes/font_size = 35
 text = "BACK TO LOCKERS"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -236,11 +237,8 @@ stream = ExtResource("5_uomjv")
 [node name="Denied" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3q88s")
 
-[node name="Transition" parent="." instance=ExtResource("7_ea4s5")]
-position = Vector2(222, 237)
-
 [node name="particles" type="Node2D" parent="."]
-position = Vector2(562, 428)
+position = Vector2(968, 624)
 
 [node name="light" type="CPUParticles2D" parent="particles"]
 position = Vector2(-4, -80)
@@ -282,7 +280,7 @@ scale_amount_min = 0.03
 scale_amount_max = 0.04
 
 [node name="red" type="CPUParticles2D" parent="particles"]
-position = Vector2(13, -55)
+position = Vector2(-1, -84)
 emitting = false
 amount = 13
 texture = ExtResource("9_uomjv")
@@ -297,10 +295,10 @@ color = Color(0.807843, 0.0705882, 0, 1)
 
 [node name="Power2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1161.0
-offset_top = 78.0
-offset_right = 1348.0
-offset_bottom = 127.0
+offset_left = 1603.0
+offset_top = 75.0
+offset_right = 1790.0
+offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Vampire"
 horizontal_alignment = 1
@@ -315,11 +313,35 @@ scale = Vector2(2.5, 2.5)
 focus_mode = 0
 texture_normal = ExtResource("13_ea4s5")
 
+[node name="Descriptions" type="Label" parent="."]
+layout_mode = 0
+offset_top = 839.0
+offset_right = 1917.0
+offset_bottom = 1007.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Transition" parent="." instance=ExtResource("7_ea4s5")]
+position = Vector2(222, 237)
+
+[node name="Black" parent="Transition" index="1"]
+position = Vector2(752.75, 317)
+scale = Vector2(3.85645, 2.44336)
+
+[connection signal="mouse_entered" from="Health/HealthButton" to="." method="_on_health_button_mouse_entered"]
+[connection signal="mouse_exited" from="Health/HealthButton" to="." method="_on_health_button_mouse_exited"]
 [connection signal="pressed" from="Health/HealthButton" to="." method="_on_health_button_pressed"]
+[connection signal="mouse_entered" from="Stamina/StaminaButton" to="." method="_on_stamina_button_mouse_entered"]
+[connection signal="mouse_exited" from="Stamina/StaminaButton" to="." method="_on_stamina_button_mouse_exited"]
 [connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]
+[connection signal="mouse_entered" from="Power/PowerButton" to="." method="_on_power_button_mouse_entered"]
+[connection signal="mouse_exited" from="Power/PowerButton" to="." method="_on_power_button_mouse_exited"]
 [connection signal="pressed" from="Power/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="mouse_entered" from="Power2/VampButton" to="." method="_on_vamp_button_mouse_entered"]
+[connection signal="mouse_exited" from="Power2/VampButton" to="." method="_on_vamp_button_mouse_exited"]
 [connection signal="pressed" from="Power2/VampButton" to="." method="_on_vamp_button_pressed"]
+[connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
 
 [editable path="Transition"]
