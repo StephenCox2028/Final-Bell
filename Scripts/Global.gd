@@ -19,13 +19,7 @@ var levelCosts = {
 
 var combat_ui
 
-#Variables for scoring
-var rng = RandomNumberGenerator.new()
-var num_punches = 0
-var punches_landed = 0
-var accuracy = 0
-var power_punches = 0
-var knockdowns = 0
+
 var Coach = "self"
 
 #Player stats - Mirza
@@ -48,7 +42,8 @@ var bosses = {
 	"block" : false,
 	"difficultyMax" : 5.0,
 	"difficultyMin": 5.0,
-	"block_chance" : 0
+	"block_chance" : 0,
+	"phase" : 1
 }
 
 #boss stats - Mirza
@@ -168,6 +163,7 @@ func powerCostUp() -> void:
 	levelCosts.powerCost += 15
 func totalXP():
 	playerStats.totalXP += 50
+	
 func dead():
 	playerStats.totalXP = 0
 	playerStats.maxPower = 10
@@ -182,7 +178,6 @@ func dead():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-		
 	elif(bosses.health <= 0):
 		Global.totalXP()
 		Global.resetAllPlayerStats()
@@ -191,6 +186,6 @@ func win_conditions() -> void:
 			boss_flip = false
 		else:
 			Boss_counter += 1
-		print(Global.boss_flip)
-		print(Global.Boss_counter)
-		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
+			print(Global.boss_flip)
+			print(Global.Boss_counter)
+			get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
