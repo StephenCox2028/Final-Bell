@@ -497,6 +497,11 @@ position = Vector2(442.166, 206.127)
 scale = Vector2(1.00339, 1.0072)
 texture = ExtResource("18_jcm61")
 
+[node name="MainCharacterProfile" type="Sprite2D" parent="."]
+position = Vector2(1842, 34)
+scale = Vector2(0.734376, 0.433333)
+texture = ExtResource("18_jcm61")
+
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
 [connection signal="animation_looped" from="character/MC_animated" to="." method="_on_mc_animated_animation_looped"]
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
