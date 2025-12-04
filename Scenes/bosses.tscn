@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://elsw72ii6qai"]
+[gd_scene load_steps=68 format=3 uid="uid://elsw72ii6qai"]
 
 [ext_resource type="Script" uid="uid://gagcufyq874w" path="res://Scripts/bosses.gd" id="1_l3loj"]
 [ext_resource type="Texture2D" uid="uid://bkbcoeekxelw2" path="res://Sprites - Zach/Puppeteer Boss/Puppeteer Block.png" id="2_a34e7"]
@@ -112,6 +112,10 @@ region = Rect2(1024, 0, 512, 512)
 atlas = ExtResource("6_ehsdj")
 region = Rect2(1536, 0, 512, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ekjy"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rcfh"]
 atlas = ExtResource("8_myngh")
 region = Rect2(0, 0, 512, 512)
@@ -119,6 +123,10 @@ region = Rect2(0, 0, 512, 512)
 [sub_resource type="AtlasTexture" id="AtlasTexture_we26i"]
 atlas = ExtResource("8_myngh")
 region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4gou"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mi0yf"]
 atlas = ExtResource("9_jldf8")
@@ -128,6 +136,10 @@ region = Rect2(0, 0, 512, 512)
 atlas = ExtResource("9_jldf8")
 region = Rect2(512, 0, 512, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ect7v"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyckd"]
 atlas = ExtResource("10_tojwm")
 region = Rect2(0, 0, 512, 512)
@@ -135,6 +147,14 @@ region = Rect2(0, 0, 512, 512)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gb0wi"]
 atlas = ExtResource("10_tojwm")
 region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyjq6"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_istu3"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbanq"]
 atlas = ExtResource("11_xp46u")
@@ -176,6 +196,14 @@ region = Rect2(2048, 0, 512, 512)
 atlas = ExtResource("12_awfho")
 region = Rect2(2560, 0, 512, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7doyj"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhatg"]
+atlas = ExtResource("9_jldf8")
+region = Rect2(0, 0, 512, 512)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_l3loj"]
 animations = [{
 "frames": [{
@@ -185,7 +213,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_ru5de")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer1Block",
 "speed": 5.0
 }, {
@@ -304,8 +332,11 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_3ia6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ekjy")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2Block",
 "speed": 5.0
 }, {
@@ -315,8 +346,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_we26i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4gou")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2Cross",
 "speed": 5.0
 }, {
@@ -326,8 +360,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f0c28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ect7v")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2Idle",
 "speed": 5.0
 }, {
@@ -337,8 +374,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gb0wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyjq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_istu3")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2Jab",
 "speed": 5.0
 }, {
@@ -352,7 +395,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2g178")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2ThrowP1",
 "speed": 5.0
 }, {
@@ -360,7 +403,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m4ofm")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2ThrowP2",
 "speed": 5.0
 }, {
@@ -382,10 +425,16 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oym26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7doyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhatg")
 }],
-"loop": true,
+"loop": false,
 "name": &"Puppeteer2Walk-In",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="Animation" id="Animation_lk8fx"]
