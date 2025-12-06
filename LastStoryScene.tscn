@@ -13,10 +13,10 @@ offset_left = -570.0
 offset_top = 224.0
 offset_right = 433.0
 offset_bottom = 325.0
-text = "I had no idea where I was. I just saw a figure by the throne. He stated, I had to do two things to ensure my family's health, I 
-had to beat 7 fighters. The second was since this was a fight in hell. I had to start this battle in a skeleton like form. 
-This would make me weaker at the beginning, but every fight I won, I would gain more of myself. If I got beaten by a fighter,
- it would be game over for my family and I. "
+text = "I had no idea where I was. I only saw a figure standing by the throne. He explained, that I had to do two tasks to ensure 
+my family's survival. First, I had to beat 7 fighters. Second, because I was in hell. I had to began the battle in a skeleton 
+like form. This would make me weaker at the start, but every fight I won, I would regain more of myself. If I were defeated
+ by a fighter, it would be game over for my family and I. "
 
 [node name="Final Next button" type="Button" parent="."]
 offset_left = 396.0

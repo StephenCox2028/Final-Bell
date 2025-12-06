@@ -1,9 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://60ka4o03vhs3"]
 
 [ext_resource type="Script" uid="uid://lvkhdv46q6fb" path="res://StoryScript.gd" id="2_32ugh"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dpabd"]
-load_path = "res://.godot/imported/Sprite-0001.png-1a57c6a02d293a8c51edeec9db2fab55.ctex"
+[ext_resource type="Texture2D" uid="uid://c2i2aavdr4xy" path="res://Sprites - John/Am.png" id="2_i74lk"]
 
 [node name="Sprite-0001" type="Sprite2D"]
 position = Vector2(574, 316)
@@ -21,14 +19,19 @@ offset_left = 186.0
 offset_top = 124.0
 offset_right = 972.0
 offset_bottom = 247.0
-text = "One day I was fighting against the champion in the arena to win the world championship.  I was there 
-a few hours early to practice. My family drove separately. On the way their wife and kid got into a bad
- car accident. I heard an ambulance had to take them to the hospital."
+text = "One day I was preparing to fight against the arena for world championship. I arrived a few hours early to practice. My family drove separately,
+ on the way, my wife and child got involved in a serious car accident. On the way their wife and kid got into a bad car accident. I later heard 
+they were taken to the hospital by ambulance."
 
 [node name="Sprite-0001" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(394, 244)
 scale = Vector2(1.67274, 1.64352)
-texture = SubResource("CompressedTexture2D_dpabd")
+
+[node name="Am" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(386, 226)
+scale = Vector2(1.66667, 1.66049)
+texture = ExtResource("2_i74lk")
 
 [connection signal="pressed" from="Next Button" to="." method="_on_back_button_pressed"]

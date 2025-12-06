@@ -47,6 +47,7 @@ scale = Vector2(1.66753, 1.66049)
 texture = ExtResource("2_uj0ok")
 
 [node name="Q and E" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1318.0
 offset_top = 650.0
 offset_right = 2088.0
