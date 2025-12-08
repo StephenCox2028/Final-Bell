@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bebl8umacxmra"]
 
-[ext_resource type="Texture2D" uid="uid://cemw13w35tg1m" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="1_m1npt"]
+[ext_resource type="Texture2D" uid="uid://cqkny05rpmn86" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="1_m1npt"]
 [ext_resource type="Script" uid="uid://dx74b058486s8" path="res://Scenes/upgrade.gd" id="1_rhnba"]
 [ext_resource type="Texture2D" uid="uid://d3g0i16ameypd" path="res://Materials/red.png" id="3_f760y"]
 [ext_resource type="Texture2D" uid="uid://bj8wqn6fn0wa4" path="res://Materials/green.png" id="4_kr20n"]
