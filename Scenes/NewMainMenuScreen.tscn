@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cabjov3jm1ll" path="res://Sprites - John/Main Menu background.png" id="2_n664l"]
 [ext_resource type="Texture2D" uid="uid://bdq6npclkkeh7" path="res://Sprites - John/Main Menu background-Recovered-export.png" id="3_bve4r"]
 [ext_resource type="AudioStream" uid="uid://cvs05smedvow4" path="res://Music + Sound/final-bell---menu.mp3" id="4_w8mej"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="5_oan3g"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="5_oan3g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

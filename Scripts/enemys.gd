@@ -19,12 +19,12 @@ var enemy
 
 func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
-	enemy = randi_range(1, 1)
+	enemy = randi_range(3, 3)
 
 	match enemy:
 		1:
 			action = 0
-			change_stats(5,30,5,5.0,5.0,0)
+			change_stats(10,30,5,5.0,5.0,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			#Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
