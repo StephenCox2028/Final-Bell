@@ -69,7 +69,7 @@ var health: float = 100.0
 
 #Rounds and Timer - Mirza 
 @onready var timer: Timer = $Timer
-var time_in_seconds : int = 0
+var time_in_seconds : int = 90
 var rounds = 0
 
 func _ready():
@@ -150,7 +150,7 @@ func _on_stamina_cooldown_timeout():
 func on_timer_timeout():
 	var m = 0
 	var s = 0
-	time_in_seconds += 1
+	time_in_seconds -= 1
 	m = int(time_in_seconds / 60) #calulates minutes
 	s = time_in_seconds - m * 60 #calculates seconds 
 	start_nextRound(rounds) #starts round 1 and sets new rounds
@@ -306,4 +306,4 @@ func _on_mc_animated_animation_looped():
 
 
 func _on_animation_player_animation_finished(anim_name):
-	timer.start(-1)
+	timer.start(-1) 

@@ -401,7 +401,7 @@ offset_top = 53.0
 offset_right = 874.0
 offset_bottom = 122.0
 theme_override_font_sizes/font_size = 50
-text = "00:00"
+text = "01:30"
 
 [node name="Transition" parent="." instance=ExtResource("2_avwh6")]
 
