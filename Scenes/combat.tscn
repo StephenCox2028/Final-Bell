@@ -1,10 +1,10 @@
 [gd_scene load_steps=37 format=3 uid="uid://r7n78i1k8jn7"]
 
 [ext_resource type="Script" uid="uid://drbv5sr80yqke" path="res://Scripts/combat.gd" id="1_fe60u"]
-[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="2_avwh6"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="2_avwh6"]
 [ext_resource type="Texture2D" uid="uid://6tjhsx4y8xf0" path="res://Sprites - Zach/Ring/Good ring.png" id="2_ut0kg"]
 [ext_resource type="Texture2D" uid="uid://w1elkrve14w" path="res://Sprites - Zach/Main Character Animations/Main Character Ring1.png" id="4_d53gg"]
-[ext_resource type="PackedScene" path="res://Scenes/rats.tscn" id="4_ubpar"]
+[ext_resource type="PackedScene" uid="uid://dhu511fc3hl3e" path="res://Scenes/rats.tscn" id="4_ubpar"]
 [ext_resource type="Texture2D" uid="uid://bt8l8c67kf61o" path="res://Sprites - Zach/Main Character Animations/Back Dodge.png" id="4_y8jr2"]
 [ext_resource type="AudioStream" uid="uid://sjyvqs3grmm5" path="res://Music + Sound/punch.mp3" id="5_3w34b"]
 [ext_resource type="Texture2D" uid="uid://btiwku70er16n" path="res://Sprites - Zach/Main Character Animations/Main Character right cross.png" id="5_8xcd4"]
@@ -367,7 +367,6 @@ sprite_frames = SubResource("SpriteFrames_3cqtn")
 animation = &"Idle"
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Rats" parent="." instance=ExtResource("4_ubpar")]
 position = Vector2(187, 269)
@@ -512,5 +511,6 @@ texture = ExtResource("18_jcm61")
 [connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]
 [connection signal="timeout" from="StaminaCooldown" to="." method="_on_stamina_cooldown_timeout"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="animation_finished" from="VersusScreen/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Transition"]

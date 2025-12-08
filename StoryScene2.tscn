@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://b3iu0ik0ur1va" path="res://story_scene_2.gd" id="2_erxm5"]
 
 [node name="Sprite-0002-recovered" type="Sprite2D"]
-position = Vector2(579, 320)
+position = Vector2(962.5, 539.5)
+scale = Vector2(1.6658, 1.67747)
 texture = ExtResource("1_ng5hq")
 script = ExtResource("2_erxm5")
 

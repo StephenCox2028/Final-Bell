@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://cidwjvrpog7r4" path="res://last_story_scene.gd" id="2_oplpx"]
 
 [node name="Sprite-0004-recovered" type="Sprite2D"]
-position = Vector2(575, 322)
+position = Vector2(957, 539.5)
+scale = Vector2(1.66319, 1.6713)
 texture = ExtResource("1_xas8l")
 script = ExtResource("2_oplpx")
 
@@ -24,5 +25,6 @@ offset_top = 205.0
 offset_right = 567.0
 offset_bottom = 315.0
 text = "Next"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Final Next button" to="." method="_on_final_next_button_pressed"]

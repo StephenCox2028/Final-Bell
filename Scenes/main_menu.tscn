@@ -27,7 +27,8 @@ scale = Vector2(-0.000184499, -0.000106509)
 texture = ExtResource("2_1ehe0")
 
 [node name="MainMenuBackground-recovered-export" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(585, 325)
+position = Vector2(969.5, 537.5)
+scale = Vector2(1.6687, 1.65385)
 texture = ExtResource("3_n45e2")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
@@ -37,38 +38,46 @@ autoplay = true
 
 [node name="Story" type="Button" parent="."]
 layout_mode = 2
-offset_left = 179.0
-offset_top = 317.0
-offset_right = 339.0
-offset_bottom = 348.0
+offset_left = 305.0
+offset_top = 515.0
+offset_right = 531.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 30
 text = "Story"
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 2
-offset_left = 179.0
-offset_top = 386.0
-offset_right = 329.0
-offset_bottom = 417.0
+offset_left = 305.0
+offset_top = 635.0
+offset_right = 531.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="StartButton" type="Button" parent="."]
 clip_contents = true
 layout_mode = 2
-offset_left = 178.0
-offset_top = 198.0
-offset_right = 338.0
-offset_bottom = 229.0
+offset_left = 305.0
+offset_top = 320.0
+offset_right = 531.0
+offset_bottom = 365.0
+theme_override_font_sizes/font_size = 30
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="."]
 layout_mode = 2
-offset_left = 179.0
-offset_top = 251.0
-offset_right = 339.0
-offset_bottom = 282.0
+offset_left = 305.0
+offset_top = 410.0
+offset_right = 531.0
+offset_bottom = 455.0
+theme_override_font_sizes/font_size = 30
 text = "Options"
 
 [node name="Transition" parent="." instance=ExtResource("4_ce3w2")]
+
+[node name="Black" parent="Transition" index="1"]
+position = Vector2(959.5, 534)
+scale = Vector2(3.93164, 2.23437)
 
 [connection signal="pressed" from="Story" to="." method="_on_story_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

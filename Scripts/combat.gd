@@ -68,7 +68,7 @@ var pressTimes = {
 var health: float = 100.0
 
 #Rounds and Timer - Mirza 
-var timer: Timer
+@onready var timer: Timer = $Timer
 var time_in_seconds : int = 0
 var rounds = 0
 
@@ -303,3 +303,7 @@ func DamageTaken():
 func _on_mc_animated_animation_looped():
 	character.stop()
 	character.play("Idle")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	timer.start(-1)

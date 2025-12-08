@@ -49,8 +49,8 @@ _data = {
 }
 
 [node name="LockerRoom" type="Sprite2D"]
-position = Vector2(582, 326)
-scale = Vector2(2.09455, 3.24)
+position = Vector2(966.999, 545)
+scale = Vector2(3.49455, 5.43)
 texture = ExtResource("1_rn47g")
 script = ExtResource("1_22xvq")
 
@@ -104,6 +104,7 @@ offset_top = 32.407
 offset_right = 375.838
 offset_bottom = 63.407
 text = "UPGRADE"
+metadata/_edit_use_anchors_ = true
 
 [node name="CoachesButton" type="Button" parent="Buttons"]
 layout_mode = 0
@@ -112,6 +113,7 @@ offset_top = 68.518
 offset_right = 375.838
 offset_bottom = 99.518
 text = "COACHES"
+metadata/_edit_use_anchors_ = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
 layout_mode = 0
@@ -120,6 +122,7 @@ offset_top = 68.5177
 offset_right = 769.717
 offset_bottom = 99.5177
 text = "QUIT"
+metadata/_edit_use_anchors_ = true
 
 [node name="ContinueButton" type="Button" parent="Buttons"]
 layout_mode = 0
@@ -128,6 +131,7 @@ offset_top = 32.4066
 offset_right = 769.717
 offset_bottom = 63.4066
 text = "CONTINUE"
+metadata/_edit_use_anchors_ = true
 
 [node name="Transition" parent="." instance=ExtResource("9_up1wf")]
 
