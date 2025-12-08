@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpcowe47m35ri"]
+[gd_scene load_steps=3 format=3 uid="uid://dpcowe47m35ri"]
 
 [ext_resource type="Script" uid="uid://oddyk7t8mm8j" path="res://Scripts/options_menu.gd" id="1_lbr8e"]
+[ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Sprite-0001.png" id="2_uj0ok"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_lbr8e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -24,7 +26,6 @@ grow_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
-text = "controls :) but it will be better later"
 
 [node name="Backbutton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -38,5 +39,33 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+
+[node name="Sprite-0001" type="Sprite2D" parent="."]
+process_priority = -1
+position = Vector2(958.5, 537)
+scale = Vector2(1.66753, 1.66049)
+texture = ExtResource("2_uj0ok")
+
+[node name="Q and E" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1318.0
+offset_top = 650.0
+offset_right = 2088.0
+offset_bottom = 771.0
+theme_override_font_sizes/font_size = 20
+text = "Press the q button to punch left. 
+Press the e button to punch right. 
+Hold both buttons Q and E to preform a hook.
+"
+
+[node name="A and D" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 657.0
+offset_right = 1242.0
+offset_bottom = 738.0
+theme_override_font_sizes/font_size = 20
+text = "Press the left arrow and A to dodge left. 
+Press the right arrow and D to dodge right."
 
 [connection signal="pressed" from="VBoxContainer/Backbutton" to="." method="_on_backbutton_pressed"]

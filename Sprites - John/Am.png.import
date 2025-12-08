@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqkny05rpmn86"
-path="res://.godot/imported/Skeleton main.png-49c15a65b65aaeea1778bfd9647e802f.ctex"
+uid="uid://c2i2aavdr4xy"
+path="res://.godot/imported/Am.png-a97bb5b4a70b62b6641ecdbfe113ab2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png"
-dest_files=["res://.godot/imported/Skeleton main.png-49c15a65b65aaeea1778bfd9647e802f.ctex"]
+source_file="res://Sprites - John/Am.png"
+dest_files=["res://.godot/imported/Am.png-a97bb5b4a70b62b6641ecdbfe113ab2d.ctex"]
 
 [params]
 
