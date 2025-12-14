@@ -43,7 +43,7 @@ func _on_upgrade_button_pressed():
 func _on_continue_button_pressed():
 	Global.resetAllPlayerStats()
 	choice = 2
-	if Global.Boss_counter == 2:
+	if Global.Boss_counter == 2 or Global.Boss_counter == 5:
 		Global.boss_flip = true
 		print(Global.boss_flip)
 		print(Global.Boss_counter)
