@@ -18,14 +18,6 @@ var levelCosts = {
 }
 
 var combat_ui
-
-#Variables for scoring
-var rng = RandomNumberGenerator.new()
-var num_punches = 0
-var punches_landed = 0
-var accuracy = 0
-var power_punches = 0
-var knockdowns = 0
 var Coach = "self"
 
 #Player stats - Mirza
@@ -48,7 +40,9 @@ var bosses = {
 	"block" : false,
 	"difficultyMax" : 5.0,
 	"difficultyMin": 5.0,
-	"block_chance" : 0
+	"block_chance" : 0,
+	"phase": 1,
+	"phase-change": false
 }
 
 #boss stats - Mirza
@@ -127,6 +121,8 @@ func depleteStamina(move, multiplier) -> void:
 		playerStats.stamina -= 1
 	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
 	
+	
+
 func getPlayerHealth():
 	return playerStats.health
 func getPlayerStamina():
@@ -182,15 +178,14 @@ func dead():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-		
 	elif(bosses.health <= 0):
 		Global.totalXP()
 		Global.resetAllPlayerStats()
 		if boss_flip == true:
-			Boss_counter = 0
+			Boss_counter += 1
 			boss_flip = false
 		else:
 			Boss_counter += 1
-		print(Global.boss_flip)
-		print(Global.Boss_counter)
+		print("Boss flip:" + str(Global.boss_flip))
+		print("Boss Flip counter: " + str(Global.Boss_counter))
 		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
