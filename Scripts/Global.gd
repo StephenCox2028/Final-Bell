@@ -22,10 +22,10 @@ var Coach = "self"
 
 #Player stats - Mirza
 var playerStats = {
-	"health" : 40,
+	"health" : 100,
 	"stamina" : 10,
 	"power" : 10,
-	"maxHealth" : 40,
+	"maxHealth" : 200,
 	"maxStamina" : 10,
 	"maxPower" : 10,
 	"dodging": false,

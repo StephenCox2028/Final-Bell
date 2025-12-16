@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_uomjv"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_3q88s"]
 [ext_resource type="Texture2D" uid="uid://ep7i7nyfgej2" path="res://Sprites - John/Sprite-0001-Recovered.png" id="6_ea4s5"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ea4s5"]
+[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="7_ea4s5"]
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
 [ext_resource type="Texture2D" uid="uid://drddilf3xn7n3" path="res://Materials/blue.png" id="10_3q88s"]

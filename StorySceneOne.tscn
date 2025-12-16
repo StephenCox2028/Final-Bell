@@ -19,9 +19,8 @@ offset_left = 186.0
 offset_top = 124.0
 offset_right = 972.0
 offset_bottom = 247.0
-text = "One day I was preparing to fight against the arena for world championship. I arrived a few hours early to practice. My family drove separately,
- on the way, my wife and child got involved in a serious car accident. On the way their wife and kid got into a bad car accident. I later heard 
-they were taken to the hospital by ambulance."
+text = "One day, I was preparing to fight for the world championship. I arrived a few hours early to practice.
+ My family drove separately. On the way, my wife and child got involved in a serious car accident."
 
 [node name="Sprite-0001" type="Sprite2D" parent="."]
 z_index = -1
