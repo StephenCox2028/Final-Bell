@@ -20,7 +20,7 @@ var enmActions = []
 
 func _ready():
 		enmActions = [puppeteer,evilman]#add more latter
-		match Global.Boss_counter:
+		match Global.Enemy_tally:
 				1:
 						action = 0
 						change_stats(20,20,0,5.0, 5.0, 0)
@@ -35,7 +35,7 @@ func _ready():
 				3:
 						action = 0
 						change_stats(20,0,20,5.0, 5.0, 0)
-						animated_sprite_2d.play("Evilpunch")
+						animated_sprite_2d.play("Evilidle")
 						pictures.visible =true
 						pass
 

@@ -3,7 +3,7 @@ var Score = 0
 var Boss_counter = 0 # make this increase when leaving the locker room
 var boss_flip = false # make sure its off
 #var currentBoss = null
-var Enemy_tally = 0
+var Enemy_tally = 1
 var MAXHEALTH = 40
 var MAXSTAMINA = 10
 var MAXPOWER = 10
@@ -189,6 +189,7 @@ func win_conditions() -> void:
 		if boss_flip == true:
 			Boss_counter = 0
 			boss_flip = false
+			Enemy_tally += 1
 		else:
 			Boss_counter += 1
 		print(Global.boss_flip)
