@@ -24,17 +24,17 @@ func _ready():
 	match enemy:
 		1:
 			action = 0
-			change_stats(400,30,2,5.0,5.0,0)
+			change_stats(500,30,2,5.0,5.0,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			#Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
 			timer.start()
 			skeletonMusic.play()
 			skeletonMusic.autoplay = true
-			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
+			pass
 		2:
 			action = 1
-			change_stats(800,20,1, 3.5, 1.5,0)
+			change_stats(700,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -57,11 +57,13 @@ func _on_warning_timer_timeout():
 	exclamationPoint.visible = false
 
 func _on_timer_timeout() -> void:	
+	if Global.bosses.stamina <= 0: #fixes stamina problems
+		timer.start()
+		return
 	exclamationPoint.visible = true
 	warningTimer.start()
 	enmActions[action].call("Actions", self)
 	timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
-	timer.start()
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Dodge" or anim_name == "Temp Dodge" or anim_name == "blackdodge":
@@ -72,6 +74,7 @@ func _on_animation_player_animation_finished(anim_name):
 func change_stats(hp,sta,pow,max,min, blckchnce):
 	Global.bosses.health 		= hp
 	Global.bosses.stamina 		= sta
+	Global.bosses.stamina = sta
 	Global.bosses.power 		= pow
 	Global.bosses.difficultyMax = max
 	Global.bosses.difficultyMin = min

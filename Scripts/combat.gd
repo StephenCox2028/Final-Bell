@@ -14,6 +14,7 @@ extends Node2D
 @onready var versusScreen = $VersusScreen
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
+var rounds: int = 1
 
 func idle():
 	character.play("Idle")
@@ -70,7 +71,6 @@ var health: float = 100.0
 #Rounds and Timer - Mirza 
 @onready var timer: Timer = $Timer
 var time_in_seconds : int = 90
-var rounds = 0
 
 func _ready():
 	transition.play("fade-in")
@@ -89,6 +89,11 @@ func _ready():
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
+	
+	$rounds.text = "Rounds:" + str(rounds)
+	start_nextRound()
+	timer.start()
+	
 	# make the power bar dissapear if you are smart but enemy bar apeer
 	if Global.Coach == "smart":
 		enemy_hp.visible = true
@@ -147,22 +152,25 @@ func _process(delta) -> void:
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
+func start_nextRound():
+	time_in_seconds = 90
+	$Label.text = "01:30"	
+	
 func on_timer_timeout():
-	var m = 0
-	var s = 0
-	time_in_seconds -= 1
-	m = int(time_in_seconds / 60) #calulates minutes
-	s = time_in_seconds - m * 60 #calculates seconds 
-	start_nextRound(rounds) #starts round 1 and sets new rounds
+	if time_in_seconds > 0:
+			time_in_seconds -= 1
+	var m = int(time_in_seconds / 60) #calulates minutes
+	var s = time_in_seconds % 60 #calculates seconds 
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if m == 1  && s == 30:
-		start_nextRound(rounds) 
+	if time_in_seconds == 0:
+		rounds += 1
+		$rounds.text = "Rounds: " + str(rounds)
+		if rounds > 8:
+			Global.end_match()
+		else: 
+			start_nextRound()
+			
 
-func start_nextRound(rounds):
-	rounds += 1
-	$rounds.text = 'Rounds: ' + str(rounds)
-	if rounds > 8:
-		Global.end_match()
 
 #Player dodge and attack inputs - Stephen
 func _input(event):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwusklcd377g5"]
 
-[ext_resource type="Texture2D" uid="uid://b74piv1tx1llr" path="res://Sprites - John/Sprite-0002-Recovered.png" id="1_ng5hq"]
+[ext_resource type="Texture2D" uid="uid://b74piv1tx1llr" path="res://Sprites - John/Story Boxing Arena.png" id="1_ng5hq"]
 [ext_resource type="Script" uid="uid://b3iu0ik0ur1va" path="res://story_scene_2.gd" id="2_erxm5"]
 
 [node name="Sprite-0002-recovered" type="Sprite2D"]

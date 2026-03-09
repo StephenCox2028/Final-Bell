@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bj8wqn6fn0wa4" path="res://Materials/green.png" id="4_kr20n"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_pt5ib"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_q44um"]
-[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_cj77a"]
+[ext_resource type="PackedScene" uid="uid://bq7vabnlq41bn" path="res://Scenes/transition.tscn" id="7_cj77a"]
 [ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="8_02w2n"]
 [ext_resource type="Texture2D" uid="uid://btqmo4h4che43" path="res://Upgrade Menu/Glass.png" id="10_nv1wo"]
 [ext_resource type="Texture2D" uid="uid://bq4qvc8helwc5" path="res://Upgrade Menu/Slime Monster Idle-sheet.png" id="10_wk5g7"]
@@ -272,8 +272,8 @@ tracks/2/keys = {
 "values": [Vector2(961, 657), Vector2(961, 815)]
 }
 
-[sub_resource type="Animation" id="Animation_2fcax"]
-resource_name = "spittingStamina"
+[sub_resource type="Animation" id="Animation_06sot"]
+resource_name = "spittingPower"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -285,7 +285,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.976471, 1, 0.152941, 1)]
+"values": [Color(0.880863, 0.547186, 0.0280383, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -312,8 +312,8 @@ tracks/2/keys = {
 "values": [Vector2(961, 657), Vector2(961, 815)]
 }
 
-[sub_resource type="Animation" id="Animation_06sot"]
-resource_name = "spittingPower"
+[sub_resource type="Animation" id="Animation_2fcax"]
+resource_name = "spittingStamina"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -325,7 +325,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.880863, 0.547186, 0.0280383, 1)]
+"values": [Color(0.976471, 1, 0.152941, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

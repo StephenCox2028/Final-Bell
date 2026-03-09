@@ -23,12 +23,12 @@ func _ready():
 		match Global.Boss_counter:
 				2:
 						action = 0
-						change_stats(500,20,2,5.0, 5.0, 0)
+						change_stats(1000,20,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("Puppeteer1Idle")
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
-						change_stats(500,20,2,5.0, 5.0, 0)
+						change_stats(1000,20,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
 						
@@ -40,6 +40,7 @@ func _on_timer_timeout() -> void:
 func change_stats(hp,sta,pow,max,min, blockchance):
 	Global.bosses.health = hp
 	Global.bosses.stamina = sta
+	Global.bosses.stamina_max = sta # prevents stamina bugs
 	Global.bosses.power = pow
 	Global.bosses.difficultyMax = max
 	Global.bosses.difficultyMin = min

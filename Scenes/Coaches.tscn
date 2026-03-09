@@ -7,12 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_uomjv"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_3q88s"]
 [ext_resource type="Texture2D" uid="uid://ep7i7nyfgej2" path="res://Sprites - John/Sprite-0001-Recovered.png" id="6_ea4s5"]
-[ext_resource type="PackedScene" path="res://Scenes/transition.tscn" id="7_ea4s5"]
+[ext_resource type="PackedScene" uid="uid://bq7vabnlq41bn" path="res://Scenes/transition.tscn" id="7_ea4s5"]
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
 [ext_resource type="Texture2D" uid="uid://drddilf3xn7n3" path="res://Materials/blue.png" id="10_3q88s"]
 [ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="12_3q88s"]
-[ext_resource type="Texture2D" uid="uid://clsox23l0lqt8" path="res://Sprites - John/Sprite-0002.png" id="13_ea4s5"]
+[ext_resource type="Texture2D" uid="uid://clsox23l0lqt8" path="res://Sprites - John/Vampire.png" id="13_ea4s5"]
 
 [sub_resource type="Animation" id="Animation_q44um"]
 length = 0.001
@@ -179,10 +179,10 @@ texture_normal = ExtResource("3_uomjv")
 
 [node name="Stamina" type="Label" parent="."]
 layout_mode = 0
-offset_left = 597.5
-offset_top = 75.0
-offset_right = 784.5
-offset_bottom = 124.0
+offset_left = 863.0
+offset_top = 84.0
+offset_right = 1050.0
+offset_bottom = 133.0
 theme_override_font_sizes/font_size = 35
 text = "Smack"
 horizontal_alignment = 1
@@ -198,6 +198,7 @@ focus_mode = 0
 texture_normal = ExtResource("4_2x3aa")
 
 [node name="Power" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1134.5
 offset_top = 75.0
