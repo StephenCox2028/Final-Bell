@@ -8,6 +8,7 @@ extends Node2D
 @onready var transition = $Transition/Transition
 
 var choice
+var buttonPressed = false
 
 const RATS = preload("res://Scenes/rats.tscn")
 
@@ -37,25 +38,33 @@ func spawn_rat():
 	move_child(rat,8)		#Moves the rat back in the scene tree so transition appears above it.
 
 func _on_upgrade_button_pressed():
-	choice = 1
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 1
+		transition.play("fade-out")
 	
 func _on_continue_button_pressed():
-	Global.resetAllPlayerStats()
-	choice = 2
-	if Global.Boss_counter == 2 or Global.Boss_counter == 5:
-		Global.boss_flip = true
-		print(Global.boss_flip)
-		print(Global.Boss_counter)
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		Global.resetAllPlayerStats()
+		choice = 2
+		if Global.Boss_counter == 2 or Global.Boss_counter == 5:
+			Global.boss_flip = true
+			print(Global.boss_flip)
+			print(Global.Boss_counter)
+		transition.play("fade-out")
 
 func _on_quit_button_pressed():
-	choice = 3
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 3
+		transition.play("fade-out")
 
 func _on_coaches_button_pressed() -> void:
-	choice = 4
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 4
+		transition.play("fade-out")
 	
 func _on_transition_animation_finished(anim_name):
 		match choice:

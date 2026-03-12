@@ -7,22 +7,31 @@ extends Control
 
 
 var choice
+var buttonPressed = false
 
 func _ready():
 	transition.play("fade-in")
 
 func _on_start_button_pressed() -> void:	#Connects the start menu .
-	choice = 1
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 1
+		transition.play("fade-out")
 func _on_options_button_pressed() -> void: 
-	choice = 2
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 2
+		transition.play("fade-out")
 func _on_quit_button_pressed() -> void:
-	choice = 3
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 3
+		transition.play("fade-out")
 func _on_story_pressed() -> void:
-	choice = 4
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 4
+		transition.play("fade-out")
 
 
 func _on_transition_animation_finished(anim_name):
