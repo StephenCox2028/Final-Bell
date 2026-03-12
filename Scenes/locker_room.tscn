@@ -133,6 +133,45 @@ offset_bottom = 63.4066
 text = "CONTINUE"
 metadata/_edit_use_anchors_ = true
 
+[node name="CheckButton1" type="CheckButton" parent="Buttons"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 291.296
+offset_top = 108.645
+offset_right = 335.296
+offset_bottom = 132.645
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 1
+
+[node name="CheckButton2" type="CheckButton" parent="Buttons"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 408.335
+offset_top = 16.9319
+offset_right = 452.335
+offset_bottom = 40.9319
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 1
+
+[node name="CheckButton3" type="CheckButton" parent="Buttons"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 626.103
+offset_top = 16.5635
+offset_right = 670.103
+offset_bottom = 40.5635
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 1
+
+[node name="SecretButton" type="Button" parent="Buttons"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 520.51
+offset_top = 74.5746
+offset_right = 528.51
+offset_bottom = 82.5746
+scale = Vector2(0.27, 0.27)
+
 [node name="Transition" parent="." instance=ExtResource("9_up1wf")]
 
 [node name="Black" parent="Transition" index="1"]
@@ -143,6 +182,10 @@ position = Vector2(261.154, 133.951)
 [connection signal="pressed" from="Buttons/CoachesButton" to="." method="_on_coaches_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Buttons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Buttons/CheckButton1" to="." method="_on_check_button_1_pressed"]
+[connection signal="pressed" from="Buttons/CheckButton2" to="." method="_on_check_button_2_pressed"]
+[connection signal="pressed" from="Buttons/CheckButton3" to="." method="_on_check_button_3_pressed"]
+[connection signal="pressed" from="Buttons/SecretButton" to="." method="_on_secret_button_pressed"]
 [connection signal="animation_finished" from="Transition/Transition" to="." method="_on_transition_animation_finished"]
 
 [editable path="Transition"]

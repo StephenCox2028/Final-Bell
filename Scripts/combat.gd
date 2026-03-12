@@ -73,6 +73,9 @@ var health: float = 100.0
 var time_in_seconds : int = 90
 
 func _ready():
+	if Global.secretEnabled == true:
+		Global.playerStats.health = 50000
+	print(Global.playerStats.health)
 	transition.play("fade-in")
 	versusScreenAnim.play("Versus")
 	Global.combat_ui = self

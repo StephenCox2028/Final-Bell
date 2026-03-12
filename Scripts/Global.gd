@@ -10,6 +10,7 @@ var MAXPOWER = 10
 
 var enemy_max =1
 @export var battleStarted: bool
+var secretEnabled: bool = false
 
 var levelCosts = {
 	"healthCost" : 10,
