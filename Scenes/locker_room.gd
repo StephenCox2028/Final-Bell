@@ -30,11 +30,11 @@ func _on_timer_timeout() -> void:
 func spawn_rat():
 	# Make an instance of the Rat scene
 	var rat = RATS.instantiate()
-
 	# Optional: set position or random offset
 	rat.position = Vector2(-120, -52)
 	# Add it as a child of this scene
 	add_child(rat)
+	move_child(rat,8)		#Moves the rat back in the scene tree so transition appears above it.
 
 func _on_upgrade_button_pressed():
 	choice = 1
