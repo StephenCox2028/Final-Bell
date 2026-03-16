@@ -42,7 +42,7 @@ var bosses = {
 	"difficultyMin": 5.0,
 	"block_chance" : 0,
 	"phase": 1,
-	"phase-change": false
+	"phase-change": false,
 }
 
 #boss stats - Mirza
@@ -180,6 +180,7 @@ func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	elif(bosses.health <= 0):
+		Global.bosses.is_dead = true
 		Global.totalXP()
 		Global.resetAllPlayerStats()
 		if boss_flip == true:
