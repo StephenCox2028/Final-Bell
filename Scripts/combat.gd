@@ -14,7 +14,10 @@ extends Node2D
 @onready var versusScreen = $VersusScreen
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
-var rounds: int = 1
+
+@onready var timer: Timer = $Timer
+var time_in_seconds : int = 90
+var rounds: int = Global.current_round
 
 func idle():
 	character.play("Idle")
@@ -69,9 +72,6 @@ var pressTimes = {
 var health: float = 100.0
 
 #Rounds and Timer - Mirza 
-@onready var timer: Timer = $Timer
-var time_in_seconds : int = 90
-
 func _ready():
 	transition.play("fade-in")
 	versusScreenAnim.play("Versus")
@@ -84,22 +84,17 @@ func _ready():
 	stamina_bar.value = (100)
 	power_bar.value = (0)
 	enemy_hp.value = (100)
-	enemy_hp.visible = false
-	$BarContainer/BarforfightameTop2.visible=false
+	enemy_hp.visible = true
+	$BarContainer/BarforfightameTop2.visible=true
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
-	
+	rounds = Global.current_round
 	$rounds.text = "Rounds:" + str(rounds)
 	start_nextRound()
 	timer.start()
 	
 	# make the power bar dissapear if you are smart but enemy bar apeer
-	if Global.Coach == "smart":
-		enemy_hp.visible = true
-		power_bar.visible = false
-		$BarContainer/BarforfightameTop2.visible=true
-		$BarContainer/BarforfightameRight.visible=false
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -145,7 +140,7 @@ func _process(delta) -> void:
 				Global.playerStats.stamina = Global.playerStats.maxStamina
 		#If player is NOT greater or equal to the max stamina, raise stamina.
 		if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
-			Global.playerStats.stamina += 0.05
+			Global.playerStats.stamina += 0.025
 		#print(Global.getPlayerStamina())
 		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
@@ -154,7 +149,8 @@ func _on_stamina_cooldown_timeout():
 
 func start_nextRound():
 	time_in_seconds = 90
-	$Label.text = "01:30"	
+	$Label.text = "01:30"
+	timer.start()	
 	
 func on_timer_timeout():
 	if time_in_seconds > 0:
@@ -162,13 +158,18 @@ func on_timer_timeout():
 	var m = int(time_in_seconds / 60) #calulates minutes
 	var s = time_in_seconds % 60 #calculates seconds 
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
+	
 	if time_in_seconds == 0:
+		timer.stop()
+		
 		rounds += 1
+		Global.current_round = rounds
 		$rounds.text = "Rounds: " + str(rounds)
+	
 		if rounds > 8:
 			Global.end_match()
 		else: 
-			start_nextRound()
+			get_tree().change_scene_to_file("res://round_complete.tscn")
 			
 
 
@@ -313,5 +314,5 @@ func _on_mc_animated_animation_looped():
 	character.play("Idle")
 
 
-func _on_animation_player_animation_finished(anim_name):
-	timer.start(-1) 
+#func _on_animation_player_animation_finished(anim_name):
+	#timer.start(-1) 

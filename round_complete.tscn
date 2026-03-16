@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl1fi584uv0b8"]
+
+[ext_resource type="Texture2D" uid="uid://d0oke5j7wm7fc" path="res://Sprites - Zach/Ring/Round.Complete.png" id="1_cjl1k"]
+[ext_resource type="Script" uid="uid://cqv2rtg47lcu0" path="res://round_complete.gd" id="2_a2yle"]
+
+[node name="Round_complete" type="Sprite2D"]
+position = Vector2(960, 544)
+scale = Vector2(1.65278, 1.67901)
+texture = ExtResource("1_cjl1k")
+script = ExtResource("2_a2yle")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
