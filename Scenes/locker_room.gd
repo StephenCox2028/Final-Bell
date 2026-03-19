@@ -22,7 +22,6 @@ const RATS = preload("res://Scenes/rats.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	transition.play("fade-in")
 	animation.play("breathing")
 
 func _on_timer_timeout() -> void:

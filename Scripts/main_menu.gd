@@ -9,9 +9,6 @@ extends Control
 var choice
 var buttonPressed = false
 
-func _ready():
-	transition.play("fade-in")
-
 func _on_start_button_pressed() -> void:	#Connects the start menu .
 	if buttonPressed == false:
 		buttonPressed = true
