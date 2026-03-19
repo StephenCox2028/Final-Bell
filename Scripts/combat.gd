@@ -69,7 +69,7 @@ var health: float = 100.0
 
 #Rounds and Timer - Mirza 
 @onready var timer: Timer = $Timer
-var time_in_seconds : int = 0
+var time_in_seconds : int = 90
 var rounds = 0
 
 func _ready():
@@ -84,17 +84,13 @@ func _ready():
 	stamina_bar.value = (100)
 	power_bar.value = (0)
 	enemy_hp.value = (100)
-	enemy_hp.visible = false
-	$BarContainer/BarforfightameTop2.visible=false
+	enemy_hp.visible = true
+	$BarContainer/BarforfightameTop2.visible=true
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
 	# make the power bar dissapear if you are smart but enemy bar apeer
-	if Global.Coach == "smart":
-		enemy_hp.visible = true
-		power_bar.visible = false
-		$BarContainer/BarforfightameTop2.visible=true
-		$BarContainer/BarforfightameRight.visible=false
+
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -150,7 +146,7 @@ func _on_stamina_cooldown_timeout():
 func on_timer_timeout():
 	var m = 0
 	var s = 0
-	time_in_seconds += 1
+	time_in_seconds -= 1
 	m = int(time_in_seconds / 60) #calulates minutes
 	s = time_in_seconds - m * 60 #calculates seconds 
 	start_nextRound(rounds) #starts round 1 and sets new rounds
@@ -167,16 +163,17 @@ func start_nextRound(rounds):
 #Player dodge and attack inputs - Stephen
 func _input(event):
 	if Global.battleStarted:
-		if power_bar.value == 100 &&Input.is_action_just_pressed("SuperMove"):
+		if power_bar.value == 100 && Input.is_action_just_pressed("SuperMove") and canmove:
 			match Global.Coach:
 				"self":
-					Global.bosses.health -= 50# also make a bone animation
+					Global.bosses.health = Global.bosses.health * .90# also make a bone animation
 				"angel":
-					Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+					Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+					hp_bar.value = (100)
 				_:
 					pass
-			power_bar.value == 0
-		if Input.is_action_just_pressed("dodgeright"): 
+			power_bar.value = (0)
+		if Input.is_action_just_pressed("dodgeright") and canmove: 
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if canmove == true: # Conditional to check if the player is able to make a move.
 					if isdodge == false: # Checks to see if you aren't in the middle of dodging.
@@ -186,7 +183,7 @@ func _input(event):
 							Global.playerStats.dodging = true	# This allows for the global script to know that the player is dodging.
 							Global.depleteStamina("dodge", heldTime)
 							pass
-		if Input.is_action_just_pressed("dodgeleft"):
+		if Input.is_action_just_pressed("dodgeleft") and canmove:
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if canmove == true: # Conditional to check if the player is able to make a move.
 					if isdodge == false: # Checks to see if you aren't in the middle of dodging.
@@ -197,7 +194,7 @@ func _input(event):
 							Global.depleteStamina("dodge", heldTime)
 							pass
 
-		if Input.is_action_pressed("attackLeft"):
+		if Input.is_action_pressed("attackLeft") and canmove:
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if isHolding == false:	#If Q is not being held down.
 					pressTimes["leftAttack"] = Time.get_ticks_msec() / 1000.0	#Tracks the total time that the process has been running.
@@ -206,7 +203,7 @@ func _input(event):
 				if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If Q has been held longer than the HOLD_TIME_THRESHOLD... 
 					start_shake()	#Run the shaking function.
 					heldTime = 0	#Set heldTime back to 0. 
-		if Input.is_action_just_released("attackLeft"):
+		if Input.is_action_just_released("attackLeft") and canmove:
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if isdodge == false:
 					heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["leftAttack"]
@@ -221,16 +218,16 @@ func _input(event):
 					if character.position != originalPos:	#If the character position is not at it's original...
 						character.position = originalPos	#Reset the position after shaking.
 						leftHook()
-		if Input.is_action_pressed("attackRight"):
+		if Input.is_action_pressed("attackRight") and canmove:
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if isHolding == false:	#If E is not being held down.
 					pressTimes["rightAttack"] = Time.get_ticks_msec() / 1000.0		#Tracks the total time that the process has been running.
 					isHolding = true
 				heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]	#Tracks the time that Q has been held by subtracting the present process time to the time that E was first held down.
 				if heldTime >= HOLD_TIME_THRESHOLD and isHolding == true:	#If E has been held longer than the HOLD_TIME_THRESHOLD...
-					start_shake()	#Run the shaking function.
+					start_shake()	#Run the shaking function.s
 					heldTime = 0	#Set heldTime back to 0.
-		if Input.is_action_just_released("attackRight"):
+		if Input.is_action_just_released("attackRight") and canmove:
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if isdodge == false:
 					heldTime = (Time.get_ticks_msec()/1000.0) - pressTimes["rightAttack"]
@@ -306,4 +303,4 @@ func _on_mc_animated_animation_looped():
 
 
 func _on_animation_player_animation_finished(anim_name):
-	timer.start(-1)
+	timer.start(-1) 

@@ -3,7 +3,7 @@ var Score = 0
 var Boss_counter = 0 # make this increase when leaving the locker room
 var boss_flip = false # make sure its off
 #var currentBoss = null
-var Enemy_tally = 1
+var Enemy_tally = 0
 var MAXHEALTH = 40
 var MAXSTAMINA = 10
 var MAXPOWER = 10
@@ -18,22 +18,14 @@ var levelCosts = {
 }
 
 var combat_ui
-
-#Variables for scoring
-var rng = RandomNumberGenerator.new()
-var num_punches = 0
-var punches_landed = 0
-var accuracy = 0
-var power_punches = 0
-var knockdowns = 0
 var Coach = "self"
 
 #Player stats - Mirza
 var playerStats = {
-	"health" : 40,
+	"health" : 100,
 	"stamina" : 10,
 	"power" : 10,
-	"maxHealth" : 40,
+	"maxHealth" : 200,
 	"maxStamina" : 10,
 	"maxPower" : 10,
 	"dodging": false,
@@ -48,7 +40,9 @@ var bosses = {
 	"block" : false,
 	"difficultyMax" : 5.0,
 	"difficultyMin": 5.0,
-	"block_chance" : 0
+	"block_chance" : 0,
+	"phase": 1,
+	"phase-change": false
 }
 
 #boss stats - Mirza
@@ -60,6 +54,7 @@ var bosses = {
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses.power
+	print(playerStats.health)
 	if combat_ui:
 		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 	win_conditions()
@@ -127,6 +122,8 @@ func depleteStamina(move, multiplier) -> void:
 		playerStats.stamina -= 1
 	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
 	
+	
+
 func getPlayerHealth():
 	return playerStats.health
 func getPlayerStamina():
@@ -153,6 +150,8 @@ func resetAllPlayerStats() -> void:
 	playerStats.power = playerStats.maxPower
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
+	MAXHEALTH += new
+	playerStats.health = MAXHEALTH
 func setMaxPlayerStamina(new) -> void:
 	playerStats.maxStamina += new
 func setMaxPlayerPower(new) -> void:
@@ -182,16 +181,14 @@ func dead():
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
-		
 	elif(bosses.health <= 0):
 		Global.totalXP()
 		Global.resetAllPlayerStats()
 		if boss_flip == true:
-			Boss_counter = 0
+			Boss_counter += 1
 			boss_flip = false
-			Enemy_tally += 1
 		else:
 			Boss_counter += 1
-		print(Global.boss_flip)
-		print(Global.Boss_counter)
+		print("Boss flip:" + str(Global.boss_flip))
+		print("Boss Flip counter: " + str(Global.Boss_counter))
 		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
