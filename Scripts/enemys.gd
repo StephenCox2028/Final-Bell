@@ -16,7 +16,6 @@ var action : int
 
 func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
-	enemy = randi_range(1, 1)
 
 	match Global.Boss_counter:
 		0:

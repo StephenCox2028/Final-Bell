@@ -260,7 +260,7 @@ func start_shake():
 	#while either Q or E is held down, it looks like the character is shaking, but in reality the character is shifting positions quickly.
 	character.position = originalPos + Vector2(randf_range(-SHAKE_STRENGTH, SHAKE_STRENGTH), randf_range(-SHAKE_STRENGTH, SHAKE_STRENGTH))
 	
-	tawai get_tree().process_frame	#Waits for the next frame.
+	await get_tree().process_frame	#Waits for the next frame.
 
 	if isHolding:	#If the player is still holding down a key, repeat the function.
 		start_shake()
