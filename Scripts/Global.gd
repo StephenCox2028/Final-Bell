@@ -23,10 +23,10 @@ var Coach = "self"
 
 #Player stats - Mirza
 var playerStats = {
-	"health" : 500,
+	"health" : 100,
 	"stamina" : 10,
 	"power" : 10,
-	"maxHealth" : 700,
+	"maxHealth" : 200,
 	"maxStamina" : 10,
 	"maxPower" : 10,
 	"dodging": false,
@@ -55,13 +55,14 @@ var bosses = {
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses.power
+	print(playerStats.health)
 	if combat_ui:
-		combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0 #issue with healing
+		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 	win_conditions()
 	
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
-		playerStats.stamina -= 2.10
+		playerStats.stamina -= 2
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
 				var chance = randi_range(1, 100)# HERE is the block---------------------------------------------------------
@@ -71,10 +72,10 @@ func depleteStamina(move, multiplier) -> void:
 					combat_ui.power_bar.value += 10
 					combat_ui.enemy_hp.value = float(bosses.health)/float(enemy_max)*100
 					if (Coach == "vamp"):
-						playerStats.health += playerStats.maxHealth * 0.01  #heal bar #issue with healing
-						if (playerStats.health > playerStats.maxHealth):
-							playerStats.health = playerStats.maxHealth
-						combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
+						playerStats.health += MAXHEALTH*.05  #heal bar
+						if (playerStats.health > MAXHEALTH):
+							playerStats.health = MAXHEALTH
+						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 				else:
 					print("NO DAMAGE DONE!")
 			else:
@@ -83,13 +84,13 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				if (Coach == "vamp"):
 					playerStats.health += MAXHEALTH*.05  #heal bar
-					if (playerStats.health > playerStats.maxHealth):
-						playerStats.health = playerStats.maxHealth
+					if (playerStats.health > MAXHEALTH):
+						playerStats.health = MAXHEALTH
 					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 		print(bosses.health)
 		win_conditions()
 	elif move == "hook":
-		playerStats.stamina -= multiplier * 1.5
+		playerStats.stamina -= multiplier * 2
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
 				var chance = randi_range(1,100)# HERE is the block---------------------------------------------------------
@@ -98,10 +99,10 @@ func depleteStamina(move, multiplier) -> void:
 					combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 					combat_ui.power_bar.value += 10
 					if (Coach == "vamp"):
-						playerStats.health += playerStats.maxHealth* 0.01  #heal bar
-						if (playerStats.health > playerStats.maxHealth):
-							playerStats.health = playerStats.maxHealth
-						combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
+						playerStats.health += MAXHEALTH*.05  #heal bar
+						if (playerStats.health > MAXHEALTH):
+							playerStats.health = MAXHEALTH
+						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 				else: 
 					print("NO DAMAGE DONE!")
 			else:
@@ -109,19 +110,18 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				combat_ui.power_bar.value += 10
 				if (Coach == "vamp"):
-					playerStats.health += playerStats * 0.01  #heal bar
-					if (playerStats.health > playerStats.maxHealth):
-						playerStats.health = playerStats.maxHealth
-					combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
+					playerStats.health += MAXHEALTH*.05  #heal bar
+					if (playerStats.health > MAXHEALTH):
+						playerStats.health = MAXHEALTH
+					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 		print(bosses.health)
 		if bosses.dodge != true and bosses.block != true:
 			bosses.health -= playerStats.power
 			combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 		win_conditions()
 	elif move == "dodge":
-		playerStats.stamina -= 3
-	playerStats.stamina = clamp(playerStats.stamina, 0, playerStats.maxStamina)
-	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(playerStats.maxStamina))*100 #line with bug
+		playerStats.stamina -= 1
+	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
 	
 	
 
@@ -151,6 +151,8 @@ func resetAllPlayerStats() -> void:
 	playerStats.power = playerStats.maxPower
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
+	MAXHEALTH += new
+	playerStats.health = MAXHEALTH
 func setMaxPlayerStamina(new) -> void:
 	playerStats.maxStamina += new
 func setMaxPlayerPower(new) -> void:

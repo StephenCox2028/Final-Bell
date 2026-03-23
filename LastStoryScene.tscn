@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5oq5upyvk02y"]
 
-[ext_resource type="Texture2D" uid="uid://cdrs7ea7vukrq" path="res://Sprites - John/Devil's throne.png" id="1_xas8l"]
+[ext_resource type="Texture2D" uid="uid://cdrs7ea7vukrq" path="res://Sprites - John/Sprite-0004-Recovered.png" id="1_xas8l"]
 [ext_resource type="Script" uid="uid://cidwjvrpog7r4" path="res://last_story_scene.gd" id="2_oplpx"]
 
 [node name="Sprite-0004-recovered" type="Sprite2D"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpcowe47m35ri"]
 
 [ext_resource type="Script" uid="uid://oddyk7t8mm8j" path="res://Scripts/options_menu.gd" id="1_lbr8e"]
-[ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Options Menu.png" id="2_uj0ok"]
+[ext_resource type="Texture2D" uid="uid://c43j4akmlmtg4" path="res://Sprites - John/Sprite-0001.png" id="2_uj0ok"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3

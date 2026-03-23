@@ -14,7 +14,6 @@ extends Node2D
 @onready var versusScreen = $VersusScreen
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
-var rounds: int = 1
 
 func idle():
 	character.play("Idle")
@@ -71,6 +70,7 @@ var health: float = 100.0
 #Rounds and Timer - Mirza 
 @onready var timer: Timer = $Timer
 var time_in_seconds : int = 90
+var rounds = 0
 
 func _ready():
 	if Global.secretEnabled == true:
@@ -87,22 +87,13 @@ func _ready():
 	stamina_bar.value = (100)
 	power_bar.value = (0)
 	enemy_hp.value = (100)
-	enemy_hp.visible = false
-	$BarContainer/BarforfightameTop2.visible=false
+	enemy_hp.visible = true
+	$BarContainer/BarforfightameTop2.visible=true
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
-	
-	$rounds.text = "Rounds:" + str(rounds)
-	start_nextRound()
-	timer.start()
-	
 	# make the power bar dissapear if you are smart but enemy bar apeer
-	if Global.Coach == "smart":
-		enemy_hp.visible = true
-		power_bar.visible = false
-		$BarContainer/BarforfightameTop2.visible=true
-		$BarContainer/BarforfightameRight.visible=false
+
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -155,25 +146,22 @@ func _process(delta) -> void:
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
-func start_nextRound():
-	time_in_seconds = 90
-	$Label.text = "01:30"	
-	
 func on_timer_timeout():
-	if time_in_seconds > 0:
-			time_in_seconds -= 1
-	var m = int(time_in_seconds / 60) #calulates minutes
-	var s = time_in_seconds % 60 #calculates seconds 
+	var m = 0
+	var s = 0
+	time_in_seconds -= 1
+	m = int(time_in_seconds / 60) #calulates minutes
+	s = time_in_seconds - m * 60 #calculates seconds 
+	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if time_in_seconds == 0:
-		rounds += 1
-		$rounds.text = "Rounds: " + str(rounds)
-		if rounds > 8:
-			Global.end_match()
-		else: 
-			start_nextRound()
-			
+	if m == 1  && s == 30:
+		start_nextRound(rounds) 
 
+func start_nextRound(rounds):
+	rounds += 1
+	$rounds.text = 'Rounds: ' + str(rounds)
+	if rounds > 8:
+		Global.end_match()
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -181,12 +169,13 @@ func _input(event):
 		if power_bar.value == 100 && Input.is_action_just_pressed("SuperMove") and canmove:
 			match Global.Coach:
 				"self":
-					Global.bosses.health -= 50# also make a bone animation
+					Global.bosses.health = Global.bosses.health * .90# also make a bone animation
 				"angel":
-					Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+					Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+					hp_bar.value = (100)
 				_:
 					pass
-			power_bar.value == 0
+			power_bar.value = (0)
 		if Input.is_action_just_pressed("dodgeright") and canmove: 
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if canmove == true: # Conditional to check if the player is able to make a move.

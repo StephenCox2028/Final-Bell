@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bj8wqn6fn0wa4" path="res://Materials/green.png" id="4_kr20n"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_pt5ib"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_q44um"]
-[ext_resource type="PackedScene" uid="uid://bq7vabnlq41bn" path="res://Scenes/transition.tscn" id="7_cj77a"]
+[ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_cj77a"]
 [ext_resource type="Texture2D" uid="uid://c70rpvud0nxxi" path="res://Materials/Black.png" id="8_02w2n"]
 [ext_resource type="Texture2D" uid="uid://btqmo4h4che43" path="res://Upgrade Menu/Glass.png" id="10_nv1wo"]
 [ext_resource type="Texture2D" uid="uid://bq4qvc8helwc5" path="res://Upgrade Menu/Slime Monster Idle-sheet.png" id="10_wk5g7"]

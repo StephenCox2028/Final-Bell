@@ -54,6 +54,10 @@ func _on_stamina_button_mouse_exited():
 	description.text = ""
 
 
+func _on_power_button_mouse_entered():
+	description.text = "Vision: Allows player to see when enemy is going to strike."
+
+
 func _on_power_button_mouse_exited():
 	description.text = ""
 
