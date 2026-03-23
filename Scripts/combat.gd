@@ -74,6 +74,7 @@ var health: float = 100.0
 func _ready():
 	if Global.secretEnabled == true:
 		Global.playerStats.health = 50000
+		Global.playerStats.maxHealth = 50000
 	print(Global.playerStats.health)
 	transition.play("fade-in")
 	versusScreenAnim.play("Versus")
@@ -88,7 +89,7 @@ func _ready():
 	enemy_hp.value = (100)
 	enemy_hp.visible = true
 	$BarContainer/BarforfightameTop2.visible=true
-	Global.playerStats.health = Global.MAXHEALTH
+	Global.playerStats.health = Global.playerStats.maxHealth
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
 	rounds = Global.current_round
@@ -99,7 +100,7 @@ func _ready():
 	# make the power bar dissapear if you are smart but enemy bar apeer
 	if Global.Coach == "vamp":
 		power_bar.visible = false
-
+		$BarContainer/BarforfightameTop2.visible = false
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
 			# Optional: set position or random offset
@@ -180,8 +181,9 @@ func _input(event):
 			match Global.Coach:
 				"self":
 					Global.bosses.health = Global.bosses.health * .90# also make a bone animation
+					enemy_hp.value =float(Global.bosses.health)/float(Global.enemy_max)*100
 				"angel":
-					Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+					Global.playerStats.health = Global.playerStats.maxHealth# also make a bone animation
 					hp_bar.value = (100)
 				_:
 					pass
