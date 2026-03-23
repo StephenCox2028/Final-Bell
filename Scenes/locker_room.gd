@@ -63,6 +63,13 @@ func _on_transition_animation_finished(anim_name):
 				get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
 			2:
 				get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+				#res://puppeteer_versus_screen.gd  Puppe
+				#res://FlameVersusScreen.tscn     Flame
+				#res://BlackSkeletonVersus.tscn   white skeleton
+				#res://BlackSkeleton2.tscn        black skeleton
+				#res://Demon_Versus.tscn
+				
+				
 			3:
 				get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 			4:
