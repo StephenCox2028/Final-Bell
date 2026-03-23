@@ -160,9 +160,7 @@ func on_timer_timeout():
 	time_in_seconds -= 1
 	m = int(time_in_seconds / 60) #calulates minutes
 	s = time_in_seconds - m * 60 #calculates seconds 
-	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	
 	if time_in_seconds == 0:
 		timer.stop()
 		
@@ -174,12 +172,6 @@ func on_timer_timeout():
 			Global.end_match()
 		else: 
 			get_tree().change_scene_to_file("res://round_complete.tscn")
-
-func start_nextRound(rounds):
-	rounds += 1
-	$rounds.text = 'Rounds: ' + str(rounds)
-	if rounds > 8:
-		Global.end_match()
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
