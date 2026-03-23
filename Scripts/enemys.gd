@@ -1,4 +1,7 @@
 extends Node2D
+
+signal enemy_banner(number: int)
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var warningTimer: Timer = $WarningTimer
@@ -20,6 +23,7 @@ func _ready():
 	match Global.Boss_counter:
 		0:
 			action = 1
+			enemy_banner.emit(1)
 			change_stats(10,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
@@ -30,6 +34,7 @@ func _ready():
 			pass# same here
 		1:
 			action = 0
+			enemy_banner.emit(2)
 			change_stats(400,30,2,5.0,5.0,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			#Global.currentBoss = "HitManSkeleton"
@@ -40,6 +45,7 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
+			enemy_banner.emit(1)
 			change_stats(800,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
@@ -50,6 +56,7 @@ func _ready():
 			pass# same here
 		3:
 			action = 2
+			enemy_banner.emit(4)
 			change_stats(700,90,5, 4.0, 3.0,0)
 			animated_sprite_2d.play("blackidle")
 			#Global.currentBoss = "Devil"
@@ -60,6 +67,7 @@ func _ready():
 			pass# same here
 		4:
 			action = 1
+			enemy_banner.emit(1)
 			change_stats(900,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"

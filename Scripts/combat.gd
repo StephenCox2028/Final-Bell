@@ -1,4 +1,5 @@
 extends Node2D
+
 @onready var animation: AnimationPlayer = $Animation
 @export var isdodge = false # is your ability to get hit(if not dodgeing you can get smacked) -Stephen
 @export var ispunch = false # is your boolean for punching. - Stephen
@@ -12,6 +13,11 @@ extends Node2D
 @onready var enemy_hp: ProgressBar = $Bars/EnemyHP
 @onready var versusScreenAnim = $VersusScreen/AnimationPlayer
 @onready var versusScreen = $VersusScreen
+@onready var puppetPFP = $VersusScreen/ProfilePuppet
+@onready var skeletonPFP = $VersusScreen/SkeletonProfile
+@onready var blackSkeletonPFP = $VersusScreen/BlackVersusSkeleton2
+@onready var devilPFP = $VersusScreen/ProfilePictureDevil
+@onready var firePFP = $VersusScreen/FireSpriteVersus
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
@@ -76,6 +82,7 @@ func _ready():
 		Global.playerStats.health = 50000
 	print(Global.playerStats.health)
 	transition.play("fade-in")
+	
 	versusScreenAnim.play("Versus")
 	Global.combat_ui = self
 	isdodge = false
@@ -102,6 +109,7 @@ func _ready():
 
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
+		boss.boss_banner.connect(_on_banner_achieved)
 			# Optional: set position or random offset
 		boss.position = Vector2(902.0, 640.0)
 		boss.scale = Vector2(3,3)
@@ -110,7 +118,7 @@ func _ready():
 		move_child(boss, versusScreen.get_index())
 	else:
 		var enemy = ENEMY.instantiate()
-		
+		enemy.enemy_banner.connect(_on_banner_achieved)
 			# Optional: set position or random offset
 		enemy.position = Vector2(902, 640.0)
 		enemy.scale = Vector2(3,3)
@@ -124,6 +132,11 @@ func _ready():
 func _process(delta) -> void:
 	Global.battleStarted = battleStarted
 	if battleStarted:
+		firePFP.visible = false
+		puppetPFP.visible = false
+		skeletonPFP.visible = false
+		blackSkeletonPFP.visible = false
+		devilPFP.visible = false
 		if Global.getPlayerHealth() <= 10:
 			heartbeat.autoplay = true
 			heartbeat.play()
@@ -146,6 +159,17 @@ func _process(delta) -> void:
 		#print(Global.getPlayerStamina())
 		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
+func _on_banner_achieved(number):
+	if number == 1:
+		firePFP.visible = true
+	elif number == 2:
+		skeletonPFP.visible = true
+	elif number == 3:
+		puppetPFP.visible = true
+	elif number == 4:
+		blackSkeletonPFP.visible = true
+	elif number == 5:
+		devilPFP.visible = true
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 

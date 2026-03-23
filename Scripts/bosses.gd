@@ -1,4 +1,7 @@
 extends Node2D
+
+signal boss_banner(number: int)
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
@@ -23,12 +26,13 @@ func _ready():
 		match Global.Boss_counter:
 				2:
 						action = 0
+						boss_banner.emit(3)
 						change_stats(500,20,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("Puppeteer1Idle")
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
-
+						boss_banner.emit(5)
 						change_stats(2000,30,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
