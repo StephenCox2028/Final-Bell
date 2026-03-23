@@ -18,9 +18,9 @@ func _ready():
 	enmActions = [skeletin,slime,darkiplier]#add more latter
 
 	match Global.Boss_counter:
-		0:
+		0: #flame
 			action = 1
-			change_stats(10,20,1, 3.5, 1.5,0)
+			change_stats(500,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)

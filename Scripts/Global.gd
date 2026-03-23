@@ -84,7 +84,7 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.power_bar.value += 10
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.05  #heal bar
+					playerStats.health += MAXHEALTH*.01  #heal bar
 					if (playerStats.health > MAXHEALTH):
 						playerStats.health = MAXHEALTH
 					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
