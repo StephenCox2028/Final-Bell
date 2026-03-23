@@ -28,7 +28,8 @@ func _ready():
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
-						change_stats(500,20,2,5.0, 5.0, 0)
+
+						change_stats(2000,30,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
 						
