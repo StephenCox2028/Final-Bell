@@ -3,6 +3,7 @@ var Score = 0
 var Boss_counter = 0 # make this increase when leaving the locker room
 var boss_flip = false # make sure its off
 #var currentBoss = null
+var current_round = 1
 var Enemy_tally = 0
 var MAXHEALTH = 40
 var MAXSTAMINA = 10
@@ -193,4 +194,4 @@ func win_conditions() -> void:
 			Boss_counter += 1
 		print("Boss flip:" + str(Global.boss_flip))
 		print("Boss Flip counter: " + str(Global.Boss_counter))
-		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
+		get_tree().change_scene_to_file("res://Victory.tscn")

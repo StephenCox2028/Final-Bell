@@ -15,6 +15,10 @@ extends Node2D
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
+@onready var timer: Timer = $Timer
+var time_in_seconds : int = 90
+var rounds: int = Global.current_round
+
 func idle():
 	character.play("Idle")
 
@@ -67,11 +71,6 @@ var pressTimes = {
 
 var health: float = 100.0
 
-#Rounds and Timer - Mirza 
-@onready var timer: Timer = $Timer
-var time_in_seconds : int = 90
-var rounds = 0
-
 func _ready():
 	if Global.secretEnabled == true:
 		Global.playerStats.health = 50000
@@ -92,8 +91,12 @@ func _ready():
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
+	rounds = Global.current_round
+	$rounds.text = "Rounds:" + str(rounds)
+	start_nextRound()
+	timer.start()
+	
 	# make the power bar dissapear if you are smart but enemy bar apeer
-
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -139,13 +142,18 @@ func _process(delta) -> void:
 				Global.playerStats.stamina = Global.playerStats.maxStamina
 		#If player is NOT greater or equal to the max stamina, raise stamina.
 		if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
-			Global.playerStats.stamina += 0.05
+			Global.playerStats.stamina += 0.025
 		#print(Global.getPlayerStamina())
 		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
+func start_nextRound():
+	time_in_seconds = 90
+	$Label.text = "01:30"
+	timer.start()	
+	
 func on_timer_timeout():
 	var m = 0
 	var s = 0
@@ -154,8 +162,18 @@ func on_timer_timeout():
 	s = time_in_seconds - m * 60 #calculates seconds 
 	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if m == 1  && s == 30:
-		start_nextRound(rounds) 
+	
+	if time_in_seconds == 0:
+		timer.stop()
+		
+		rounds += 1
+		Global.current_round = rounds
+		$rounds.text = "Rounds: " + str(rounds)
+	
+		if rounds > 8:
+			Global.end_match()
+		else: 
+			get_tree().change_scene_to_file("res://round_complete.tscn")
 
 func start_nextRound(rounds):
 	rounds += 1
@@ -305,5 +323,5 @@ func _on_mc_animated_animation_looped():
 	character.play("Idle")
 
 
-func _on_animation_player_animation_finished(anim_name):
-	timer.start(-1) 
+#func _on_animation_player_animation_finished(anim_name):
+	#timer.start(-1) 
