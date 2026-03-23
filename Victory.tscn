@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dboennf2y2vxt"]
+
+[ext_resource type="Texture2D" uid="uid://bcfawwhv62g4t" path="res://Sprites - Zach/Locker Room Sprites/Victory.png" id="1_1xd76"]
+[ext_resource type="Script" uid="uid://dkir1f5xb0lfs" path="res://Victory.gd" id="2_dpnpy"]
+
+[node name="LockerRoom" type="Sprite2D"]
+position = Vector2(312, 200)
+
+[node name="Victory" type="Sprite2D" parent="."]
+position = Vector2(644, 355.5)
+scale = Vector2(1.65972, 1.69149)
+texture = ExtResource("1_1xd76")
+
+[node name="Continue" type="Button" parent="Victory"]
+offset_left = 384.0
+offset_top = 216.0
+offset_right = 568.0
+offset_bottom = 328.0
+text = "Continue"
+script = ExtResource("2_dpnpy")
+
+[connection signal="pressed" from="Victory/Continue" to="Victory/Continue" method="on_continue_pressed"]

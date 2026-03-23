@@ -15,6 +15,10 @@ extends Node2D
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
+@onready var timer: Timer = $Timer
+var time_in_seconds : int = 90
+var rounds: int = Global.current_round
+
 func idle():
 	character.play("Idle")
 
@@ -67,12 +71,10 @@ var pressTimes = {
 
 var health: float = 100.0
 
-#Rounds and Timer - Mirza 
-@onready var timer: Timer = $Timer
-var time_in_seconds : int = 90
-var rounds = 0
-
 func _ready():
+	if Global.secretEnabled == true:
+		Global.playerStats.health = 50000
+	print(Global.playerStats.health)
 	transition.play("fade-in")
 	versusScreenAnim.play("Versus")
 	Global.combat_ui = self
@@ -84,17 +86,17 @@ func _ready():
 	stamina_bar.value = (100)
 	power_bar.value = (0)
 	enemy_hp.value = (100)
-	enemy_hp.visible = false
-	$BarContainer/BarforfightameTop2.visible=false
+	enemy_hp.visible = true
+	$BarContainer/BarforfightameTop2.visible=true
 	Global.playerStats.health = Global.MAXHEALTH
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
+	rounds = Global.current_round
+	$rounds.text = "Rounds:" + str(rounds)
+	start_nextRound()
+	timer.start()
+	
 	# make the power bar dissapear if you are smart but enemy bar apeer
-	if Global.Coach == "smart":
-		enemy_hp.visible = true
-		power_bar.visible = false
-		$BarContainer/BarforfightameTop2.visible=true
-		$BarContainer/BarforfightameRight.visible=false
 	if Global.Coach == "vamp":
 		power_bar.visible = false
 
@@ -140,29 +142,36 @@ func _process(delta) -> void:
 				Global.playerStats.stamina = Global.playerStats.maxStamina
 		#If player is NOT greater or equal to the max stamina, raise stamina.
 		if !(Global.playerStats.stamina >= Global.playerStats.maxStamina):
-			Global.playerStats.stamina += 0.05
+			Global.playerStats.stamina += 0.025
 		#print(Global.getPlayerStamina())
 		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
+func start_nextRound():
+	time_in_seconds = 90
+	$Label.text = "01:30"
+	timer.start()	
+	
 func on_timer_timeout():
 	var m = 0
 	var s = 0
 	time_in_seconds -= 1
 	m = int(time_in_seconds / 60) #calulates minutes
 	s = time_in_seconds - m * 60 #calculates seconds 
-	start_nextRound(rounds) #starts round 1 and sets new rounds
 	$Label.text = '%02d:%02d' % [m, s] #outputs minutes and seconds on label
-	if m == 1  && s == 30:
-		start_nextRound(rounds) 
-
-func start_nextRound(rounds):
-	rounds += 1
-	$rounds.text = 'Rounds: ' + str(rounds)
-	if rounds > 8:
-		Global.end_match()
+	if time_in_seconds == 0:
+		timer.stop()
+		
+		rounds += 1
+		Global.current_round = rounds
+		$rounds.text = "Rounds: " + str(rounds)
+	
+		if rounds > 8:
+			Global.end_match()
+		else: 
+			get_tree().change_scene_to_file("res://round_complete.tscn")
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -170,12 +179,13 @@ func _input(event):
 		if power_bar.value == 100 && Input.is_action_just_pressed("SuperMove") and canmove:
 			match Global.Coach:
 				"self":
-					Global.bosses.health -= 50# also make a bone animation
+					Global.bosses.health = Global.bosses.health * .90# also make a bone animation
 				"angel":
-					Global.playerStats.health = Global.playerStats.MAXHEALTH# also make a bone animation
+					Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+					hp_bar.value = (100)
 				_:
 					pass
-			power_bar.value == 0
+			power_bar.value = (0)
 		if Input.is_action_just_pressed("dodgeright") and canmove: 
 			if Global.getPlayerStamina() > 0 and exhaustion == false:
 				if canmove == true: # Conditional to check if the player is able to make a move.
@@ -305,5 +315,5 @@ func _on_mc_animated_animation_looped():
 	character.play("Idle")
 
 
-func _on_animation_player_animation_finished(anim_name):
-	timer.start(-1) 
+#func _on_animation_player_animation_finished(anim_name):
+	#timer.start(-1) 

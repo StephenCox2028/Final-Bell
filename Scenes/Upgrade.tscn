@@ -272,8 +272,8 @@ tracks/2/keys = {
 "values": [Vector2(961, 657), Vector2(961, 815)]
 }
 
-[sub_resource type="Animation" id="Animation_2fcax"]
-resource_name = "spittingStamina"
+[sub_resource type="Animation" id="Animation_06sot"]
+resource_name = "spittingPower"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -285,7 +285,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.976471, 1, 0.152941, 1)]
+"values": [Color(0.880863, 0.547186, 0.0280383, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -312,8 +312,8 @@ tracks/2/keys = {
 "values": [Vector2(961, 657), Vector2(961, 815)]
 }
 
-[sub_resource type="Animation" id="Animation_06sot"]
-resource_name = "spittingPower"
+[sub_resource type="Animation" id="Animation_2fcax"]
+resource_name = "spittingStamina"
 length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -325,7 +325,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.880863, 0.547186, 0.0280383, 1)]
+"values": [Color(0.976471, 1, 0.152941, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

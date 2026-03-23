@@ -3,6 +3,7 @@ var Score = 0
 var Boss_counter = 0 # make this increase when leaving the locker room
 var boss_flip = false # make sure its off
 #var currentBoss = null
+var current_round = 1
 var Enemy_tally = 0
 var MAXHEALTH = 40
 var MAXSTAMINA = 10
@@ -10,6 +11,7 @@ var MAXPOWER = 10
 
 var enemy_max =1
 @export var battleStarted: bool
+var secretEnabled: bool = false
 
 var levelCosts = {
 	"healthCost" : 10,
@@ -42,7 +44,7 @@ var bosses = {
 	"difficultyMin": 5.0,
 	"block_chance" : 0,
 	"phase": 1,
-	"phase-change": false
+	"phase-change": false,
 }
 
 #boss stats - Mirza
@@ -54,6 +56,7 @@ var bosses = {
 #Global functions - Stephen
 func depleteHealth() -> void:
 	playerStats.health -= bosses.power
+	print(playerStats.health)
 	if combat_ui:
 		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
 	win_conditions()
@@ -149,6 +152,8 @@ func resetAllPlayerStats() -> void:
 	playerStats.power = playerStats.maxPower
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
+	MAXHEALTH += new
+	playerStats.health = MAXHEALTH
 func setMaxPlayerStamina(new) -> void:
 	playerStats.maxStamina += new
 func setMaxPlayerPower(new) -> void:
@@ -179,6 +184,7 @@ func win_conditions() -> void:
 	if(playerStats.health <= 0):
 		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	elif(bosses.health <= 0):
+		Global.bosses.is_dead = true
 		Global.totalXP()
 		Global.resetAllPlayerStats()
 		if boss_flip == true:
@@ -188,4 +194,4 @@ func win_conditions() -> void:
 			Boss_counter += 1
 		print("Boss flip:" + str(Global.boss_flip))
 		print("Boss Flip counter: " + str(Global.Boss_counter))
-		get_tree().change_scene_to_file("res://Scenes/locker_room.tscn")
+		get_tree().change_scene_to_file("res://Victory.tscn")

@@ -6,15 +6,22 @@ extends Node2D
 @onready var character = $SkeletonMain
 @onready var animation = $AnimationPlayer
 @onready var transition = $Transition/Transition
+@onready var check1 = $Buttons/CheckButton1
+@onready var check2 = $Buttons/CheckButton2
+@onready var check3 = $Buttons/CheckButton3
+@onready var secretButton = $Buttons/SecretButton
 
 var choice
+var buttonPressed = false
+var check1on = false
+var check2on = false
+var check3on = false
 
 const RATS = preload("res://Scenes/rats.tscn")
 
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	transition.play("fade-in")
 	animation.play("breathing")
 
 func _on_timer_timeout() -> void:
@@ -30,32 +37,40 @@ func _on_timer_timeout() -> void:
 func spawn_rat():
 	# Make an instance of the Rat scene
 	var rat = RATS.instantiate()
-
 	# Optional: set position or random offset
 	rat.position = Vector2(-120, -52)
 	# Add it as a child of this scene
 	add_child(rat)
+	move_child(rat,8)		#Moves the rat back in the scene tree so transition appears above it.
 
 func _on_upgrade_button_pressed():
-	choice = 1
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 1
+		transition.play("fade-out")
 	
 func _on_continue_button_pressed():
-	Global.resetAllPlayerStats()
-	choice = 2
-	if Global.Boss_counter == 2 or Global.Boss_counter == 5:
-		Global.boss_flip = true
-		print(Global.boss_flip)
-		print(Global.Boss_counter)
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		Global.resetAllPlayerStats()
+		choice = 2
+		if Global.Boss_counter == 2 or Global.Boss_counter == 5:
+			Global.boss_flip = true
+			print(Global.boss_flip)
+			print(Global.Boss_counter)
+		transition.play("fade-out")
 
 func _on_quit_button_pressed():
-	choice = 3
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 3
+		transition.play("fade-out")
 
 func _on_coaches_button_pressed() -> void:
-	choice = 4
-	transition.play("fade-out")
+	if buttonPressed == false:
+		buttonPressed = true
+		choice = 4
+		transition.play("fade-out")
 	
 func _on_transition_animation_finished(anim_name):
 		match choice:
@@ -63,7 +78,39 @@ func _on_transition_animation_finished(anim_name):
 				get_tree().change_scene_to_file("res://Scenes/Upgrade.tscn")
 			2:
 				get_tree().change_scene_to_file("res://Scenes/combat.tscn")
+				#res://puppeteer_versus_screen.gd  Puppe
+				#res://FlameVersusScreen.tscn     Flame
+				#res://BlackSkeletonVersus.tscn   white skeleton
+				#res://BlackSkeleton2.tscn        black skeleton
+				#res://Demon_Versus.tscn
+				
+				
 			3:
 				get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 			4:
 				get_tree().change_scene_to_file("res://Scenes/Coaches.tscn")
+			5: 
+				get_tree().change_scene_to_file("res://Scenes/Secret.tscn")
+
+
+func _on_check_button_1_pressed():
+	if check1on == false:
+		check1on = true
+		check1.toggle_mode = false
+
+func _on_check_button_2_pressed():
+	if check2on == false:
+		check2on = true
+		check2.toggle_mode = false
+
+func _on_check_button_3_pressed():
+	if check3on == false:
+		check3on = true
+		check3.toggle_mode = false
+
+func _on_secret_button_pressed():
+	if check1on == true && check2on == true && check3on == true:
+		if buttonPressed == false:
+			buttonPressed = true
+			choice = 5
+			transition.play("fade-out")
