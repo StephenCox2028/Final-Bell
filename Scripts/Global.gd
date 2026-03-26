@@ -59,6 +59,14 @@ func depleteHealth() -> void:
 	print(playerStats.health)
 	if combat_ui:
 		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+
+	if playerStats.health <= 0:
+		if combat_ui and combat_ui.has_method("handle_player_death"):
+			combat_ui.handle_player_death()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
+		return
+
 	win_conditions()
 	
 func depleteStamina(move, multiplier) -> void:
@@ -182,7 +190,10 @@ func dead():
 #when player health reaches 0 change to a new scene - Mirza
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
+		if combat_ui and combat_ui.has_method("handle_player_death"):
+			combat_ui.handle_player_death()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	elif(bosses.health <= 0):
 		Global.bosses.is_dead = true
 		Global.totalXP()
