@@ -20,7 +20,7 @@ func _ready():
 	match Global.Boss_counter:
 		0: #flame
 			action = 1
-			change_stats(500,20,1, 3.5, 1.5,0)
+			change_stats(700,20,1, 4, 2,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -29,8 +29,8 @@ func _ready():
 			devilMusic.autoplay = true
 			pass# same here
 		1:
-			action = 0
-			change_stats(400,30,2,5.0,5.0,0)
+			action = 0  #Gets the player low
+			change_stats(350,10,2,5,5,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			#Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -40,7 +40,7 @@ func _ready():
 			pass#change sprites for scertain enemys(reason why their split is also because of the amount of animations in one play would make us depresed)
 		2:
 			action = 1
-			change_stats(800,20,1, 3.5, 1.5,0)
+			change_stats(750,20,1, 3, 1,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -48,9 +48,9 @@ func _ready():
 			devilMusic.play()
 			devilMusic.autoplay = true
 			pass# same here
-		3:
+		3: #black skeleton
 			action = 2
-			change_stats(700,90,5, 4.0, 3.0,0)
+			change_stats(550,90,2, 4.0, 3.0,0)
 			animated_sprite_2d.play("blackidle")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -60,7 +60,7 @@ func _ready():
 			pass# same here
 		4:
 			action = 1
-			change_stats(900,20,1, 3.5, 1.5,0)
+			change_stats(1100,20,1, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)

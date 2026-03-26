@@ -23,13 +23,13 @@ func _ready():
 		match Global.Boss_counter:
 				2:
 						action = 0
-						change_stats(500,20,2,5.0, 5.0, 0)
+						change_stats(1,20,1,5.0, 5.0, 0)
 						animated_sprite_2d.play("Puppeteer1Idle")
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
 
-						change_stats(2000,30,2,5.0, 5.0, 0)
+						change_stats(1160,30,1,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
 						
