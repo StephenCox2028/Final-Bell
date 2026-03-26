@@ -11,3 +11,4 @@ func Actions(enemy_node):
 				Global.depleteHealth()
 		3:
 			enemy_node.animation_player.play("Tempblock")
+			
