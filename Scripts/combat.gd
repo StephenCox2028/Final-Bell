@@ -205,7 +205,8 @@ func on_timer_timeout():
 		if rounds > 8:
 			Global.end_match()
 		else: 
-			get_tree().change_scene_to_file("res://round_complete.tscn")
+			start_nextRound()
+			
 
 #Player dodge and attack inputs - Stephen
 func _input(event):

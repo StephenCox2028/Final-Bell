@@ -63,7 +63,7 @@ func depleteHealth() -> void:
 	
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
-		playerStats.stamina -= 2
+		playerStats.stamina -= 3
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
 				var chance = randi_range(1, 100)# HERE is the block---------------------------------------------------------
@@ -84,7 +84,7 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.power_bar.value += 10
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.05  #heal bar
+					playerStats.health += MAXHEALTH*.01  #heal bar
 					if (playerStats.health > MAXHEALTH):
 						playerStats.health = MAXHEALTH
 					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
@@ -121,7 +121,7 @@ func depleteStamina(move, multiplier) -> void:
 			combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 		win_conditions()
 	elif move == "dodge":
-		playerStats.stamina -= 1
+		playerStats.stamina -= 2
 	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
 	
 	
