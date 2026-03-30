@@ -468,6 +468,36 @@ position = Vector2(968, 52)
 scale = Vector2(1.65799, 1)
 texture = ExtResource("15_f8ge6")
 
+[node name="RingPuppet" type="Sprite2D" parent="RingOverlay"]
+visible = false
+position = Vector2(-527.178, -17)
+scale = Vector2(0.462303, 0.45)
+texture = ExtResource("18_nar6d")
+
+[node name="RingSkeleton" type="Sprite2D" parent="RingOverlay"]
+visible = false
+position = Vector2(-525.955, -18)
+scale = Vector2(0.961779, 0.84375)
+texture = ExtResource("19_umvpd")
+
+[node name="RingBlackSkeleton" type="Sprite2D" parent="RingOverlay"]
+visible = false
+position = Vector2(-526.558, -17)
+scale = Vector2(0.924082, 0.84375)
+texture = ExtResource("20_e8ln5")
+
+[node name="RingDevil" type="Sprite2D" parent="RingOverlay"]
+visible = false
+position = Vector2(-526.575, -17.5)
+scale = Vector2(0.45288, 0.441667)
+texture = ExtResource("21_5g3cp")
+
+[node name="RingFire" type="Sprite2D" parent="RingOverlay"]
+visible = false
+position = Vector2(-526.851, -16.5)
+scale = Vector2(0.914397, 0.828125)
+texture = ExtResource("22_2n3pb")
+
 [node name="BarContainer" type="Node2D" parent="."]
 z_index = 1
 position = Vector2(215, -165)

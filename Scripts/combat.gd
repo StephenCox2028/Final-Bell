@@ -18,6 +18,11 @@ extends Node2D
 @onready var blackSkeletonPFP = $VersusScreen/BlackVersusSkeleton2
 @onready var devilPFP = $VersusScreen/ProfilePictureDevil
 @onready var firePFP = $VersusScreen/FireSpriteVersus
+@onready var ringPuppet = $RingOverlay/RingPuppet
+@onready var ringSkeleton = $RingOverlay/RingSkeleton
+@onready var ringBlackSkeleton = $RingOverlay/RingBlackSkeleton
+@onready var ringDevil = $RingOverlay/RingDevil
+@onready var ringFire = $RingOverlay/RingFire
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
@@ -162,14 +167,19 @@ func _process(delta) -> void:
 func _on_banner_achieved(number):
 	if number == 1:
 		firePFP.visible = true
+		ringFire.visible = true
 	elif number == 2:
 		skeletonPFP.visible = true
+		ringSkeleton.visible = true
 	elif number == 3:
 		puppetPFP.visible = true
+		ringPuppet.visible = true
 	elif number == 4:
 		blackSkeletonPFP.visible = true
+		ringBlackSkeleton.visible = true
 	elif number == 5:
 		devilPFP.visible = true
+		ringDevil.visible = true
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
 
