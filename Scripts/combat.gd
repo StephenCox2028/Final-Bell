@@ -81,6 +81,7 @@ var pressTimes = {
 }
 
 var health: float = 100.0
+var death_sequence_started := false
 
 func _ready():
 	if Global.secretEnabled == true:
@@ -183,6 +184,21 @@ func _on_banner_achieved(number):
 		ringDevil.visible = true
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
+
+func handle_player_death() -> void:
+	if death_sequence_started:
+		return
+
+	death_sequence_started = true
+	battleStarted = false
+	Global.battleStarted = false
+	canmove = false
+	isdodge = false
+	ispunch = false
+	isHolding = false
+
+	await get_tree().create_timer(0.45).timeout
+	get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 
 func start_nextRound():
 	time_in_seconds = 90
@@ -353,4 +369,4 @@ func _on_mc_animated_animation_looped():
 
 
 #func _on_animation_player_animation_finished(anim_name):
-	#timer.start(-1) 
+	#timer.start(-1)
