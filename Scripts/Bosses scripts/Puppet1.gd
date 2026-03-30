@@ -66,7 +66,10 @@ func transition_to_phase_2(boss_node, clock_timer):
 	
 	Global.bosses.phase = 2
 	Global.bosses.health = Global.enemy_max
-	Global.bosses.power *= 1.5
+	Global.bosses.block_chance = 15
+	Global.bosses.difficultyMax = 3
+	Global.bosses.difficultyMin = 2
+	Global.bosses.power = 10
 	clock_timer.stop()
 	var combat_scene = boss_node.get_parent()
 	combat_scene.canmove = false
