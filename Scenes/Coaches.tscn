@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsmf3crlpni13"]
+[gd_scene load_steps=23 format=3 uid="uid://dsmf3crlpni13"]
 
 [ext_resource type="Script" uid="uid://chdfqtlmc68d4" path="res://Scenes/coaches.gd" id="1_fr7mw"]
 [ext_resource type="Texture2D" uid="uid://cqkny05rpmn86" path="res://Sprites - Zach/Locker Room Sprites/Skeleton main.png" id="2_8qt01"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cpfh7bfclqcqi" path="res://Sprites/punch coach.png" id="4_2x3aa"]
 [ext_resource type="AudioStream" uid="uid://dbwj3kajx18ju" path="res://Music + Sound/levelUp.mp3" id="5_uomjv"]
 [ext_resource type="AudioStream" uid="uid://1coby5a1nws8" path="res://Music + Sound/denied.mp3" id="6_3q88s"]
-[ext_resource type="Texture2D" uid="uid://ep7i7nyfgej2" path="res://Sprites - John/Sprite-0001-Recovered.png" id="6_ea4s5"]
 [ext_resource type="PackedScene" uid="uid://bbft164g1fx78" path="res://Scenes/transition.tscn" id="7_ea4s5"]
 [ext_resource type="Texture2D" uid="uid://cr1cf20mpbfhq" path="res://Materials/yellow.png" id="8_oxtv6"]
 [ext_resource type="Texture2D" uid="uid://c660eptr70iuy" path="res://Materials/grey.png" id="9_uomjv"]
@@ -159,9 +158,9 @@ texture = ExtResource("2_8qt01")
 
 [node name="Health" type="Label" parent="."]
 layout_mode = 0
-offset_left = 129.0
+offset_left = 400.0
 offset_top = 75.0
-offset_right = 308.0
+offset_right = 579.0
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Heal"
@@ -170,18 +169,18 @@ horizontal_alignment = 1
 [node name="HealthButton" type="TextureButton" parent="Health"]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 43.0
+offset_top = 45.0
 offset_right = 43.0
-offset_bottom = 75.0
+offset_bottom = 77.0
 scale = Vector2(5, 5)
 focus_mode = 0
 texture_normal = ExtResource("3_uomjv")
 
 [node name="Stamina" type="Label" parent="."]
 layout_mode = 0
-offset_left = 597.5
+offset_left = 868.5
 offset_top = 75.0
-offset_right = 784.5
+offset_right = 1055.5
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Smack"
@@ -196,30 +195,6 @@ offset_bottom = 77.0
 scale = Vector2(5, 5)
 focus_mode = 0
 texture_normal = ExtResource("4_2x3aa")
-
-[node name="Power" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1134.5
-offset_top = 75.0
-offset_right = 1321.5
-offset_bottom = 124.0
-theme_override_font_sizes/font_size = 35
-text = "Vision"
-horizontal_alignment = 1
-
-[node name="PowerButton" type="TextureButton" parent="Power"]
-layout_mode = 0
-offset_left = 1485.0
-offset_top = -431.0
-offset_right = 2637.0
-offset_bottom = 217.0
-scale = Vector2(2.5, 2.5)
-focus_mode = 0
-
-[node name="Sprite-0001-recovered" type="Sprite2D" parent="Power"]
-position = Vector2(86.25, 122.5)
-scale = Vector2(2.42969, 2.17188)
-texture = ExtResource("6_ea4s5")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
@@ -299,9 +274,9 @@ color = Color(0.807843, 0.0705882, 0, 1)
 
 [node name="Power2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1603.0
+offset_left = 1337.0
 offset_top = 75.0
-offset_right = 1790.0
+offset_right = 1524.0
 offset_bottom = 124.0
 theme_override_font_sizes/font_size = 35
 text = "Vampire"
@@ -310,9 +285,9 @@ horizontal_alignment = 1
 [node name="VampButton" type="TextureButton" parent="Power2"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 52.0
+offset_top = 48.0
 offset_right = 74.0
-offset_bottom = 116.0
+offset_bottom = 112.0
 scale = Vector2(2.5, 2.5)
 focus_mode = 0
 texture_normal = ExtResource("13_ea4s5")
@@ -339,9 +314,6 @@ scale = Vector2(3.85645, 2.44336)
 [connection signal="mouse_entered" from="Stamina/StaminaButton" to="." method="_on_stamina_button_mouse_entered"]
 [connection signal="mouse_exited" from="Stamina/StaminaButton" to="." method="_on_stamina_button_mouse_exited"]
 [connection signal="pressed" from="Stamina/StaminaButton" to="." method="_on_stamina_button_pressed"]
-[connection signal="mouse_entered" from="Power/PowerButton" to="." method="_on_power_button_mouse_entered"]
-[connection signal="mouse_exited" from="Power/PowerButton" to="." method="_on_power_button_mouse_exited"]
-[connection signal="pressed" from="Power/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="mouse_entered" from="Power2/VampButton" to="." method="_on_vamp_button_mouse_entered"]
 [connection signal="mouse_exited" from="Power2/VampButton" to="." method="_on_vamp_button_mouse_exited"]
