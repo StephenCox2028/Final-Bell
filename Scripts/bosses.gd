@@ -22,14 +22,14 @@ func _ready():
 		enmActions = [puppeteer,evilman]#add more latter
 		match Global.Boss_counter:
 				2:
-						action = 0
-						change_stats(750,20,1,5.0, 5.0, 0)
+						action = 0       #1000
+						change_stats(1000,20,1,5.0, 5.0, 0)
 						animated_sprite_2d.play("Puppeteer1Idle")
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
 
-						change_stats(1160,30,1,5.0, 5.0, 0)
+						change_stats(700,30,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
 						
