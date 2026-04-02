@@ -5,7 +5,6 @@ var boss_flip = false # make sure its off
 #var currentBoss = null
 var current_round = 1
 var Enemy_tally = 0
-var MAXHEALTH = 40
 var MAXSTAMINA = 10
 var MAXPOWER = 10
 
@@ -57,13 +56,22 @@ var bosses = {
 func depleteHealth() -> void:
 	playerStats.health -= bosses.power
 	print(playerStats.health)
+	combat_ui.power_bar.value += 10
 	if combat_ui:
-		combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+		combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
+
+	if playerStats.health <= 0:
+		if combat_ui and combat_ui.has_method("handle_player_death"):
+			combat_ui.handle_player_death()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
+		return
+
 	win_conditions()
 	
 func depleteStamina(move, multiplier) -> void:
 	if move == "attack":
-		playerStats.stamina -= 2
+		playerStats.stamina -= 3
 		if bosses.dodge != true and bosses.block != true:
 			if bosses.difficultyMax < 5.0:
 				var chance = randi_range(1, 100)# HERE is the block---------------------------------------------------------
@@ -73,10 +81,10 @@ func depleteStamina(move, multiplier) -> void:
 					combat_ui.power_bar.value += 10
 					combat_ui.enemy_hp.value = float(bosses.health)/float(enemy_max)*100
 					if (Coach == "vamp"):
-						playerStats.health += MAXHEALTH*.05  #heal bar
-						if (playerStats.health > MAXHEALTH):
-							playerStats.health = MAXHEALTH
-						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+						playerStats.health += playerStats.maxHealth*.01  #heal bar
+						if (playerStats.health > playerStats.maxHealth):
+							playerStats.health = playerStats.maxHealth
+						combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
 				else:
 					print("NO DAMAGE DONE!")
 			else:
@@ -84,10 +92,10 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.power_bar.value += 10
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.05  #heal bar
-					if (playerStats.health > MAXHEALTH):
-						playerStats.health = MAXHEALTH
-					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+					playerStats.health += playerStats.maxHealth*.01  #heal bar
+					if (playerStats.health > playerStats.maxHealth):
+						playerStats.health = playerStats.maxHealth
+					combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
 		print(bosses.health)
 		win_conditions()
 	elif move == "hook":
@@ -100,10 +108,10 @@ func depleteStamina(move, multiplier) -> void:
 					combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 					combat_ui.power_bar.value += 10
 					if (Coach == "vamp"):
-						playerStats.health += MAXHEALTH*.05  #heal bar
-						if (playerStats.health > MAXHEALTH):
-							playerStats.health = MAXHEALTH
-						combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+						playerStats.health += playerStats.maxHealth*.01  #heal bar
+						if (playerStats.health > playerStats.maxHealth):
+							playerStats.health = playerStats.maxHealth
+						combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
 				else: 
 					print("NO DAMAGE DONE!")
 			else:
@@ -111,17 +119,17 @@ func depleteStamina(move, multiplier) -> void:
 				combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 				combat_ui.power_bar.value += 10
 				if (Coach == "vamp"):
-					playerStats.health += MAXHEALTH*.05  #heal bar
-					if (playerStats.health > MAXHEALTH):
-						playerStats.health = MAXHEALTH
-					combat_ui.hp_bar.value = (float(playerStats.health)/ float(MAXHEALTH))*100.0
+					playerStats.health += playerStats.maxHealth*.01  #heal bar
+					if (playerStats.health > playerStats.maxHealth):
+						playerStats.health = playerStats.maxHealth
+					combat_ui.hp_bar.value = (float(playerStats.health)/ float(playerStats.maxHealth))*100.0
 		print(bosses.health)
 		if bosses.dodge != true and bosses.block != true:
 			bosses.health -= playerStats.power
 			combat_ui.enemy_hp.value =float(bosses.health)/float(enemy_max)*100
 		win_conditions()
 	elif move == "dodge":
-		playerStats.stamina -= 1
+		playerStats.stamina -= 2
 	combat_ui.stamina_bar.value = (float(playerStats.stamina)/float(MAXSTAMINA))*100
 	
 	
@@ -152,8 +160,7 @@ func resetAllPlayerStats() -> void:
 	playerStats.power = playerStats.maxPower
 func setMaxPlayerHealth(new) -> void:
 	playerStats.maxHealth += new
-	MAXHEALTH += new
-	playerStats.health = MAXHEALTH
+	playerStats.health = playerStats.maxHealth
 func setMaxPlayerStamina(new) -> void:
 	playerStats.maxStamina += new
 func setMaxPlayerPower(new) -> void:
@@ -182,7 +189,10 @@ func dead():
 #when player health reaches 0 change to a new scene - Mirza
 func win_conditions() -> void:
 	if(playerStats.health <= 0):
-		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
+		if combat_ui and combat_ui.has_method("handle_player_death"):
+			combat_ui.handle_player_death()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 	elif(bosses.health <= 0):
 		Global.bosses.is_dead = true
 		Global.totalXP()

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnwhksvcerdcb"]
+[gd_scene load_steps=7 format=3 uid="uid://cnwhksvcerdcb"]
 
 [ext_resource type="Texture2D" uid="uid://cscumyv5h66fg" path="res://Sprites - Zach/Ring/Versus screen.png" id="1_reakh"]
+[ext_resource type="Texture2D" uid="uid://cqufkeyshidc5" path="res://Sprites - Zach/Profile Pictures/Profile Puppet.png" id="2_hnapc"]
+[ext_resource type="Texture2D" uid="uid://bpwb7sl6kt4l1" path="res://Sprites - Zach/Demon Boss Sprites/Skeleton profile.png" id="3_ofpqe"]
+[ext_resource type="Texture2D" uid="uid://dwsnctv68kc71" path="res://Sprites - Zach/Demon Boss Sprites/BlackVersusSkeleton2.png" id="4_uttfy"]
+[ext_resource type="Texture2D" uid="uid://dgwfjxf716vnr" path="res://Sprites - Zach/Profile Pictures/Profile Picture Devil.png" id="5_857i7"]
+[ext_resource type="Texture2D" uid="uid://bvn07j2oyoh4f" path="res://Sprites - Zach/Demon Boss Sprites/Fire Sprite Versus.png" id="6_l0uaw"]
 
 [node name="Vs_tscn" type="Node2D"]
 
@@ -8,3 +13,33 @@
 position = Vector2(960, 539)
 scale = Vector2(1.67014, 1.63889)
 texture = ExtResource("1_reakh")
+
+[node name="ProfilePuppet" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(250, 206)
+scale = Vector2(1.70313, 1.7)
+texture = ExtResource("2_hnapc")
+
+[node name="SkeletonProfile" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(247, 205)
+scale = Vector2(3.40625, 3.125)
+texture = ExtResource("3_ofpqe")
+
+[node name="BlackVersusSkeleton2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(249, 199)
+scale = Vector2(3.375, 3.1875)
+texture = ExtResource("4_uttfy")
+
+[node name="ProfilePictureDevil" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(249.5, 201.5)
+scale = Vector2(1.67969, 1.69167)
+texture = ExtResource("5_857i7")
+
+[node name="FireSpriteVersus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(248.5, 206)
+scale = Vector2(3.57813, 3.21875)
+texture = ExtResource("6_l0uaw")

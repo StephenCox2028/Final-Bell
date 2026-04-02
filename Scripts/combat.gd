@@ -1,4 +1,5 @@
 extends Node2D
+
 @onready var animation: AnimationPlayer = $Animation
 @export var isdodge = false # is your ability to get hit(if not dodgeing you can get smacked) -Stephen
 @export var ispunch = false # is your boolean for punching. - Stephen
@@ -12,6 +13,16 @@ extends Node2D
 @onready var enemy_hp: ProgressBar = $Bars/EnemyHP
 @onready var versusScreenAnim = $VersusScreen/AnimationPlayer
 @onready var versusScreen = $VersusScreen
+@onready var puppetPFP = $VersusScreen/ProfilePuppet
+@onready var skeletonPFP = $VersusScreen/SkeletonProfile
+@onready var blackSkeletonPFP = $VersusScreen/BlackVersusSkeleton2
+@onready var devilPFP = $VersusScreen/ProfilePictureDevil
+@onready var firePFP = $VersusScreen/FireSpriteVersus
+@onready var ringPuppet = $RingOverlay/RingPuppet
+@onready var ringSkeleton = $RingOverlay/RingSkeleton
+@onready var ringBlackSkeleton = $RingOverlay/RingBlackSkeleton
+@onready var ringDevil = $RingOverlay/RingDevil
+@onready var ringFire = $RingOverlay/RingFire
 #Main Character animation functions - Mirza
 @onready var character = $character/MC_animated
 
@@ -70,12 +81,15 @@ var pressTimes = {
 }
 
 var health: float = 100.0
+var death_sequence_started := false
 
 func _ready():
 	if Global.secretEnabled == true:
 		Global.playerStats.health = 50000
+		Global.playerStats.maxHealth = 50000
 	print(Global.playerStats.health)
 	transition.play("fade-in")
+	
 	versusScreenAnim.play("Versus")
 	Global.combat_ui = self
 	isdodge = false
@@ -88,7 +102,7 @@ func _ready():
 	enemy_hp.value = (100)
 	enemy_hp.visible = true
 	$BarContainer/BarforfightameTop2.visible=true
-	Global.playerStats.health = Global.MAXHEALTH
+	Global.playerStats.health = Global.playerStats.maxHealth
 	Global.playerStats.stamina = Global.MAXSTAMINA
 	Global.playerStats.power = Global.MAXPOWER
 	rounds = Global.current_round
@@ -99,9 +113,10 @@ func _ready():
 	# make the power bar dissapear if you are smart but enemy bar apeer
 	if Global.Coach == "vamp":
 		power_bar.visible = false
-
+		$BarContainer/BarforfightameTop2.visible = false
 	if (Global.boss_flip == true) :
 		var boss = BOSS.instantiate()
+		boss.boss_banner.connect(_on_banner_achieved)
 			# Optional: set position or random offset
 		boss.position = Vector2(902.0, 640.0)
 		boss.scale = Vector2(3,3)
@@ -110,7 +125,7 @@ func _ready():
 		move_child(boss, versusScreen.get_index())
 	else:
 		var enemy = ENEMY.instantiate()
-		
+		enemy.enemy_banner.connect(_on_banner_achieved)
 			# Optional: set position or random offset
 		enemy.position = Vector2(902, 640.0)
 		enemy.scale = Vector2(3,3)
@@ -124,6 +139,11 @@ func _ready():
 func _process(delta) -> void:
 	Global.battleStarted = battleStarted
 	if battleStarted:
+		firePFP.visible = false
+		puppetPFP.visible = false
+		skeletonPFP.visible = false
+		blackSkeletonPFP.visible = false
+		devilPFP.visible = false
 		if Global.getPlayerHealth() <= 10:
 			heartbeat.autoplay = true
 			heartbeat.play()
@@ -146,8 +166,39 @@ func _process(delta) -> void:
 		#print(Global.getPlayerStamina())
 		stamina_bar.value=(float(Global.playerStats.stamina)/float(Global.playerStats.maxStamina))*100
 
+func _on_banner_achieved(number):
+	if number == 1:
+		firePFP.visible = true
+		ringFire.visible = true
+	elif number == 2:
+		skeletonPFP.visible = true
+		ringSkeleton.visible = true
+	elif number == 3:
+		puppetPFP.visible = true
+		ringPuppet.visible = true
+	elif number == 4:
+		blackSkeletonPFP.visible = true
+		ringBlackSkeleton.visible = true
+	elif number == 5:
+		devilPFP.visible = true
+		ringDevil.visible = true
 func _on_stamina_cooldown_timeout():
 	exhaustion = false
+
+func handle_player_death() -> void:
+	if death_sequence_started:
+		return
+
+	death_sequence_started = true
+	battleStarted = false
+	Global.battleStarted = false
+	canmove = false
+	isdodge = false
+	ispunch = false
+	isHolding = false
+
+	await get_tree().create_timer(0.45).timeout
+	get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
 
 func start_nextRound():
 	time_in_seconds = 90
@@ -171,7 +222,8 @@ func on_timer_timeout():
 		if rounds > 8:
 			Global.end_match()
 		else: 
-			get_tree().change_scene_to_file("res://round_complete.tscn")
+			start_nextRound()
+			
 
 #Player dodge and attack inputs - Stephen
 func _input(event):
@@ -180,8 +232,9 @@ func _input(event):
 			match Global.Coach:
 				"self":
 					Global.bosses.health = Global.bosses.health * .90# also make a bone animation
+					enemy_hp.value =float(Global.bosses.health)/float(Global.enemy_max)*100
 				"angel":
-					Global.playerStats.health = Global.MAXHEALTH# also make a bone animation
+					Global.playerStats.health = Global.playerStats.maxHealth# also make a bone animation
 					hp_bar.value = (100)
 				_:
 					pass
@@ -316,4 +369,4 @@ func _on_mc_animated_animation_looped():
 
 
 #func _on_animation_player_animation_finished(anim_name):
-	#timer.start(-1) 
+	#timer.start(-1)
