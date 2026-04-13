@@ -27,13 +27,13 @@ func _ready():
 				2:
 						action = 0
 						boss_banner.emit(3)
-						change_stats(750,20,1,5.0, 5.0, 0)
+						change_stats(1000,20,1,5.0, 5.0, 0)
 						animated_sprite_2d.play("Puppeteer1Idle")
 						pass#change sprites for scertain enemys(reason why their split is also because of the amount of>
 				5:
 						action = 1
 						boss_banner.emit(5)
-						change_stats(1160,30,1,5.0, 5.0, 0)
+						change_stats(700,30,2,5.0, 5.0, 0)
 						animated_sprite_2d.play("EvileIdle")
 						pass
 						

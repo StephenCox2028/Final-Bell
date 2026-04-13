@@ -24,7 +24,7 @@ func _ready():
 		0: #flame
 			action = 1
 			enemy_banner.emit(1)
-			change_stats(700,20,1, 4, 2,0)
+			change_stats(800,20,5, 4, 2,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -35,7 +35,7 @@ func _ready():
 		1:
 			action = 0
 			enemy_banner.emit(2)
-			change_stats(350,10,2,5.0,5.0,0)
+			change_stats(350,10,3,5.0,5.0,0)
 			animated_sprite_2d.play("SkeleDefault")# we can change this to be other enemys later
 			#Global.currentBoss = "HitManSkeleton"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -59,7 +59,7 @@ func _ready():
 		3: #black skeleton
 			action = 2
 			enemy_banner.emit(4)
-			change_stats(550,90,2, 4.0, 3.0,0)
+			change_stats(1500,90,1, 4.0, 3.0,0)
 			animated_sprite_2d.play("blackidle")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
@@ -70,7 +70,7 @@ func _ready():
 		4: #1500 and 1
 			action = 1
 			enemy_banner.emit(1)
-			change_stats(1100,20,1, 3.5, 1.5,0)
+			change_stats(775,90,3, 3.5, 1.5,0)
 			animated_sprite_2d.play("TempDefault")
 			#Global.currentBoss = "Devil"
 			timer.wait_time = randf_range(Global.bosses.difficultyMin, Global.bosses.difficultyMax)
